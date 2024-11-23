@@ -1,11 +1,11 @@
 import express from 'express';
-const router = express.Router();
+const patientRouter = express.Router();
 import patientsController from '../controllers/patientController.js';
 
 // Получение всех пациентов
-router.get('/', patientsController.getAllPatients);
+patientRouter.get('/', patientsController.getAllPatients);
 
 // Добавление нового пациента
-router.post('/', patientsController.createPatient);
+patientRouter.post('/', patientsController.createPatient);
 
-export default router;
+export default patientRouter;
