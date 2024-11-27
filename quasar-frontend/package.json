@@ -1,8 +1,8 @@
 {
-  "name": "vue-quasar-frontend",
+  "name": "quasar-frontend",
   "version": "0.0.1",
-  "description": "vue quasar project",
-  "productName": "Child hospital",
+  "description": "quasar project",
+  "productName": "quasar app",
   "author": "azamat-110 <tursunbayevazamat565@gmail.com>",
   "private": true,
   "scripts": {

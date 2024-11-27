@@ -1,6 +1,6 @@
-# Child hospital (vue-quasar-frontend)
+# quasar app (quasar-frontend)
 
-vue quasar project
+quasar project
 
 ## Install the dependencies
 ```bash

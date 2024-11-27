@@ -21,7 +21,7 @@ module.exports = configure(function (/* ctx */) {
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli-vite/boot-files
     boot: [
-      
+
       'axios',
     ],
 
@@ -190,7 +190,7 @@ module.exports = configure(function (/* ctx */) {
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        appId: 'vue-quasar-frontend'
+        appId: 'quasar-frontend'
       }
     },
 

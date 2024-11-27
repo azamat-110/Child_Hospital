@@ -2,7 +2,7 @@ import {executeQuery} from '../models/database.js';
 
 const getAllAppoints = async (req, res) => {
     try {
-        const result = await executeQuery('SELECT * FROM APPOINTMENTS');
+        const result = await executeQuery('SELECT * FROM APPOINTMENTS ORDER BY APPOINTMENT_ID');
         console.log(result);
         res.json(result.rows);
     } catch (err) {

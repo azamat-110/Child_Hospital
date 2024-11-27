@@ -16,7 +16,8 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
-    "oracledb": "^6.6.0"
+    "oracledb": "^6.6.0",
+    "quasar": "^2.17.4"
   },
   "devDependencies": {
     "prisma": "^5.22.0"
