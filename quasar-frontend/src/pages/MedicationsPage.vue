@@ -50,10 +50,11 @@
           <select v-model="form.time" required>
             <option value="" disabled selected>Time</option>
             <option v-for="time in timeSlots" :key="time" :value="time">
-              {{ time }}
+              {{ time}}
             </option>
           </select>
         </div>
+        <div></div>
 
         <!-- Doctor & Department -->
         <div class="form-field">
