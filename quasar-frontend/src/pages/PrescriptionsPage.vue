@@ -3,9 +3,9 @@
 </script>
 
 <template>
-<div>
-  Prescriptions
-</div>
+  <div>
+    prescriptions
+  </div>
 </template>
 
 <style scoped>
