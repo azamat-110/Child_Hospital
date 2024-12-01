@@ -1,10 +1,10 @@
 <script setup>
 import NavBar from "components/NavBar.vue";
-import FooterSecton from "components/FooterSecton.vue";
+import FooterSection from "components/FooterSection.vue";
 
 </script>
 
 <template>
   <NavBar/>
-  <FooterSecton/>
+  <FooterSection/>
 </template>
