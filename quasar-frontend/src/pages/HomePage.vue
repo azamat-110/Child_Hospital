@@ -1,7 +1,6 @@
 <template>
   <q-page class="home-page">
     <div class="content">
-      <!-- Hero Section -->
       <section class="hero">
         <h1>MedDical: Your Health, Our Priority</h1>
         <p>We offer a range of medical services to ensure your well-being. Whether you need emergency care, routine
