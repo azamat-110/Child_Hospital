@@ -1,192 +1,186 @@
-<script setup>
-import {ref} from 'vue';
-
-const isLogin = ref(true);
-const name = ref('');
-const email = ref('');
-const password = ref('');
-const confirmPassword = ref('');
-
-const toggleAuthMode = () => {
-  isLogin.value = !isLogin.value // Переключаем режим
-}
-
-const handleSubmit = () => {
-  if (isLogin.value) {
-    console.log('Log in:', {email: email.value, password: password.value})
-  } else {
-    console.log('Register:', {
-      name: name.value,
-      email: email.value,
-      password: password.value,
-      confirmPassword: confirmPassword.value
-    })
-  }
-}
-</script>
-
 <template>
-  <div class="auth-wrapper">
-    <form @submit.prevent="handleSubmit" class="auth-form">
-      <h2>{{ isLogin ? 'Sign in' : 'Sign up' }}</h2>
-
-      <transition name="fade">
-        <div v-if="!isLogin" class="form-group">
-          <label for="name">Name</label>
-          <input
-            id="name"
-            v-model="name"
-            type="text"
-            placeholder="Your name"
-            required
-          >
-        </div>
-      </transition>
-
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input
-          id="email"
+  <div class="auth-container">
+    <div class="auth-box">
+      <h2>{{ isRegister ? "Регистрация" : "Вход" }}</h2>
+      <q-form @submit.prevent="submitForm" class="auth-form">
+        <q-input
           v-model="email"
+          label="Email"
           type="email"
-          placeholder="Your email"
-          required
-        >
-      </div>
-
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input
-          id="password"
+          :rules="['required', 'email']"
+          outlined
+          dense
+          clearable
+          class="form-field"
+        />
+        <q-input
           v-model="password"
+          label="Пароль"
           type="password"
-          placeholder="Your password"
-          required
-        >
-      </div>
-
-      <transition name="fade">
-        <div v-if="!isLogin" class="form-group">
-          <label for="confirm-password">Confirm Password</label>
-          <input
-            id="confirm-password"
-            v-model="confirmPassword"
-            type="password"
-            placeholder="Confirm your password"
-            required
-          >
+          :rules="['required']"
+          outlined
+          dense
+          clearable
+          class="form-field"
+        />
+        <div v-if="isRegister">
+          <q-input
+            v-model="role"
+            label="Роль"
+            type="text"
+            :rules="['required']"
+            outlined
+            dense
+            clearable
+            class="form-field"
+          />
         </div>
-      </transition>
-
-      <div class="switch-link">
-        {{ isLogin ? "Don't have an account?" : 'Already have an account?' }}
-        <a href="#" @click.prevent="toggleAuthMode">
-          {{ isLogin ? 'Sign up' : 'Sign in' }}
+        <q-btn
+          type="submit"
+          :label="isRegister ? 'Зарегистрироваться' : 'Войти'"
+          color="primary"
+          unelevated
+          class="submit-btn"
+        />
+      </q-form>
+      <p class="toggle-text">
+        {{ isRegister ? "Уже есть аккаунт?" : "Еще нет аккаунта?" }}
+        <a href="#" @click.prevent="toggleMode" class="toggle-link">
+          {{ isRegister ? "Войти" : "Зарегистрироваться" }}
         </a>
-      </div>
-
-      <button type="submit">
-        {{ isLogin ? 'Log in' : 'Register' }}
-      </button>
-    </form>
+      </p>
+      <p v-if="errorMessage" class="error-text">{{ errorMessage }}</p>
+      <p v-if="successMessage" class="success-text">{{ successMessage }}</p>
+    </div>
   </div>
 </template>
 
+<script>
+import { ref } from "vue";
+import axios from "axios";
+
+export default {
+  setup() {
+    const email = ref("");
+    const password = ref("");
+    const role = ref("");
+    const isRegister = ref(false);
+    const errorMessage = ref("");
+    const successMessage = ref("");
+
+    const submitForm = async () => {
+      errorMessage.value = "";
+      successMessage.value = "";
+
+      const url = isRegister.value
+        ? "http://localhost:3001/auth/register"
+        : "http://localhost:3001/auth/login";
+
+      const data = isRegister.value
+        ? { email: email.value, password: password.value, role: role.value }
+        : { email: email.value, password: password.value };
+
+      try {
+        const response = await axios.post(url, data);
+
+        if (response.status === 201 && isRegister.value) {
+          successMessage.value = response.data.message;
+        } else if (!isRegister.value) {
+          successMessage.value = "Вход выполнен успешно!";
+          const token = response.data.token;
+          localStorage.setItem("token", token);
+        }
+      } catch (error) {
+        errorMessage.value =
+          error.response?.data?.message || "Ошибка при выполнении запроса";
+      }
+    };
+
+    const toggleMode = () => {
+      isRegister.value = !isRegister.value;
+      errorMessage.value = "";
+      successMessage.value = "";
+    };
+
+    return {
+      email,
+      password,
+      role,
+      isRegister,
+      submitForm,
+      toggleMode,
+      errorMessage,
+      successMessage,
+    };
+  },
+};
+</script>
 
 <style scoped>
-.auth-wrapper {
+.auth-container {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  padding-top: 4rem;
-  margin-top: -5rem;
-  background-color: #ffffff;
-  box-sizing: border-box;
+  background: linear-gradient(135deg, #1e88e5, #6ab7ff);
+  font-family: "Roboto", sans-serif;
 }
 
-.auth-form {
-  background-color: #1F2B6C;
+.auth-box {
+  background: #ffffff;
   padding: 2rem;
-  border-radius: 16px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
   width: 100%;
   max-width: 400px;
-  color: white;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
-  transition: all 0.3s ease;
 }
 
 h2 {
-  font-size: 2rem;
-  font-weight: 500;
-  text-align: center;
-}
-
-.form-group {
   margin-bottom: 1.5rem;
+  color: #333;
 }
 
-label {
-  display: block;
-  margin-bottom: 0.5rem;
+.auth-form {
+  display: flex;
+  flex-direction: column;
 }
 
-input {
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-  outline: none;
-  transition: border-color 0.2s;
+.form-field {
+  margin-bottom: 1rem;
 }
 
-input:focus {
-  border-color: rgba(255, 255, 255, 0.5);
-}
-
-input::placeholder {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.switch-link {
-  margin-bottom: 1.5rem;
-  font-size: 0.875rem;
-  text-align: center;
-}
-
-a {
-  color: white;
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-a:hover {
-  opacity: 0.8;
-}
-
-button {
-  width: 100%;
-  padding: 1rem;
-  background: white;
-  border: none;
-  border-radius: 8px;
-  color: #2196F3;
+.submit-btn {
+  margin-top: 1rem;
   font-size: 1rem;
+}
+
+.toggle-text {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.toggle-link {
+  color: #1e88e5;
+  text-decoration: none;
+  font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.2s;
 }
 
-button:hover {
-  background: rgba(255, 255, 255, 0.9);
+.toggle-link:hover {
+  text-decoration: underline;
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 0.3s ease;
+.error-text {
+  color: #d32f2f;
+  font-size: 0.9rem;
+  margin-top: 1rem;
 }
 
-.fade-enter-from, .fade-leave-to {
-  opacity: 0;
+.success-text {
+  color: #388e3c;
+  font-size: 0.9rem;
+  margin-top: 1rem;
 }
 </style>

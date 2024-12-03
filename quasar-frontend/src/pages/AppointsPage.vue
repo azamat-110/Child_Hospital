@@ -50,7 +50,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="q-pa-md">
+  <div class="q-px-xl q-py-md">
     <h2 class="appoints__title text-h4 text-center q-ma-none">
       Appointments
     </h2>
