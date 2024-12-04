@@ -20,9 +20,10 @@ onMounted(() => {
   <q-page class="home-page">
     <div class="content">
       <section class="hero">
-        <h1 v-if="userRole === 'admin'">Добро пожаловать, администратор!</h1>
-        <h1 v-if="userRole === 'doctor'">Добро пожаловать, врач!</h1>
-        <h1 v-if="userRole === 'patient'">Добро пожаловать, пациент!</h1>
+        <h1 v-if="authStore.role === 1">Welcome, Administrator!</h1>
+        <h1 v-else-if="authStore.role === 2">Welcome, Doctor!</h1>
+        <h1 v-else-if="authStore.role === 3">Welcome, Patient!</h1>
+        <h1 v-else>Welcome to Children's Hospital!</h1>
         <p>We offer a range of medical services to ensure your well-being. Whether you need emergency care, routine
           check-ups, or specialized treatment, we're here for you. Our experienced team is committed to providing
           top-notch healthcare with compassion and care.</p>
@@ -31,7 +32,6 @@ onMounted(() => {
     </div>
   </q-page>
 </template>
-
 
 
 <style scoped>
@@ -52,12 +52,19 @@ onMounted(() => {
   text-align: left;
   margin-left: 50px;
   color: black;
+  display: flex;
+  align-items: center;
+}
+
+.hero{
+  padding-bottom: 80px;
 }
 
 .hero h1 {
   font-size: 48px;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  line-height: 60px;
 }
 
 .hero p {

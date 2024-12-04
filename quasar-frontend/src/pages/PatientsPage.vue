@@ -1,5 +1,5 @@
 <script setup>
-import {ref, onMounted} from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import apiClient from 'src/api'; // Импортируем наш Axios клиент
 import PatientsCard from 'components/PatientsCard.vue';
 
@@ -7,6 +7,9 @@ const patients = ref([]);
 const loading = ref(false);
 const error = ref(null);
 const isListView = ref(true); // Флаг для переключения вида (карточки/список)
+
+const currentPage = ref(1); // Текущая страница
+const itemsPerPage = ref(8); // Количество элементов на одной странице
 
 const loadPatients = async () => {
   loading.value = true;
@@ -22,6 +25,32 @@ const loadPatients = async () => {
 
 const toggleView = () => {
   isListView.value = !isListView.value;
+};
+
+// Расчет пациентов для текущей страницы
+const paginatedPatients = computed(() => {
+  const start = (currentPage.value - 1) * itemsPerPage.value;
+  const end = start + itemsPerPage.value;
+  return patients.value.slice(start, end);
+});
+
+// Общее количество страниц
+const totalPages = computed(() =>
+  Math.ceil(patients.value.length / itemsPerPage.value)
+);
+
+// Переход на следующую страницу
+const nextPage = () => {
+  if (currentPage.value < totalPages.value) {
+    currentPage.value++;
+  }
+};
+
+// Переход на предыдущую страницу
+const prevPage = () => {
+  if (currentPage.value > 1) {
+    currentPage.value--;
+  }
 };
 
 onMounted(() => {
@@ -46,7 +75,7 @@ onMounted(() => {
 
     <div class="q-pa-md">
       <div v-if="loading" class="loading-spinner">
-        <q-spinner color="primary" size="50px"/>
+        <q-spinner color="primary" size="50px" />
         <p>Загрузка пациентов...</p>
       </div>
 
@@ -54,20 +83,19 @@ onMounted(() => {
         {{ error }}
       </div>
 
-      <!-- Отображение пациентов -->
-      <div v-else>
+      <div v-else >
         <div class="patients-container" :class="{ 'list-view': isListView }">
           <div
-            v-for="patient in patients"
+            v-for="patient in paginatedPatients"
             :key="patient.PATIENT_ID"
             class="patient-wrapper"
           >
-            <PatientsCard v-if="!isListView" :patient="patient"/>
+            <PatientsCard v-if="!isListView" :patient="patient" />
             <div v-else class="patient-list-item">
               <div class="patient-list-content">
                 <div style="display: flex; align-items: flex-start;">
                   <div class="patient-details">
-                  <span class="patient-number">{{ patient.PATIENT_ID }}</span>
+                    <span class="patient-number">{{ patient.PATIENT_ID }}</span>
                     <div class="patient-info">
                       <p><strong>Full Name:</strong> {{ patient.FULL_NAME }}</p>
                       <p><strong>Date of Birth:</strong> {{ patient.DATE_OF_BIRTH }}</p>
@@ -75,19 +103,19 @@ onMounted(() => {
                     <q-list dense>
                       <q-item>
                         <q-item-section side>
-                          <q-icon name="person"/>
+                          <q-icon name="person" />
                         </q-item-section>
                         <q-item-section>{{ patient.GENDER }}</q-item-section>
                       </q-item>
                       <q-item>
                         <q-item-section side>
-                          <q-icon name="phone"/>
+                          <q-icon name="phone" />
                         </q-item-section>
                         <q-item-section>{{ patient.CONTACT_INFO }}</q-item-section>
                       </q-item>
                       <q-item>
                         <q-item-section side>
-                          <q-icon name="accessible"/>
+                          <q-icon name="accessible" />
                         </q-item-section>
                         <q-item-section>{{ patient.DISABILITY_TYPE }}</q-item-section>
                       </q-item>
@@ -95,11 +123,32 @@ onMounted(() => {
                   </div>
                 </div>
                 <q-card-actions align="right">
-                  <q-btn flat label="Подробнее" color="primary" icon="info"/>
+                  <q-btn flat label="Подробнее" color="primary" icon="info" />
                 </q-card-actions>
               </div>
             </div>
           </div>
+        </div>
+
+        <!-- Пагинация -->
+        <div class="pagination-controls">
+          <q-btn
+            flat
+            icon="chevron_left"
+            label="Prev"
+            color="primary"
+            :disable="currentPage === 1"
+            @click="prevPage"
+          />
+          <span>Page {{ currentPage }} of {{ totalPages }}</span>
+          <q-btn
+            flat
+            icon="chevron_right"
+            label="Next"
+            color="primary"
+            :disable="currentPage === totalPages"
+            @click="nextPage"
+          />
         </div>
       </div>
     </div>
@@ -107,6 +156,12 @@ onMounted(() => {
 </template>
 
 <style scoped>
+.pagination-controls{
+  padding-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
 .patients-page {
   max-width: 1200px;
   margin: 0 auto;
@@ -119,7 +174,6 @@ onMounted(() => {
 
 .page-header {
   text-align: center;
-  margin-bottom: 2rem;
   position: relative;
 }
 

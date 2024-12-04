@@ -46,6 +46,8 @@ defineProps({
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 16px;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  min-width: 280px;
+  min-height: 360px;
 }
 
 .patient-card:hover {
@@ -61,6 +63,9 @@ defineProps({
   font-size: 1.25rem;
   font-weight: bold;
   color: #1f2b6c;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
 }
 
 .patient-dob {
