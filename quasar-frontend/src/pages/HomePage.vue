@@ -1,8 +1,28 @@
+<script setup>
+import {QBtn} from 'quasar';
+import {ref, onMounted} from "vue";
+import {useAuthStore} from "stores/authStore";
+
+
+const userRole = ref("patient"); // Роль по умолчанию
+const authStore = useAuthStore();
+authStore.initialize();
+
+console.log(authStore.role);
+
+onMounted(() => {
+  // Получаем роль из localStorage, если она есть
+  userRole.value = localStorage.getItem("role") || "patient";
+});
+</script>
+
 <template>
   <q-page class="home-page">
     <div class="content">
       <section class="hero">
-        <h1>MedDical: Your Health, Our Priority</h1>
+        <h1 v-if="userRole === 'admin'">Добро пожаловать, администратор!</h1>
+        <h1 v-if="userRole === 'doctor'">Добро пожаловать, врач!</h1>
+        <h1 v-if="userRole === 'patient'">Добро пожаловать, пациент!</h1>
         <p>We offer a range of medical services to ensure your well-being. Whether you need emergency care, routine
           check-ups, or specialized treatment, we're here for you. Our experienced team is committed to providing
           top-notch healthcare with compassion and care.</p>
@@ -12,9 +32,7 @@
   </q-page>
 </template>
 
-<script setup>
-import {QBtn} from 'quasar';
-</script>
+
 
 <style scoped>
 .home-page {

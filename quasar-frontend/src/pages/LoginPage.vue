@@ -1,3 +1,50 @@
+<script setup>
+import {ref} from "vue";
+import axios from "axios";
+
+
+const email = ref("");
+const password = ref("");
+const role = ref("");
+const isRegister = ref(false);
+const errorMessage = ref("");
+const successMessage = ref("");
+
+const submitForm = async () => {
+  errorMessage.value = "";
+  successMessage.value = "";
+
+  const url = isRegister.value
+    ? "http://localhost:3001/auth/register"
+    : "http://localhost:3001/auth/login";
+
+  const data = isRegister.value
+    ? {email: email.value, password: password.value, role: role.value}
+    : {email: email.value, password: password.value};
+
+  try {
+    const response = await axios.post(url, data);
+
+    if (response.status === 201 && isRegister.value) {
+      successMessage.value = response.data.message;
+    } else if (!isRegister.value) {
+      successMessage.value = "Вход выполнен успешно!";
+      const token = response.data.token;
+      localStorage.setItem("token", token);
+    }
+  } catch (error) {
+    errorMessage.value =
+      error.response?.data?.message || "Ошибка при выполнении запроса";
+  }
+};
+
+const toggleMode = () => {
+  isRegister.value = !isRegister.value;
+  errorMessage.value = "";
+  successMessage.value = "";
+};
+</script>
+
 <template>
   <div class="auth-container">
     <div class="auth-box">
@@ -24,11 +71,10 @@
           class="form-field"
         />
         <div v-if="isRegister">
-          <q-input
+          <q-select
             v-model="role"
             label="Роль"
-            type="text"
-            :rules="['required']"
+            :options="['admin', 'doctor', 'patient']"
             outlined
             dense
             clearable
@@ -55,66 +101,6 @@
   </div>
 </template>
 
-<script>
-import { ref } from "vue";
-import axios from "axios";
-
-export default {
-  setup() {
-    const email = ref("");
-    const password = ref("");
-    const role = ref("");
-    const isRegister = ref(false);
-    const errorMessage = ref("");
-    const successMessage = ref("");
-
-    const submitForm = async () => {
-      errorMessage.value = "";
-      successMessage.value = "";
-
-      const url = isRegister.value
-        ? "http://localhost:3001/auth/register"
-        : "http://localhost:3001/auth/login";
-
-      const data = isRegister.value
-        ? { email: email.value, password: password.value, role: role.value }
-        : { email: email.value, password: password.value };
-
-      try {
-        const response = await axios.post(url, data);
-
-        if (response.status === 201 && isRegister.value) {
-          successMessage.value = response.data.message;
-        } else if (!isRegister.value) {
-          successMessage.value = "Вход выполнен успешно!";
-          const token = response.data.token;
-          localStorage.setItem("token", token);
-        }
-      } catch (error) {
-        errorMessage.value =
-          error.response?.data?.message || "Ошибка при выполнении запроса";
-      }
-    };
-
-    const toggleMode = () => {
-      isRegister.value = !isRegister.value;
-      errorMessage.value = "";
-      successMessage.value = "";
-    };
-
-    return {
-      email,
-      password,
-      role,
-      isRegister,
-      submitForm,
-      toggleMode,
-      errorMessage,
-      successMessage,
-    };
-  },
-};
-</script>
 
 <style scoped>
 .auth-container {
