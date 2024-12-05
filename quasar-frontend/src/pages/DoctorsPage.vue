@@ -1,30 +1,16 @@
 <script setup>
-import { ref, onMounted } from "vue";
-import apiClient from "src/api"; // Axios клиент
+import {ref, computed, watch} from "vue";
 import DoctorCard from "components/DoctorCard.vue";
-import { QSpinner, QBtn } from "quasar";
+import {QSpinner, QBtn} from "quasar";
+import {useDataStore} from 'stores/dataStore';
 
-const doctors = ref([]); // Все данные из базы
+const dataStore = useDataStore();
+const doctors = computed(() => dataStore.doctors);
+const loading = computed(() => dataStore.loading);
+const error = computed(() => dataStore.error);
 const displayedDoctors = ref([]); // Карточки для отображения
-const loading = ref(false);
-const error = ref(null);
 const itemsPerPage = 8; // Количество карточек за раз
 const currentPage = ref(0); // Текущая страница
-
-// Загрузка данных врачей
-const loadDoctors = async () => {
-  loading.value = true;
-  try {
-    const response = await apiClient.get("/doctors");
-    doctors.value = response.data; // Все данные врачей
-    updateDisplayedDoctors(); // Инициализация первых карточек
-  } catch (err) {
-    error.value = "Ошибка при загрузке врачей: " + err.message;
-    console.error(err);
-  } finally {
-    loading.value = false;
-  }
-};
 
 const updateDisplayedDoctors = () => {
   const start = currentPage.value * itemsPerPage;
@@ -32,14 +18,17 @@ const updateDisplayedDoctors = () => {
   displayedDoctors.value = doctors.value.slice(0, end);
 };
 
+updateDisplayedDoctors();
+
+watch(doctors, () => {
+  updateDisplayedDoctors();
+});
+
 const loadMore = () => {
   currentPage.value++;
   updateDisplayedDoctors();
 };
 
-onMounted(() => {
-  loadDoctors();
-});
 </script>
 
 <template>
@@ -50,7 +39,7 @@ onMounted(() => {
     </div>
 
     <div class="content-container">
-      <q-spinner v-if="loading" size="40px" color="primary" class="loading-spinner" />
+      <q-spinner v-if="loading" size="40px" color="primary" class="loading-spinner"/>
 
       <div v-else-if="error" class="error-message">
         {{ error }}
@@ -59,7 +48,7 @@ onMounted(() => {
       <div v-else>
         <div class="doctors-grid">
           <div v-for="doctor in displayedDoctors" :key="doctor.DOCTOR_ID" class="doctor-card">
-            <DoctorCard :doctor="doctor" />
+            <DoctorCard :doctor="doctor"/>
           </div>
         </div>
 

@@ -32,8 +32,8 @@ function toggleDrawer() {
         <q-btn flat to="/doctors" label="Doctors"/>
         <q-btn flat to="/prescriptions" label="Prescriptions"/>
         <q-btn flat to="/medications" label="Medications"/>
-        <LogInBtn v-if="!authStore.role"/>
-        <LogOutBtn v-else/>
+        <LogInBtn v-if="!authStore.role" class="q-ml-sm"/>
+        <LogOutBtn v-else class="q-ml-sm"/>
       </div>
     </q-toolbar>
   </div>

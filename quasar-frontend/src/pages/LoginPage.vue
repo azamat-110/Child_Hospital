@@ -184,7 +184,7 @@ h2 {
 }
 
 .success-text {
-  color: #388e3c;
+  color: #49ff51;
   font-size: 0.9rem;
   margin-top: 1rem;
 }

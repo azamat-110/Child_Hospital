@@ -8,7 +8,6 @@ export const useAuthStore = defineStore('auth', {
   }),
   actions: {
     login(token) {
-      console.log(jwtDecode(token));
       this.token = token;
       this.role = jwtDecode(token).roleId;
       localStorage.setItem('token', token);

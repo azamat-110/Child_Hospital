@@ -1,12 +1,14 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, computed } from 'vue';
 import apiClient from 'src/api';
+import {useDataStore} from "stores/dataStore";
 
+const dataStore = useDataStore();
 const appointments = ref([]);
 const patients = ref([]);
 const doctors = ref([]);
 
-const formattedAppointments = ref([]);
+const formattedAppointments = computed(()=> dataStore.formattedAppointments);
 
 const columns = [
   { name: 'id', label: 'ID', align: 'left', field: 'APPOINTMENT_ID', style: 'font-size: 16px;' },
@@ -44,9 +46,6 @@ const loadAppointments = async () => {
   }
 };
 
-onMounted(() => {
-  loadAppointments();
-});
 </script>
 
 <template>

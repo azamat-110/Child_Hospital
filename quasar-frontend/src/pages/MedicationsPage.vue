@@ -1,21 +1,10 @@
 <script setup>
-import { ref, onMounted } from 'vue';
-import apiClient from 'src/api';
+import { computed } from 'vue';
+import {useDataStore} from "stores/dataStore";
 
-const medications = ref([]);
+const dataStore = useDataStore();
+const medications = computed(() => dataStore.medications);
 
-const loadMedications = async () => {
-  try {
-    const response = await apiClient.get('/medications');
-    medications.value = response.data;
-  } catch (error) {
-    console.error('Ошибка загрузки медикаментов:', error);
-  }
-};
-
-onMounted(() => {
-  loadMedications();
-});
 </script>
 
 <template>

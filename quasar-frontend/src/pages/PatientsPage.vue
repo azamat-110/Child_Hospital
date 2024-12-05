@@ -1,61 +1,42 @@
 <script setup>
-import { ref, computed, onMounted } from 'vue';
-import apiClient from 'src/api'; // Импортируем наш Axios клиент
+import { ref, computed } from 'vue';
 import PatientsCard from 'components/PatientsCard.vue';
+import { useDataStore } from 'stores/dataStore';
 
-const patients = ref([]);
-const loading = ref(false);
-const error = ref(null);
-const isListView = ref(true); // Флаг для переключения вида (карточки/список)
+const isListView = ref(true);
+const currentPage = ref(1);
+const itemsPerPage = ref(8);
 
-const currentPage = ref(1); // Текущая страница
-const itemsPerPage = ref(8); // Количество элементов на одной странице
-
-const loadPatients = async () => {
-  loading.value = true;
-  try {
-    const response = await apiClient.get('/patients'); // GET запрос
-    patients.value = response.data; // Данные из API
-  } catch (err) {
-    error.value = 'Ошибка при загрузке пациентов: ' + err.message;
-  } finally {
-    loading.value = false;
-  }
-};
+const dataStore = useDataStore();
+const patients = computed(() => dataStore.patients);
+const loading = computed(() => dataStore.loading);
+const error = computed(() => dataStore.error);
 
 const toggleView = () => {
   isListView.value = !isListView.value;
 };
 
-// Расчет пациентов для текущей страницы
 const paginatedPatients = computed(() => {
   const start = (currentPage.value - 1) * itemsPerPage.value;
   const end = start + itemsPerPage.value;
   return patients.value.slice(start, end);
 });
 
-// Общее количество страниц
 const totalPages = computed(() =>
   Math.ceil(patients.value.length / itemsPerPage.value)
 );
 
-// Переход на следующую страницу
 const nextPage = () => {
   if (currentPage.value < totalPages.value) {
     currentPage.value++;
   }
 };
 
-// Переход на предыдущую страницу
 const prevPage = () => {
   if (currentPage.value > 1) {
     currentPage.value--;
   }
 };
-
-onMounted(() => {
-  loadPatients();
-});
 </script>
 
 <template>

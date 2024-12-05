@@ -7,7 +7,7 @@ import FooterSection from "components/FooterSection.vue";
   <NavBar />
   <q-layout view="hHh lpR fFf" style="padding-top: 82px;" >
     <q-page-container>
-      <transition name="fade" mode="out-in">
+      <transition name="fade" mode="out-in" @before-enter="loadPatients">
         <router-view v-slot="{ Component }">
           <transition name="fade" mode="out-in">
             <component :is="Component" />
@@ -22,7 +22,7 @@ import FooterSection from "components/FooterSection.vue";
 <style>
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.3s ease;
+  transition: opacity .3s ease;
 }
 
 .fade-enter-from,

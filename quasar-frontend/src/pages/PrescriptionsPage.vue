@@ -1,48 +1,13 @@
 <script setup>
-import {ref, onMounted} from 'vue';
-import apiClient from 'src/api';
+import {onMounted, computed} from 'vue';
+import {useDataStore} from 'stores/dataStore'; // Подключение Pinia Store
 
-const prescriptions = ref([]);
-const patients = ref([]);
-const doctors = ref([]);
+const dataStore = useDataStore();
 
-const groupedPrescriptions = ref({});
-
-const loadPrescriptions = async () => {
-  try {
-    const [prescriptionsRes, patientsRes, doctorsRes] = await Promise.all([
-      apiClient.get('/prescriptions'),
-      apiClient.get('/patients'),
-      apiClient.get('/doctors')
-    ]);
-
-    prescriptions.value = prescriptionsRes.data;
-    patients.value = patientsRes.data;
-    doctors.value = doctorsRes.data;
-
-    prescriptions.value.forEach(prescription => {
-      const patient = patients.value.find(p => p.PATIENT_ID === prescription.PATIENT_ID);
-      const doctor = doctors.value.find(d => d.DOCTOR_ID === prescription.DOCTOR_ID);
-
-      const groupKey = doctor ? doctor.FULL_NAME : 'Unknown Doctor';
-
-      if (!groupedPrescriptions.value[groupKey]) {
-        groupedPrescriptions.value[groupKey] = [];
-      }
-
-      groupedPrescriptions.value[groupKey].push({
-        ...prescription,
-        PATIENT_NAME: patient ? patient.FULL_NAME : 'Unknown Patient',
-        DOCTOR_NAME: groupKey
-      });
-    });
-  } catch (error) {
-    console.error('Ошибка загрузки данных:', error);
-  }
-};
+const groupedPrescriptions = computed(() => dataStore.groupedPrescriptions);
 
 onMounted(() => {
-  loadPrescriptions();
+  dataStore.loadAllData(); // Загрузка всех данных
 });
 </script>
 
