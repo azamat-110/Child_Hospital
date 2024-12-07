@@ -41,7 +41,7 @@ defineProps({
 
 <style scoped>
 .patient-card {
-  background: linear-gradient(to bottom right, #e3f2fd, #bbdefb);
+  background: linear-gradient(to bottom right, #e3f2fd, #a5d8ff);
   border: 1px solid #90caf9;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 16px;

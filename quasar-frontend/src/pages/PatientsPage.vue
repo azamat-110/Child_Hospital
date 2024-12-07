@@ -197,7 +197,7 @@ const prevPage = () => {
 }
 
 .patient-list-item {
-  background: linear-gradient(to bottom right, #e3f2fd, #bbdefb);
+  background: linear-gradient(to bottom right, #e3f2fd, #a5d8ff);
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   margin-bottom: 1rem;

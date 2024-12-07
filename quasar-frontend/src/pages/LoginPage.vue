@@ -1,6 +1,6 @@
 <script setup>
-import { ref } from "vue";
-import { useRouter } from "vue-router";
+import {ref} from "vue";
+import {useRouter} from "vue-router";
 import axios from "axios";
 
 const email = ref("");
@@ -21,8 +21,8 @@ const submitForm = async () => {
     : "http://localhost:3001/auth/login";
 
   const data = isRegister.value
-    ? { email: email.value, password: password.value, role: role.value }
-    : { email: email.value, password: password.value };
+    ? {email: email.value, password: password.value, role: role.value}
+    : {email: email.value, password: password.value};
 
   try {
     const response = await axios.post(url, data);
@@ -84,21 +84,9 @@ const toggleMode = () => {
           clearable
           class="form-field"
         />
-        <div v-if="isRegister">
-          <q-select
-            v-model="role"
-            label="Role"
-            :options="['admin', 'doctor', 'patient']"
-            bg-color="white"
-            outlined
-            dense
-            clearable
-            class="form-field"
-          />
-        </div>
         <q-btn
           type="submit"
-          :label="isRegister ? 'Sign up' : 'Sign in'"
+          label="Sign up"
           color="primary"
           outline
           text-color="white"
@@ -117,7 +105,6 @@ const toggleMode = () => {
     </div>
   </div>
 </template>
-
 
 
 <style scoped>

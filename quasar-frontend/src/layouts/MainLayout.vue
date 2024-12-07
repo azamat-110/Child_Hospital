@@ -22,7 +22,7 @@ import FooterSection from "components/FooterSection.vue";
 <style>
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity .3s ease;
+  transition: opacity .2s ease;
 }
 
 .fade-enter-from,
