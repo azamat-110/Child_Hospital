@@ -9,9 +9,14 @@ defineProps({
 
 <template>
   <q-card class="doctor-card">
-    <img src="../assets/images/doctor.png" alt="Doctor Image" class="doctor-image"/>
     <q-card-section class="info-section">
-      <q-item class="">
+    <img :src="doctor.GENDER === 'Мужской' ?
+       '/src/assets/images/Doctor_Male.png' :
+       '/src/assets/images/Doctor_Female.png'"
+         alt="Doctor Image"
+         class="doctor-image"
+    />
+      <q-item>
         <q-item-section side>
           <q-icon name="person"/>
         </q-item-section>
@@ -53,15 +58,15 @@ defineProps({
 </template>
 
 <style scoped>
-.item__section{
+.item__section {
   font-size: 1rem;
 
-  &.name{
+  &.name {
     min-height: 48px;
   }
 }
 
-.info-section{
+.info-section {
   background: linear-gradient(to bottom right, #e3f2fd, #bbdefb) !important;
 }
 
@@ -69,26 +74,25 @@ defineProps({
   max-width: 280px;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s, box-shadow 0.3s;
   margin: 0 auto;
 }
 
 .doctor-card:hover {
   transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
   border-radius: 16px;
 }
 
 .doctor-image {
   width: 100%;
-  height: 180px;
+  height: 100%;
   object-fit: cover;
+  transform: scale(.6);
 }
 
 .info-section {
-  padding: 1rem;
-  background: linear-gradient(135deg, #ffffff, #f3f3f3);
   text-align: center;
   color: #1f2b6c;
 

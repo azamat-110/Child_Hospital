@@ -1,11 +1,11 @@
 <script setup>
-import {ref} from "vue";
-import {useRouter} from "vue-router";
+import { ref } from "vue";
+import { useRouter } from "vue-router";
 import axios from "axios";
 
 const email = ref("");
 const password = ref("");
-const role = ref("");
+const fullName = ref("");
 const isRegister = ref(false);
 const errorMessage = ref("");
 const successMessage = ref("");
@@ -21,26 +21,27 @@ const submitForm = async () => {
     : "http://localhost:3001/auth/login";
 
   const data = isRegister.value
-    ? {email: email.value, password: password.value, role: role.value}
-    : {email: email.value, password: password.value};
+    ? { email: email.value, password: password.value, fullName: fullName.value }
+    : { email: email.value, password: password.value };
 
   try {
     const response = await axios.post(url, data);
 
     if (isRegister.value) {
-      // Если регистрация успешна
+      // Регистрация
       if (response.status === 201) {
         successMessage.value = response.data.message;
-        isRegister.value = false; // Переходим на форму входа
+        isRegister.value = false; // Переключаем на форму входа
       }
     } else {
-      // Если вход успешен
+      // Вход
       if (response.status === 200) {
         successMessage.value = "Вход выполнен успешно!";
-        const token = response.data.token;
+        const { token, roleId } = response.data;
         localStorage.setItem("token", token);
+        localStorage.setItem("roleId", roleId);
 
-        // Перенаправление на /home
+        // Переход на главную
         router.push("/");
       }
     }
@@ -62,6 +63,18 @@ const toggleMode = () => {
     <div class="auth-box">
       <h4 class="text-grey1">{{ isRegister ? "Registration" : "Login" }}</h4>
       <q-form @submit.prevent="submitForm" class="auth-form">
+        <q-input
+          v-if="isRegister"
+          v-model="fullName"
+          label="Full Name"
+          type="text"
+          :rules="['required']"
+          bg-color="white"
+          outlined
+          dense
+          clearable
+          class="form-field"
+        />
         <q-input
           v-model="email"
           label="Email"
@@ -86,7 +99,7 @@ const toggleMode = () => {
         />
         <q-btn
           type="submit"
-          label="Sign up"
+          :label="isRegister ? 'Sign Up' : 'Sign In'"
           color="primary"
           outline
           text-color="white"
@@ -105,7 +118,6 @@ const toggleMode = () => {
     </div>
   </div>
 </template>
-
 
 <style scoped>
 .auth-container {

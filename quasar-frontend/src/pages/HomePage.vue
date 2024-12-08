@@ -8,8 +8,6 @@ const userRole = ref("patient"); // Роль по умолчанию
 const authStore = useAuthStore();
 authStore.initialize();
 
-console.log(authStore.role);
-
 onMounted(() => {
   // Получаем роль из localStorage, если она есть
   userRole.value = localStorage.getItem("role") || "patient";
@@ -38,26 +36,29 @@ onMounted(() => {
 .home-page {
   width: 100vw;
   min-height: 100vh;
-  background: url('../assets/images/mainBg.png') no-repeat center center;
+  background: url('../assets/images/mainBg2.png') no-repeat center center;
   background-size: cover;
   margin: 0;
   padding: 0;
   display: flex;
   align-items: center;
+  justify-content: end;
 }
 
 .content {
   max-width: 800px;
   padding: 20px;
-  text-align: left;
+  text-align: right;
   margin-left: 50px;
-  color: black;
+  color: #1f2b6c;
   display: flex;
   align-items: center;
 }
 
 .hero{
   padding-bottom: 80px;
+  padding-right: 2rem;
+  position: relative;
 }
 
 .hero h1 {
@@ -68,9 +69,11 @@ onMounted(() => {
 }
 
 .hero p {
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1.5;
   margin-bottom: 20px;
+  font-weight: bold;
+
 }
 
 .learn-more-btn {

@@ -4,19 +4,17 @@ import FooterSection from "components/FooterSection.vue";
 </script>
 
 <template>
-  <NavBar />
-  <q-layout view="hHh lpR fFf" style="padding-top: 82px;" >
+  <NavBar/>
+  <q-layout view="hHh lpR fFf" style="padding-top: 82px;">
     <q-page-container>
-      <transition name="fade" mode="out-in" @before-enter="loadPatients">
-        <router-view v-slot="{ Component }">
-          <transition name="fade" mode="out-in">
-            <component :is="Component" />
-          </transition>
-        </router-view>
-      </transition>
+      <router-view v-slot="{ Component }">
+        <transition name="fade" mode="out-in">
+          <component :is="Component"/>
+        </transition>
+      </router-view>
     </q-page-container>
   </q-layout>
-  <FooterSection />
+  <FooterSection/>
 </template>
 
 <style>

@@ -4,15 +4,8 @@ import {useAuthStore} from "stores/authStore";
 import LogInBtn from "components/LogInBtn.vue";
 import LogOutBtn from "components/LogOutBtn.vue";
 
-
-const drawerOpen = ref(false);
 const screenWidth = ref(window.innerWidth);
 const authStore = useAuthStore();
-authStore.initialize()
-
-function toggleDrawer() {
-  drawerOpen.value = !drawerOpen.value;
-}
 </script>
 
 <template>
@@ -20,10 +13,12 @@ function toggleDrawer() {
     <q-toolbar class="navbar q-px-xl q-py-md">
       <q-toolbar-title class="text-h4">
         <div class="toolbar__title">
-          Children's Hospital
-          <img src="../assets/images/clinicLogo.svg" alt="clinic">
+          <div class="app-title">Children's Hospital</div>
+          <img src="../assets/images/clinicLogo.svg" alt="clinic" />
+          <div v-if="authStore.role === 1" class="admin-title">Admin Panel</div>
         </div>
       </q-toolbar-title>
+
 
       <div v-if="screenWidth > 450">
         <q-btn flat to="/" label="Home"/>
@@ -43,8 +38,19 @@ function toggleDrawer() {
 .toolbar__title {
   display: flex;
   align-items: center;
-  gap: 1rem;
+}
+
+.app-title {
+  font-size: 2rem;
   font-weight: bold;
+}
+
+.admin-title {
+  margin-left: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #49ff51; /* Цвет выделения, можно выбрать по желанию */
+  text-transform: uppercase;
 }
 
 .navbar {
@@ -57,6 +63,7 @@ function toggleDrawer() {
   color: #ffffff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.9); /* Добавим небольшой теневой эффект */
 }
+
 
 
 
