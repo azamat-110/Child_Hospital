@@ -9,7 +9,6 @@ const authStore = useAuthStore();
 authStore.initialize();
 
 onMounted(() => {
-  // Получаем роль из localStorage, если она есть
   userRole.value = localStorage.getItem("role") || "patient";
 });
 </script>
@@ -25,7 +24,8 @@ onMounted(() => {
         <p>We offer a range of medical services to ensure your well-being. Whether you need emergency care, routine
           check-ups, or specialized treatment, we're here for you. Our experienced team is committed to providing
           top-notch healthcare with compassion and care.</p>
-        <q-btn label="Learn More" color="primary" class="learn-more-btn"/>
+        <q-btn v-if="!authStore.role" to="/login" label="Log In" color="primary" class="learn-more-btn text-bold" outline/>
+        <q-btn to="/about" label="Learn More..." color="primary" class="learn-more-btn q-ml-lg text-bold" outline/>
       </section>
     </div>
   </q-page>

@@ -22,11 +22,12 @@ const authStore = useAuthStore();
 
       <div v-if="screenWidth > 450">
         <q-btn flat to="/" label="Home"/>
-        <q-btn flat to="/patients" label="Patients"/>
-        <q-btn flat to="/appointments" label="Appointments"/>
+        <q-btn v-if="authStore.role === 1" flat to="/patients" label="Patients"/>
+        <q-btn v-if="authStore.role === 1 || authStore.role === 2" flat to="/appointments" label="Appointments"/>
         <q-btn flat to="/doctors" label="Doctors"/>
-        <q-btn flat to="/prescriptions" label="Prescriptions"/>
-        <q-btn flat to="/medications" label="Medications"/>
+        <q-btn v-if="authStore.role === 1" flat to="/prescriptions" label="Prescriptions"/>
+        <q-btn v-if="authStore.role === 1" flat to="/medications" label="Medications"/>
+        <q-btn v-if="authStore.role !== 1" flat to="/about" label="About us"/>
         <LogInBtn v-if="!authStore.role" class="q-ml-sm"/>
         <LogOutBtn v-else class="q-ml-sm"/>
       </div>
@@ -49,7 +50,7 @@ const authStore = useAuthStore();
   margin-left: 10px;
   font-size: 16px;
   font-weight: bold;
-  color: #49ff51; /* Цвет выделения, можно выбрать по желанию */
+  color: #ffffff; /* Цвет выделения, можно выбрать по желанию */
   text-transform: uppercase;
 }
 

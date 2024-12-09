@@ -3,6 +3,10 @@ import {ref, computed, watch} from "vue";
 import DoctorCard from "components/DoctorCard.vue";
 import {QSpinner, QBtn} from "quasar";
 import {useDataStore} from 'stores/dataStore';
+import {useAuthStore} from "stores/authStore";
+
+const authStore = useAuthStore();
+authStore.initialize();
 
 const dataStore = useDataStore();
 const doctors = computed(() => dataStore.doctors);

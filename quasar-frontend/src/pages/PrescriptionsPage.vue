@@ -1,6 +1,10 @@
 <script setup>
 import {onMounted, computed} from 'vue';
-import {useDataStore} from 'stores/dataStore'; // Подключение Pinia Store
+import {useDataStore} from 'stores/dataStore';
+import {useAuthStore} from "stores/authStore";
+
+const authStore = useAuthStore();
+authStore.initialize();
 
 const dataStore = useDataStore();
 

@@ -1,11 +1,17 @@
 <script setup>
-import { ref, computed } from 'vue';
+import {ref, computed} from 'vue';
 import PatientsCard from 'components/PatientsCard.vue';
-import { useDataStore } from 'stores/dataStore';
+import {useDataStore} from 'stores/dataStore';
+import {useAuthStore} from "stores/authStore";
+import AddPatient from "components/AddPatient.vue";
+
+const authStore = useAuthStore();
+authStore.initialize();
 
 const isListView = ref(true);
 const currentPage = ref(1);
 const itemsPerPage = ref(8);
+const openModal = ref(false);
 
 const dataStore = useDataStore();
 const patients = computed(() => dataStore.patients);
@@ -41,9 +47,19 @@ const prevPage = () => {
 
 <template>
   <div class="patients-page">
+    <AddPatient :openModal="openModal" :model-value="openModal" @update:model-value="openModal = $event" />
     <div class="page-header">
       <h1>Patients List</h1>
       <p class="subtitle">Data of patients</p>
+      <q-btn
+        v-if="authStore.role === 1"
+        class="add-patient-btn"
+        icon="add"
+        label="Add Patient"
+        color="primary"
+        outline
+        @click="openModal = true"
+      />
       <q-btn
         class="toggle-view-btn"
         icon="swap_horiz"
@@ -53,10 +69,9 @@ const prevPage = () => {
         @click="toggleView"
       />
     </div>
-
     <div class="q-pa-md">
       <div v-if="loading" class="loading-spinner">
-        <q-spinner color="primary" size="50px" />
+        <q-spinner color="primary" size="50px"/>
         <p>Загрузка пациентов...</p>
       </div>
 
@@ -64,14 +79,14 @@ const prevPage = () => {
         {{ error }}
       </div>
 
-      <div v-else >
+      <div v-else>
         <div class="patients-container" :class="{ 'list-view': isListView }">
           <div
             v-for="patient in paginatedPatients"
             :key="patient.PATIENT_ID"
             class="patient-wrapper"
           >
-            <PatientsCard v-if="!isListView" :patient="patient" />
+            <PatientsCard v-if="!isListView" :patient="patient"/>
             <div v-else class="patient-list-item">
               <div class="patient-list-content">
                 <div style="display: flex; align-items: flex-start;">
@@ -84,19 +99,19 @@ const prevPage = () => {
                     <q-list dense>
                       <q-item>
                         <q-item-section side>
-                          <q-icon name="person" />
+                          <q-icon name="person"/>
                         </q-item-section>
                         <q-item-section>{{ patient.GENDER }}</q-item-section>
                       </q-item>
                       <q-item>
                         <q-item-section side>
-                          <q-icon name="phone" />
+                          <q-icon name="phone"/>
                         </q-item-section>
                         <q-item-section>{{ patient.CONTACT_INFO }}</q-item-section>
                       </q-item>
                       <q-item>
                         <q-item-section side>
-                          <q-icon name="accessible" />
+                          <q-icon name="accessible"/>
                         </q-item-section>
                         <q-item-section>{{ patient.DISABILITY_TYPE }}</q-item-section>
                       </q-item>
@@ -104,7 +119,7 @@ const prevPage = () => {
                   </div>
                 </div>
                 <q-card-actions align="right">
-                  <q-btn flat label="Подробнее" color="primary" icon="info" />
+                  <q-btn flat label="Подробнее" color="primary" icon="info"/>
                 </q-card-actions>
               </div>
             </div>
@@ -137,19 +152,20 @@ const prevPage = () => {
 </template>
 
 <style scoped>
-.pagination-controls{
+.pagination-controls {
   padding-top: 1rem;
   display: flex;
   align-items: center;
   gap: 1rem;
 }
+
 .patients-page {
   max-width: 1200px;
   margin: 0 auto;
   padding: 1rem;
 }
 
-.patient-info{
+.patient-info {
   min-width: 220px;
 }
 
@@ -179,10 +195,17 @@ const prevPage = () => {
   right: 10px;
 }
 
+.add-patient-btn {
+  position: absolute;
+  top: 50px;
+  right: 10px;
+
+}
+
 /* Контейнер пациентов */
 .patients-container {
   display: grid;
-  gap:1rem;
+  gap: 1rem;
   grid-template-columns: repeat(4, 1fr); /* По умолчанию 4 карточки */
 }
 

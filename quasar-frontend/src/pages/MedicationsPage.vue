@@ -1,6 +1,10 @@
 <script setup>
 import { computed } from 'vue';
 import {useDataStore} from "stores/dataStore";
+import {useAuthStore} from "stores/authStore";
+
+const authStore = useAuthStore();
+authStore.initialize();
 
 const dataStore = useDataStore();
 const medications = computed(() => dataStore.medications);

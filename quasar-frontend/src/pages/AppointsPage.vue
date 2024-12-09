@@ -2,6 +2,10 @@
 import { ref, computed } from 'vue';
 import apiClient from 'src/api';
 import {useDataStore} from "stores/dataStore";
+import {useAuthStore} from "stores/authStore";
+
+const authStore = useAuthStore();
+authStore.initialize();
 
 const dataStore = useDataStore();
 const appointments = ref([]);
