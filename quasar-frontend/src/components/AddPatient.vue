@@ -59,10 +59,9 @@ const addPatient = () => {
 
         console.log("Ответ сервера:", response.data);
 
-        alert(response.data.message || 'Пациент успешно добавлен');
-
         closeDialog();
         resetForm();
+        window.location.reload();
 
       } catch (error) {
         console.error("Ошибка при добавлении пациента:", error);
@@ -81,8 +80,8 @@ const addPatient = () => {
     <q-dialog v-model="internalModal" backdrop-filter="brightness(60%)">
       <q-card style="max-width: 800px;">
         <q-card-section>
-          <div class="text-h5 text-center q-pt-lg">Добавить пациента</div>
-          <div class=" text-center q-mt-sm">
+          <div class="text-h5 text-center q-pt-lg text-primary text-bold" >Добавить пациента</div>
+          <div class=" text-center q-mt-sm text-primary">
             Заполните данные для регистрации нового пациента.
           </div>
         </q-card-section>
@@ -111,7 +110,7 @@ const addPatient = () => {
                 <q-select
                   v-model="form.gender"
                   label="Пол"
-                  :options="[{ label: 'Мужской', value: 'male' }, { label: 'Женский', value: 'female' }]"
+                  :options="[{ label: 'Мужской', value: 'Мужской' }, { label: 'Женский', value: 'Женский' }]"
                   outlined
                   class="q-mb-md"
                   :rules="[val => !!val || 'Поле обязательно для заполнения']"
@@ -162,8 +161,8 @@ const addPatient = () => {
         </q-card-section>
 
         <q-card-actions align="right" class="q-pr-lg q-pb-lg">
-          <q-btn size="1rem" outline label="Закрыть" color="red" @click="closeDialog"/>
-          <q-btn size="1rem" label="Добавить" color="primary" @click="addPatient" outline/>
+          <q-btn size="1rem" outline label="Закрыть" color="red" @click="closeDialog" class="text-bold"/>
+          <q-btn size="1rem" label="Добавить" color="primary" @click="addPatient" outline class="text-bold"/>
         </q-card-actions>
       </q-card>
     </q-dialog>

@@ -1,36 +1,6 @@
-<template>
-  <q-card class="patient-card q-pa-md">
-    <q-card-section>
-      <div class="patient-info">
-        <div class="patient-name">{{ patient.FULL_NAME }}</div>
-        <div class="patient-dob">Date of birth: {{ patient.DATE_OF_BIRTH }}</div>
-      </div>
-    </q-card-section>
-
-    <q-card-section>
-      <q-list dense>
-        <q-item>
-          <q-item-section side><q-icon name="person" /></q-item-section>
-          <q-item-section>{{ patient.GENDER }}</q-item-section>
-        </q-item>
-        <q-item>
-          <q-item-section side><q-icon name="phone" /></q-item-section>
-          <q-item-section>{{ patient.CONTACT_INFO }}</q-item-section>
-        </q-item>
-        <q-item>
-          <q-item-section side><q-icon name="accessible" /></q-item-section>
-          <q-item-section>{{ patient.DISABILITY_TYPE }}</q-item-section>
-        </q-item>
-      </q-list>
-    </q-card-section>
-
-    <q-card-actions align="right">
-      <q-btn flat label="Подробнее" color="primary" icon="info" />
-    </q-card-actions>
-  </q-card>
-</template>
-
 <script setup>
+import DeletePatient from "components/DeletePatient.vue";
+
 defineProps({
   patient: {
     type: Object,
@@ -38,6 +8,49 @@ defineProps({
   }
 });
 </script>
+
+<template>
+  <q-card class="patient-card q-pa-md">
+    <q-card-section>
+      <div class="patient-info">
+        <div class="patient-name">
+          <span class="q-pr-sm">{{ patient.PATIENT_ID }}.</span>
+          {{ patient.FULL_NAME }}
+        </div>
+        <div class="patient-dob">Date of birth: {{ patient.DATE_OF_BIRTH }}</div>
+      </div>
+    </q-card-section>
+
+    <q-card-section>
+      <q-list dense>
+        <q-item>
+          <q-item-section side>
+            <q-icon name="person"/>
+          </q-item-section>
+          <q-item-section>{{ patient.GENDER }}</q-item-section>
+        </q-item>
+        <q-item>
+          <q-item-section side>
+            <q-icon name="phone"/>
+          </q-item-section>
+          <q-item-section>{{ patient.CONTACT_INFO }}</q-item-section>
+        </q-item>
+        <q-item>
+          <q-item-section side>
+            <q-icon name="accessible"/>
+          </q-item-section>
+          <q-item-section>{{ patient.DISABILITY_TYPE }}</q-item-section>
+        </q-item>
+      </q-list>
+    </q-card-section>
+
+    <q-card-actions align="right">
+      <q-btn flat label="More" color="primary" icon="info"/>
+      <DeletePatient :patientId="patient.PATIENT_ID"/>
+    </q-card-actions>
+  </q-card>
+</template>
+
 
 <style scoped>
 .patient-card {

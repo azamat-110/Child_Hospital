@@ -4,6 +4,7 @@ import PatientsCard from 'components/PatientsCard.vue';
 import {useDataStore} from 'stores/dataStore';
 import {useAuthStore} from "stores/authStore";
 import AddPatient from "components/AddPatient.vue";
+import DeletePatient from "components/DeletePatient.vue";
 
 const authStore = useAuthStore();
 authStore.initialize();
@@ -47,7 +48,7 @@ const prevPage = () => {
 
 <template>
   <div class="patients-page">
-    <AddPatient :openModal="openModal" :model-value="openModal" @update:model-value="openModal = $event" />
+    <AddPatient :openModal="openModal" :model-value="openModal" @update:model-value="openModal = $event"/>
     <div class="page-header">
       <h1>Patients List</h1>
       <p class="subtitle">Data of patients</p>
@@ -113,13 +114,14 @@ const prevPage = () => {
                         <q-item-section side>
                           <q-icon name="accessible"/>
                         </q-item-section>
-                        <q-item-section>{{ patient.DISABILITY_TYPE }}</q-item-section>
+                        <q-item-section>{{ patient.DISABILITY_TYPE  || 'None'}}</q-item-section>
                       </q-item>
                     </q-list>
                   </div>
                 </div>
-                <q-card-actions align="right">
-                  <q-btn flat label="Подробнее" color="primary" icon="info"/>
+                <q-card-actions align="right" vertical >
+                  <q-btn flat label="More" color="primary" icon="info"/>
+                  <DeletePatient :patientId="patient.PATIENT_ID" v-if="authStore.role === 1"/>
                 </q-card-actions>
               </div>
             </div>
@@ -151,6 +153,7 @@ const prevPage = () => {
   </div>
 </template>
 
+
 <style scoped>
 .pagination-controls {
   padding-top: 1rem;
@@ -166,7 +169,7 @@ const prevPage = () => {
 }
 
 .patient-info {
-  min-width: 220px;
+  min-width: 300px;
 }
 
 .page-header {
@@ -244,13 +247,14 @@ const prevPage = () => {
   font-weight: bold;
   color: #1f2b6c;
   margin-right: 1rem;
+  padding-left: 1rem;
 }
 
 .patient-details {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  gap: 3rem;
+  gap: 1rem;
 
   & p {
     font-size: 1rem;
