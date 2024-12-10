@@ -2,9 +2,9 @@
 import {ref, computed} from 'vue';
 import PatientsCard from 'components/PatientsCard.vue';
 import {useDataStore} from 'stores/dataStore';
-import {useAuthStore} from "stores/authStore";
-import AddPatient from "components/AddPatient.vue";
-import DeletePatient from "components/DeletePatient.vue";
+import {useAuthStore} from 'stores/authStore';
+import AddPatient from 'components/AddPatient.vue';
+import DeletePatient from 'components/DeletePatient.vue';
 
 const authStore = useAuthStore();
 authStore.initialize();
@@ -13,6 +13,7 @@ const isListView = ref(true);
 const currentPage = ref(1);
 const itemsPerPage = ref(8);
 const openModal = ref(false);
+const searchQuery = ref(''); // Поле для поиска
 
 const dataStore = useDataStore();
 const patients = computed(() => dataStore.patients);
@@ -23,14 +24,21 @@ const toggleView = () => {
   isListView.value = !isListView.value;
 };
 
+const filteredPatients = computed(() => {
+  if (!searchQuery.value) patients.value;
+  return patients.value.filter(patient =>
+    patient.FULL_NAME.toLowerCase().includes(searchQuery.value)
+  );
+});
+
 const paginatedPatients = computed(() => {
   const start = (currentPage.value - 1) * itemsPerPage.value;
   const end = start + itemsPerPage.value;
-  return patients.value.slice(start, end);
+  return filteredPatients.value.slice(start, end);
 });
 
 const totalPages = computed(() =>
-  Math.ceil(patients.value.length / itemsPerPage.value)
+  Math.ceil(filteredPatients.value.length / itemsPerPage.value)
 );
 
 const nextPage = () => {
@@ -50,6 +58,19 @@ const prevPage = () => {
   <div class="patients-page">
     <AddPatient :openModal="openModal" :model-value="openModal" @update:model-value="openModal = $event"/>
     <div class="page-header">
+      <q-input
+        outlined
+        dense
+        clearable
+        class="search-input"
+        placeholder="Search by name..."
+        v-model="searchQuery"
+        style="width: 300px; margin-top: 1rem;"
+      >
+        <template v-slot:prepend>
+          <q-icon name="search"/>
+        </template>
+      </q-input>
       <h1>Patients List</h1>
       <p class="subtitle">Data of patients</p>
       <q-btn
@@ -81,7 +102,18 @@ const prevPage = () => {
       </div>
 
       <div v-else>
-        <div class="patients-container" :class="{ 'list-view': isListView }">
+        <div v-if="filteredPatients.length === 0" class="no-results">
+          <p>Нет результатов для поиска "{{ searchQuery }}".</p>
+        </div>
+
+        <transition-group
+          v-else
+          name="list"
+          tag="ul"
+          class="patients-container"
+          :class="{ 'list-view': isListView }"
+          :style="!isListView ? 'gap:1rem;' : ''"
+        >
           <div
             v-for="patient in paginatedPatients"
             :key="patient.PATIENT_ID"
@@ -97,10 +129,10 @@ const prevPage = () => {
                       <p><strong>Full Name:</strong> {{ patient.FULL_NAME }}</p>
                       <p><strong>Date of Birth:</strong> {{ patient.DATE_OF_BIRTH }}</p>
                     </div>
-                    <q-list dense>
+                    <q-list dense style="display: flex;">
                       <q-item>
                         <q-item-section side>
-                          <q-icon name="person"/>
+                          <q-icon :name="patient.GENDER === 'Мужской' ? 'man' : 'woman'"/>
                         </q-item-section>
                         <q-item-section>{{ patient.GENDER }}</q-item-section>
                       </q-item>
@@ -114,20 +146,21 @@ const prevPage = () => {
                         <q-item-section side>
                           <q-icon name="accessible"/>
                         </q-item-section>
-                        <q-item-section>{{ patient.DISABILITY_TYPE  || 'None'}}</q-item-section>
+                        <q-item-section>{{ patient.DISABILITY_TYPE || 'None' }}</q-item-section>
                       </q-item>
                     </q-list>
                   </div>
                 </div>
-                <q-card-actions align="right" vertical >
+                <q-card-actions align="right" class="q-pr-md">
                   <q-btn flat label="More" color="primary" icon="info"/>
                   <DeletePatient :patientId="patient.PATIENT_ID" v-if="authStore.role === 1"/>
                 </q-card-actions>
               </div>
             </div>
           </div>
-        </div>
-        <div class="pagination-controls">
+        </transition-group>
+
+        <div v-if="filteredPatients.length > itemsPerPage" class="pagination-controls">
           <q-btn
             flat
             icon="chevron_left"
@@ -153,6 +186,32 @@ const prevPage = () => {
 
 
 <style scoped>
+.no-results {
+  text-align: center;
+  padding: 1rem;
+  font-size: 1.2rem;
+  color: #999;
+}
+
+.search-input {
+  margin-bottom: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  position: absolute;
+  left: 2rem;
+  top: 1rem;;
+}
+
+.patients-container .patient-wrapper {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.patient-wrapper.hidden {
+  opacity: 0;
+  transform: scale(0.9);
+  pointer-events: none;
+}
+
 .pagination-controls {
   padding-top: 1rem;
   display: flex;
@@ -168,6 +227,14 @@ const prevPage = () => {
 
 .patient-info {
   min-width: 300px;
+
+  & p:nth-child(1) {
+    margin-bottom: 0 !important;
+  }
+
+  & p:nth-child(2) {
+    margin-top: 0 !important;
+  }
 }
 
 .page-header {
@@ -205,8 +272,8 @@ const prevPage = () => {
 
 .patients-container {
   display: grid;
-  gap: 1rem;
   grid-template-columns: repeat(4, 1fr);
+  padding: 0;
 }
 
 .patients-container.list-view {
@@ -224,7 +291,7 @@ const prevPage = () => {
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   margin-bottom: 1rem;
-  padding: 1rem;
+  //padding: 1rem;
   transition: box-shadow 0.2s;
   width: 100%;
 }
@@ -235,7 +302,7 @@ const prevPage = () => {
 
 .patient-list-content {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
 }
 
@@ -284,5 +351,23 @@ const prevPage = () => {
   color: #d32f2f;
   text-align: center;
   border-radius: 8px;
+}
+
+.list-move,
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.2s ease;
+}
+
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateY(100%);
+}
+
+/* убедитесь, что удаляющиеся элементы выведены из потока, чтобы
+анимации перемещения могли быть рассчитаны правильно. */
+.list-leave-active {
+  position: absolute;
 }
 </style>
