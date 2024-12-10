@@ -1,6 +1,6 @@
 <script setup>
-import { ref } from "vue";
-import { useRouter } from "vue-router";
+import {ref} from "vue";
+import {useRouter} from "vue-router";
 import axios from "axios";
 
 const email = ref("");
@@ -21,27 +21,24 @@ const submitForm = async () => {
     : "http://localhost:3001/auth/login";
 
   const data = isRegister.value
-    ? { email: email.value, password: password.value, fullName: fullName.value }
-    : { email: email.value, password: password.value };
+    ? {email: email.value, password: password.value, fullName: fullName.value}
+    : {email: email.value, password: password.value};
 
   try {
     const response = await axios.post(url, data);
 
     if (isRegister.value) {
-      // Регистрация
       if (response.status === 201) {
         successMessage.value = response.data.message;
         isRegister.value = false; // Переключаем на форму входа
       }
     } else {
-      // Вход
       if (response.status === 200) {
         successMessage.value = "Вход выполнен успешно!";
-        const { token, roleId } = response.data;
+        const {token, roleId} = response.data;
         localStorage.setItem("token", token);
         localStorage.setItem("roleId", roleId);
 
-        // Переход на главную
         router.push("/");
       }
     }

@@ -12,14 +12,12 @@ const subscribeNewsletter = () => {
 <template>
   <footer class="footer q-px-xl q-pb-lg">
     <div class="footer-content">
-      <!-- Logo Section -->
       <div class="footer-section">
         <h2 class="logo">Children's hospital</h2>
         <p class="tagline">
           Leading the Way in Medical Excellence, Trusted Care.
         </p>
       </div>
-
       <div class="footer-section">
         <h3>Important Links</h3>
         <ul>

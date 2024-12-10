@@ -1,14 +1,12 @@
 import express from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import {executeQuery} from '../models/database.js'; // Импорт функции
-import {checkRole} from '../middleware/authMiddleware.js';
+import {executeQuery} from '../models/database.js';
 
 const router = express.Router();
 const JWT_SECRET = 'your-secret-key';
-const SALT_ROUNDS = 10; // Для хеширования пароля
+const SALT_ROUNDS = 10;
 
-// Маршрут для входа
 router.post('/login', async (req, res) => {
     const {email, password} = req.body;
 
@@ -32,7 +30,7 @@ router.post('/login', async (req, res) => {
         }
 
         const token = jwt.sign(
-            {userId: user.USER_ID, roleId: user.ROLE_ID}, // Используем role_id
+            {userId: user.USER_ID, roleId: user.ROLE_ID},
             JWT_SECRET,
             {expiresIn: '1h'}
         );
@@ -180,7 +178,6 @@ router.delete('/delete-patient/:patientId', async (req, res) => {
         res.status(500).json({message: 'Ошибка сервера при удалении пациента'});
     }
 });
-
 
 // router.post("/update-role", checkRole(["admin"]), async (req, res) => {
 //     const {email, newRoleId} = req.body;

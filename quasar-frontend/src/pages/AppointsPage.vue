@@ -81,7 +81,6 @@ const loadAppointments = async () => {
   </div>
 </template>
 
-
 <style scoped>
 .full-height {
   height: 100%;

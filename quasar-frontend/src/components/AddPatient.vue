@@ -45,20 +45,13 @@ const addPatient = () => {
   formRef.value.validate().then(async (isValid) => {
     if (isValid) {
       try {
-        // Преобразуем объекты gender и disabilityStatus в строки
         const payload = {
           ...form.value,
           gender: form.value.gender?.value || '',
           disabilityStatus: form.value.disabilityStatus?.value || '',
         };
-
-        console.log("Добавление пациента:", payload);
-
-        // Отправка данных на сервер
         const response = await axios.post('http://localhost:3001/auth/add-patient', payload);
-
         console.log("Ответ сервера:", response.data);
-
         closeDialog();
         resetForm();
         window.location.reload();
@@ -124,7 +117,7 @@ const addPatient = () => {
                   v-model="form.phoneNumber"
                   label="Номер телефона"
                   outlined
-                  mask="+### ## #######"
+                  mask="+998 ## #######"
                   placeholder="+998 90 1234567"
                   class="q-mb-md"
                   :rules="[val => !!val || 'Поле обязательно для заполнения']"
@@ -169,6 +162,3 @@ const addPatient = () => {
   </div>
 </template>
 
-<style scoped>
-
-</style>

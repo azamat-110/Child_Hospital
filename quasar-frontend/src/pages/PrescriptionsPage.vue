@@ -7,11 +7,10 @@ const authStore = useAuthStore();
 authStore.initialize();
 
 const dataStore = useDataStore();
-
 const groupedPrescriptions = computed(() => dataStore.groupedPrescriptions);
 
 onMounted(() => {
-  dataStore.loadAllData(); // Загрузка всех данных
+  dataStore.loadAllData();
 });
 </script>
 
@@ -25,7 +24,6 @@ onMounted(() => {
         :key="doctorName"
         class="doctor-group"
       >
-        <!-- Разделитель между группами -->
         <div class="doctor-divider">
           <div class="divider-line"></div>
           <div class="doctor-name">{{ doctorName }}</div>
@@ -82,7 +80,6 @@ onMounted(() => {
   margin-bottom: 1rem;
 }
 
-/* Общий стиль страницы */
 .prescriptions-page {
   max-width: 1200px;
   margin: 0 auto;
@@ -92,7 +89,6 @@ onMounted(() => {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Заголовок */
 h2 {
   font-size: 2.2rem;
   font-weight: bold;
@@ -100,17 +96,14 @@ h2 {
   margin-bottom: 2rem;
 }
 
-/* Лента рецептов */
 .timeline {
   padding-left: 1.5rem;
 }
 
-/* Группа докторов */
 .doctor-group {
   margin-bottom: 3rem;
 }
 
-/* Разделитель между докторами */
 .doctor-divider {
   display: flex;
   align-items: center;
@@ -134,12 +127,10 @@ h2 {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Список рецептов */
 .prescriptions-list {
   margin-top: 1rem;
 }
 
-/* Карточка рецепта */
 .prescription-item {
   margin-bottom: 1.5rem;
   padding: 1rem;

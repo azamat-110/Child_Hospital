@@ -127,8 +127,6 @@ const prevPage = () => {
             </div>
           </div>
         </div>
-
-        <!-- Пагинация -->
         <div class="pagination-controls">
           <q-btn
             flat
@@ -205,11 +203,10 @@ const prevPage = () => {
 
 }
 
-/* Контейнер пациентов */
 .patients-container {
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(4, 1fr); /* По умолчанию 4 карточки */
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .patients-container.list-view {
@@ -229,7 +226,7 @@ const prevPage = () => {
   margin-bottom: 1rem;
   padding: 1rem;
   transition: box-shadow 0.2s;
-  width: 100%; /* Использует всю ширину в списке */
+  width: 100%;
 }
 
 .patient-list-item:hover {
@@ -267,7 +264,6 @@ const prevPage = () => {
   font-weight: bold;
 }
 
-/* Загрузка */
 .loading-spinner {
   display: flex;
   flex-direction: column;
@@ -281,7 +277,6 @@ const prevPage = () => {
   font-size: 1.1rem;
 }
 
-/* Ошибка */
 .error-box {
   padding: 1rem;
   background: #ffebee;

@@ -14,12 +14,10 @@ const authStore = useAuthStore();
       <q-toolbar-title class="text-h4">
         <div class="toolbar__title">
           <div class="app-title">Children's Hospital</div>
-          <img src="../assets/images/clinicLogo.svg" alt="clinic" />
+          <img src="../assets/images/clinicLogo.svg" alt="clinic"/>
           <div v-if="authStore.role === 1" class="admin-title">Admin Panel</div>
         </div>
       </q-toolbar-title>
-
-
       <div v-if="screenWidth > 450">
         <q-btn flat to="/" label="Home"/>
         <q-btn v-if="authStore.role === 1" flat to="/patients" label="Patients"/>
@@ -50,7 +48,7 @@ const authStore = useAuthStore();
   margin-left: 10px;
   font-size: 16px;
   font-weight: bold;
-  color: #ffffff; /* Цвет выделения, можно выбрать по желанию */
+  color: #ffffff;
   text-transform: uppercase;
 }
 
@@ -60,12 +58,8 @@ const authStore = useAuthStore();
   left: 0;
   width: 100%;
   z-index: 1000;
-  background: linear-gradient(to bottom, #1F2B6C, #3A4A9D); /* Градиент сверху вниз */
+  background: linear-gradient(to bottom, #1F2B6C, #3A4A9D);
   color: #ffffff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.9); /* Добавим небольшой теневой эффект */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
 }
-
-
-
-
 </style>

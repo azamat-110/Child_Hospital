@@ -51,7 +51,6 @@ defineProps({
   </q-card>
 </template>
 
-
 <style scoped>
 .patient-card {
   background: linear-gradient(to bottom right, #e3f2fd, #a5d8ff);

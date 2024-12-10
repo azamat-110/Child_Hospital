@@ -27,7 +27,6 @@ const deletePatient = async (patientId) => {
         <q-avatar icon="delete" color="primary" text-color="white"/>
         <span class="q-ml-lg text-h6">Are you sure you want to delete this patient?</span>
       </q-card-section>
-
       <q-card-actions align="right">
         <q-btn label="Cancel" color="primary" v-close-popup flat/>
         <q-btn label="Delete" color="red" v-close-popup outline @click="deletePatient(patientId)"/>

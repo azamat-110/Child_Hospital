@@ -4,7 +4,7 @@ const JWT_SECRET = 'your-secret-key';
 
 export const checkRole = (allowedRoles) => {
     return (req, res, next) => {
-        const token = req.headers.authorization?.split(' ')[1]; // Берем токен из заголовка
+        const token = req.headers.authorization?.split(' ')[1];
 
         if (!token) {
             return res.status(403).json({ message: 'Нет токена' });
@@ -14,13 +14,11 @@ export const checkRole = (allowedRoles) => {
             if (err) {
                 return res.status(403).json({ message: 'Неудачная авторизация' });
             }
-
-            // Проверяем, что роль пользователя подходит
             if (!allowedRoles.includes(decoded.roleId)) {
                 return res.status(403).json({ message: 'Нет доступа' });
             }
 
-            req.user = decoded; // Сохраняем данные пользователя
+            req.user = decoded;
             next();
         });
     };

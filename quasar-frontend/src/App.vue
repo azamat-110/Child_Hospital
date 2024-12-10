@@ -1,5 +1,6 @@
 <script setup>
 import {useDataStore} from "stores/dataStore";
+import {useAuthStore} from "stores/authStore";
 import {onMounted} from "vue";
 
 defineOptions({
@@ -7,9 +8,12 @@ defineOptions({
 });
 
 const dataStore = useDataStore();
+// const authStore = useAuthStore();
 
 onMounted(() => {
-  dataStore.loadAllData();
+  // if (authStore.role) {
+    dataStore.loadAllData();
+  // }
 });
 </script>
 

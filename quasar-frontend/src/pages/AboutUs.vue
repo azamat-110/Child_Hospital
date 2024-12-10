@@ -1,6 +1,5 @@
 <template>
   <q-page class="about-page q-pb-xl">
-    <!-- Main title -->
     <section class="hero">
       <div class="hero-content">
         <h1 class="text-h3 text-bold q-ma-none">About Our Hospital</h1>
@@ -10,7 +9,6 @@
       </div>
     </section>
 
-    <!-- Information block -->
     <q-page-container>
       <section class="about-content">
         <q-card class="info-card q-pa-lg" bordered>
@@ -33,7 +31,6 @@
         </q-card>
       </section>
 
-      <!-- Team block -->
       <section class="team-section">
         <h2 class="text-h5 text-center">Our Team</h2>
         <div class="team-list">
