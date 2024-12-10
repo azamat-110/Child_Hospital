@@ -25,7 +25,7 @@ const toggleView = () => {
 };
 
 const filteredPatients = computed(() => {
-  if (!searchQuery.value) patients.value;
+  if (!searchQuery.value) return patients.value;
   return patients.value.filter(patient =>
     patient.FULL_NAME.toLowerCase().includes(searchQuery.value)
   );
@@ -112,7 +112,7 @@ const prevPage = () => {
           tag="ul"
           class="patients-container"
           :class="{ 'list-view': isListView }"
-          :style="!isListView ? 'gap:1rem;' : ''"
+          :style="!isListView ? 'gap:2rem;' : ''"
         >
           <div
             v-for="patient in paginatedPatients"
@@ -123,7 +123,7 @@ const prevPage = () => {
             <div v-else class="patient-list-item">
               <div class="patient-list-content">
                 <div style="display: flex; align-items: flex-start;">
-                  <div class="patient-details">
+                  <div class="patient-details  q-pl-md">
                     <span class="patient-number">{{ patient.PATIENT_ID }}</span>
                     <div class="patient-info">
                       <p><strong>Full Name:</strong> {{ patient.FULL_NAME }}</p>
@@ -220,7 +220,7 @@ const prevPage = () => {
 }
 
 .patients-page {
-  max-width: 1200px;
+  max-width: 1300px;
   margin: 0 auto;
   padding: 1rem;
 }
@@ -260,13 +260,13 @@ const prevPage = () => {
 .toggle-view-btn {
   position: absolute;
   top: 10px;
-  right: 10px;
+  right: 1rem;
 }
 
 .add-patient-btn {
   position: absolute;
   top: 50px;
-  right: 10px;
+  right: 1rem;
 
 }
 

@@ -167,8 +167,12 @@ router.delete('/delete-patient/:patientId', async (req, res) => {
     try {
         await executeQuery('BEGIN');
         const deletePatientQuery = `
-            DELETE FROM PATIENTS WHERE PATIENT_ID = :patientId
-        `;
+            DECLARE v_email USERS.EMAIL%TYPE;
+                BEGIN
+            SELECT EMAIL INTO v_email FROM PATIENTS WHERE PATIENT_ID = :patientId;
+            DELETE FROM USERS WHERE EMAIL = v_email;
+            DELETE FROM PATIENTS WHERE PATIENT_ID = :patientId;
+                END;`
         await executeQuery(deletePatientQuery, {patientId: patientId});
         await executeQuery('COMMIT');
         res.status(200).json({message: 'Пациент успешно удалён'});

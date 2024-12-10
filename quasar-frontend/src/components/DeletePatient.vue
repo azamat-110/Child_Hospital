@@ -20,7 +20,7 @@ const deletePatient = async (patientId) => {
 </script>
 
 <template>
-  <q-btn @click="confirm = true" size="1rem" label="Delete" color="red" outline dense/>
+  <q-btn @click="confirm = true" size="1rem" label="Delete" color="red"   outline dense/>
   <q-dialog v-model="confirm" persistent>
     <q-card class="q-pa-md">
       <q-card-section class="row items-center">

@@ -10,8 +10,8 @@ defineProps({
 </script>
 
 <template>
-  <q-card class="patient-card q-pa-md">
-    <q-card-section>
+  <q-card class="patient-card q-pa-md ">
+    <q-card-section class=" q-pa-none">
       <div class="patient-info">
         <div class="patient-name">
           <span class="q-pr-sm">{{ patient.PATIENT_ID }}.</span>
@@ -21,7 +21,7 @@ defineProps({
       </div>
     </q-card-section>
 
-    <q-card-section>
+    <q-card-section class="q-pa-none">
       <q-list dense>
         <q-item>
           <q-item-section side>
@@ -44,7 +44,7 @@ defineProps({
       </q-list>
     </q-card-section>
 
-    <q-card-actions align="right">
+    <q-card-actions class="q-pt-lg">
       <q-btn flat label="More" color="primary" icon="info"/>
       <DeletePatient :patientId="patient.PATIENT_ID"/>
     </q-card-actions>
@@ -59,7 +59,11 @@ defineProps({
   border-radius: 16px;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   min-width: 280px;
-  min-height: 360px;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .patient-card:hover {
@@ -75,7 +79,7 @@ defineProps({
   font-size: 1.25rem;
   font-weight: bold;
   color: #1f2b6c;
-  min-height: 60px;
+  //min-height: 60px;
   display: flex;
   align-items: center;
 }
