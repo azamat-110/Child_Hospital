@@ -14,7 +14,6 @@ import authRoutes from './src/routes/authRoutes.js';
 app.use(cors({
     origin: 'http://localhost:9000',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true,
 }));
 
 app.use(bodyParser.json());

@@ -1,6 +1,5 @@
 import oracledb from 'oracledb';
 
-
 async function connectDatabase() {
     try {
         oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
