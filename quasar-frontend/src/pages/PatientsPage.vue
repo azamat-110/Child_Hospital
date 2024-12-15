@@ -46,6 +46,8 @@ const nextPage = () => {
     currentPage.value++;
   }
 };
+console.log();
+
 
 const prevPage = () => {
   if (currentPage.value > 1) {
@@ -185,7 +187,7 @@ const prevPage = () => {
 </template>
 
 
-<style scoped>
+<style lang="scss" scoped>
 .no-results {
   text-align: center;
   padding: 1rem;

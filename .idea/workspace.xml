@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="dc1108a0-fcbc-41bd-b012-b5d7d2701440" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dis_child_hospital.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/pages/PatientsPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/pages/PatientsPage.vue" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/quasar-frontend/src/pages/PatientsPage.vue" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+    <option name="showPreview" value="true" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2p0cLxFuvAWo8rS0mpQG3WJ6F6c" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Node.js.database.js.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;full.screen.before.presentation.mode&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/mac/dis_child_hospital&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/mac/dis_child_hospital/quasar-frontend/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors.CSS&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Applications/WebStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-WS-242.21829.149" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="dc1108a0-fcbc-41bd-b012-b5d7d2701440" name="Changes" comment="" />
+      <created>1731906381062</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1731906381062</updated>
+      <workItem from="1731906382773" duration="67252000" />
+      <workItem from="1734075067982" duration="36000" />
+      <workItem from="1734075112215" duration="16000" />
+      <workItem from="1734075165466" duration="23000" />
+      <workItem from="1734075199568" duration="64000" />
+      <workItem from="1734182325001" duration="265000" />
+      <workItem from="1734182598819" duration="751000" />
+      <workItem from="1734239819908" duration="686000" />
+      <workItem from="1734240513377" duration="651000" />
+      <workItem from="1734241195271" duration="12000" />
+      <workItem from="1734241653033" duration="332000" />
+      <workItem from="1734243316150" duration="726000" />
+      <workItem from="1734244047640" duration="294000" />
+      <workItem from="1734244349865" duration="314000" />
+      <workItem from="1734244670438" duration="6000" />
+      <workItem from="1734244681966" duration="440000" />
+      <workItem from="1734245128705" duration="8000" />
+      <workItem from="1734245145439" duration="46000" />
+      <workItem from="1734245217989" duration="718000" />
+      <workItem from="1734247673099" duration="84000" />
+      <workItem from="1734247765590" duration="4331000" />
+      <workItem from="1734256316419" duration="78000" />
+      <workItem from="1734256401389" duration="244000" />
+      <workItem from="1734256653045" duration="62000" />
+      <workItem from="1734256723011" duration="164000" />
+      <workItem from="1734256895865" duration="37000" />
+      <workItem from="1734256993923" duration="20000" />
+      <workItem from="1734257020100" duration="985000" />
+      <workItem from="1734258017109" duration="467000" />
+      <workItem from="1734258492103" duration="908000" />
+      <workItem from="1734261336978" duration="569000" />
+      <workItem from="1734261913729" duration="797000" />
+      <workItem from="1734262721304" duration="792000" />
+      <workItem from="1734265768474" duration="477000" />
+      <workItem from="1734266255924" duration="3759000" />
+      <workItem from="1734273034960" duration="9000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="dependencySupport" implementationName="javascript:npm:prettier" />
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.env" />
+    <option featureType="dependencySupport" implementationName="executable:docker" />
+    <option featureType="dependencySupport" implementationName="javascript:npm:prisma" />
+    <option featureType="dependencySupport" implementationName="executable:kubectl" />
+    <option featureType="dependencySupport" implementationName="javascript:npm:vue" />
+    <option featureType="dependencySupport" implementationName="javascript:npm:postcss" />
+  </component>
+</project>
