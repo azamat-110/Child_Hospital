@@ -81,7 +81,7 @@ const subscribeNewsletter = () => {
 
 <style scoped>
 .footer {
-  background: linear-gradient(to bottom, #1F2B6C, #3A4A9D);
+  background: rgba(1, 148, 230, 1);
   color: white;
 
   .footer-content {

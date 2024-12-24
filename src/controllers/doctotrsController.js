@@ -3,7 +3,6 @@ import {executeQuery} from '../models/database.js';
 const getAllDoctors = async (req, res) => {
     try {
         const result = await executeQuery('SELECT * FROM DOCTORS');
-        console.log(result);
         res.json(result.rows);
     } catch (err) {
         console.log(err);

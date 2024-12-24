@@ -1,13 +1,16 @@
 <script setup>
-import {onMounted, computed} from 'vue';
-import {useDataStore} from 'stores/dataStore';
-import {useAuthStore} from "stores/authStore";
+import { onMounted, computed, ref } from "vue";
+import { useDataStore } from "stores/dataStore";
+import { useAuthStore } from "stores/authStore";
+import AddPrescription from "components/AddPrescription.vue";
 
 const authStore = useAuthStore();
 authStore.initialize();
 
 const dataStore = useDataStore();
 const groupedPrescriptions = computed(() => dataStore.groupedPrescriptions);
+
+const openModal = ref(false);
 
 onMounted(() => {
   dataStore.loadAllData();
@@ -17,7 +20,19 @@ onMounted(() => {
 <template>
   <div class="prescriptions-page q-pa-md">
     <h2 class="text-h5 text-center prescipt__title">Prescriptions by Doctor</h2>
-
+    <AddPrescription
+      :openModal="openModal"
+      :model-value="openModal"
+      @update:model-value="openModal = $event"
+    />
+    <q-btn
+      icon="add_circle"
+      label="Add prescription"
+      color="primary"
+      @click="openModal = true"
+      class="add__prescription-btn"
+      outline
+    />
     <div class="timeline">
       <div
         v-for="(prescriptions, doctorName) in groupedPrescriptions"
@@ -39,9 +54,16 @@ onMounted(() => {
             <div class="prescription-details">
               <div>
                 <p><strong>Patient:</strong> {{ prescription.PATIENT_NAME }}</p>
-                <p><strong>Prescribed on:</strong> {{ prescription.DATE_PRESCRIBED }}</p>
+                <p>
+                  <strong>Prescribed on:</strong>
+                  {{ prescription.DATE_PRESCRIBED }}
+                </p>
               </div>
-              <q-chip color="primary" outline class="q-my-sm full-height text-subtitle2">
+              <q-chip
+                color="primary"
+                outline
+                class="q-my-sm full-height text-subtitle2"
+              >
                 {{ prescription.INSTRUCTIONS }}
               </q-chip>
             </div>
@@ -53,6 +75,13 @@ onMounted(() => {
 </template>
 
 <style scoped>
+.add__prescription-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  margin-top: 1rem;
+}
+
 .prescription-details {
   display: flex;
   align-items: center;
@@ -87,6 +116,7 @@ onMounted(() => {
   padding: 16px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 h2 {
@@ -147,7 +177,7 @@ h2 {
 }
 
 .prescription-item::before {
-  content: '';
+  content: "";
   position: absolute;
   left: -10px;
   top: 1rem;

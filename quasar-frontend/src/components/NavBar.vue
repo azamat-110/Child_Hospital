@@ -1,6 +1,6 @@
 <script setup>
-import {ref} from 'vue';
-import {useAuthStore} from "stores/authStore";
+import { ref } from "vue";
+import { useAuthStore } from "stores/authStore";
 import LogInBtn from "components/LogInBtn.vue";
 import LogOutBtn from "components/LogOutBtn.vue";
 
@@ -9,57 +9,78 @@ const authStore = useAuthStore();
 </script>
 
 <template>
-  <div class="nav">
-    <q-toolbar class="navbar q-px-xl q-py-md">
-      <q-toolbar-title class="text-h4">
-        <div class="toolbar__title">
-          <div class="app-title">Children's Hospital</div>
-          <img src="../assets/images/clinicLogo.svg" alt="clinic"/>
-          <div v-if="authStore.role === 1" class="admin-title">Admin Panel</div>
-        </div>
-      </q-toolbar-title>
+  <div class="navbar">
+    <q-toolbar class="q-px-xl q-py-md navbar__section">
       <div v-if="screenWidth > 450">
-        <q-btn flat to="/" label="Home"/>
-        <q-btn v-if="authStore.role === 1" flat to="/patients" label="Patients"/>
-        <q-btn v-if="authStore.role === 1 || authStore.role === 2" flat to="/appointments" label="Appointments"/>
-        <q-btn flat to="/doctors" label="Doctors"/>
-        <q-btn v-if="authStore.role === 1" flat to="/prescriptions" label="Prescriptions"/>
-        <q-btn v-if="authStore.role === 1" flat to="/medications" label="Medications"/>
-        <q-btn v-if="authStore.role !== 1" flat to="/about" label="About us"/>
-        <LogInBtn v-if="!authStore.role" class="q-ml-sm"/>
-        <LogOutBtn v-else class="q-ml-sm"/>
+        <q-btn flat rounded to="/" label="Home" />
+        <q-btn
+          v-if="authStore.role === 1"
+          flat
+          to="/patients"
+          label="Patients"
+          rounded
+        />
+        <q-btn
+          v-if="authStore.role === 1 || authStore.role === 2"
+          flat
+          to="/appointments"
+          label="Appointments"
+          rounded
+        />
+        <q-btn flat rounded to="/doctors" label="Doctors" />
+        <q-btn
+          v-if="authStore.role === 1"
+          flat
+          to="/prescriptions"
+          label="Prescriptions"
+          rounded
+        />
+        <q-btn
+          v-if="authStore.role === 1"
+          flat
+          to="/medications"
+          label="Medications"
+          rounded
+        />
+        <q-btn
+          v-if="authStore.role !== 1"
+          flat
+          rounded
+          to="/about"
+          label="About us"
+        />
       </div>
+        <LogInBtn v-if="!authStore.role" class="q-ml-sm" />
+        <LogOutBtn v-else class="q-ml-sm" />
     </q-toolbar>
   </div>
 </template>
 
-<style scoped>
-.toolbar__title {
-  display: flex;
-  align-items: center;
-}
-
-.app-title {
-  font-size: 2rem;
-  font-weight: bold;
-}
-
+<style scoped lang="scss">
 .admin-title {
   margin-left: 10px;
   font-size: 16px;
   font-weight: bold;
-  color: #ffffff;
+  color: #000;
   text-transform: uppercase;
 }
 
 .navbar {
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000;
-  background: linear-gradient(to bottom, #1F2B6C, #3A4A9D);
+  z-index: 100;
   color: #ffffff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
+  transition: 0.3s;
+
+  &__section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(1, 148, 230, 1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
+    transition: 0.3s;
+  }
 }
 </style>

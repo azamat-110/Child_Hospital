@@ -1,4 +1,5 @@
 import express from 'express';
+
 const patientRouter = express.Router();
 import patientsController from '../controllers/patientController.js';
 
@@ -6,6 +7,9 @@ import patientsController from '../controllers/patientController.js';
 patientRouter.get('/', patientsController.getAllPatients);
 
 // Добавление нового пациента
-patientRouter.post('/', patientsController.createPatient);
+patientRouter.post('/add-patient', patientsController.createPatient);
+
+//Удаление пациента
+patientRouter.delete('/delete-patient/:patientId', patientsController.deletePatient);
 
 export default patientRouter;

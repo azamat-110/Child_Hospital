@@ -1,10 +1,10 @@
 <script setup>
-import {ref, computed} from 'vue';
-import PatientsCard from 'components/PatientsCard.vue';
-import {useDataStore} from 'stores/dataStore';
-import {useAuthStore} from 'stores/authStore';
-import AddPatient from 'components/AddPatient.vue';
-import DeletePatient from 'components/DeletePatient.vue';
+import { ref, computed } from "vue";
+import PatientsCard from "components/PatientsCard.vue";
+import { useDataStore } from "stores/dataStore";
+import { useAuthStore } from "stores/authStore";
+import AddPatient from "components/AddPatient.vue";
+import DeletePatient from "components/DeletePatient.vue";
 
 const authStore = useAuthStore();
 authStore.initialize();
@@ -13,7 +13,7 @@ const isListView = ref(true);
 const currentPage = ref(1);
 const itemsPerPage = ref(8);
 const openModal = ref(false);
-const searchQuery = ref(''); // Поле для поиска
+const searchQuery = ref(""); // Поле для поиска
 
 const dataStore = useDataStore();
 const patients = computed(() => dataStore.patients);
@@ -26,7 +26,7 @@ const toggleView = () => {
 
 const filteredPatients = computed(() => {
   if (!searchQuery.value) return patients.value;
-  return patients.value.filter(patient =>
+  return patients.value.filter((patient) =>
     patient.FULL_NAME.toLowerCase().includes(searchQuery.value)
   );
 });
@@ -48,7 +48,6 @@ const nextPage = () => {
 };
 console.log();
 
-
 const prevPage = () => {
   if (currentPage.value > 1) {
     currentPage.value--;
@@ -58,7 +57,11 @@ const prevPage = () => {
 
 <template>
   <div class="patients-page">
-    <AddPatient :openModal="openModal" :model-value="openModal" @update:model-value="openModal = $event"/>
+    <AddPatient
+      :openModal="openModal"
+      :model-value="openModal"
+      @update:model-value="openModal = $event"
+    />
     <div class="page-header">
       <q-input
         outlined
@@ -67,10 +70,10 @@ const prevPage = () => {
         class="search-input"
         placeholder="Search by name..."
         v-model="searchQuery"
-        style="width: 300px; margin-top: 1rem;"
+        style="width: 300px; margin-top: 1rem"
       >
         <template v-slot:prepend>
-          <q-icon name="search"/>
+          <q-icon name="search" />
         </template>
       </q-input>
       <h1>Patients List</h1>
@@ -95,7 +98,7 @@ const prevPage = () => {
     </div>
     <div class="q-pa-md">
       <div v-if="loading" class="loading-spinner">
-        <q-spinner color="primary" size="50px"/>
+        <q-spinner color="primary" size="50px" />
         <p>Загрузка пациентов...</p>
       </div>
 
@@ -121,48 +124,65 @@ const prevPage = () => {
             :key="patient.PATIENT_ID"
             class="patient-wrapper"
           >
-            <PatientsCard v-if="!isListView" :patient="patient"/>
+            <PatientsCard v-if="!isListView" :patient="patient" />
             <div v-else class="patient-list-item">
               <div class="patient-list-content">
-                <div style="display: flex; align-items: flex-start;">
-                  <div class="patient-details  q-pl-md">
+                <div style="display: flex; align-items: flex-start">
+                  <div class="patient-details q-pl-md">
                     <span class="patient-number">{{ patient.PATIENT_ID }}</span>
                     <div class="patient-info">
                       <p><strong>Full Name:</strong> {{ patient.FULL_NAME }}</p>
-                      <p><strong>Date of Birth:</strong> {{ patient.DATE_OF_BIRTH }}</p>
+                      <p>
+                        <strong>Date of Birth:</strong>
+                        {{ patient.DATE_OF_BIRTH }}
+                      </p>
                     </div>
-                    <q-list dense style="display: flex;">
+                    <q-list dense style="display: flex">
                       <q-item>
                         <q-item-section side>
-                          <q-icon :name="patient.GENDER === 'Мужской' ? 'man' : 'woman'"/>
+                          <q-icon
+                            :name="
+                              patient.GENDER === 'Мужской' ? 'man' : 'woman'
+                            "
+                          />
                         </q-item-section>
                         <q-item-section>{{ patient.GENDER }}</q-item-section>
                       </q-item>
                       <q-item>
                         <q-item-section side>
-                          <q-icon name="phone"/>
+                          <q-icon name="phone" />
                         </q-item-section>
-                        <q-item-section>{{ patient.CONTACT_INFO }}</q-item-section>
+                        <q-item-section>{{
+                          patient.CONTACT_INFO
+                        }}</q-item-section>
                       </q-item>
                       <q-item>
                         <q-item-section side>
-                          <q-icon name="accessible"/>
+                          <q-icon name="accessible" />
                         </q-item-section>
-                        <q-item-section>{{ patient.DISABILITY_TYPE || 'None' }}</q-item-section>
+                        <q-item-section>{{
+                          patient.DISABILITY_TYPE || "None"
+                        }}</q-item-section>
                       </q-item>
                     </q-list>
                   </div>
                 </div>
                 <q-card-actions align="right" class="q-pr-md">
-                  <q-btn flat label="More" color="primary" icon="info"/>
-                  <DeletePatient :patientId="patient.PATIENT_ID" v-if="authStore.role === 1"/>
+                  <q-btn flat label="More" color="primary" icon="info" />
+                  <DeletePatient
+                    :patientId="patient.PATIENT_ID"
+                    v-if="authStore.role === 1"
+                  />
                 </q-card-actions>
               </div>
             </div>
           </div>
         </transition-group>
 
-        <div v-if="filteredPatients.length > itemsPerPage" class="pagination-controls">
+        <div
+          v-if="filteredPatients.length > itemsPerPage"
+          class="pagination-controls"
+        >
           <q-btn
             flat
             icon="chevron_left"
@@ -186,7 +206,6 @@ const prevPage = () => {
   </div>
 </template>
 
-
 <style lang="scss" scoped>
 .no-results {
   text-align: center;
@@ -201,7 +220,7 @@ const prevPage = () => {
   margin-right: auto;
   position: absolute;
   left: 2rem;
-  top: 1rem;;
+  top: 1rem;
 }
 
 .patients-container .patient-wrapper {
@@ -269,7 +288,6 @@ const prevPage = () => {
   position: absolute;
   top: 50px;
   right: 1rem;
-
 }
 
 .patients-container {

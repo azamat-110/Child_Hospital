@@ -10,7 +10,7 @@ const confirm = ref(false);
 
 const deletePatient = async (patientId) => {
   try {
-    await axios.delete(`http://localhost:3001/auth/delete-patient/${patientId}`);
+    await axios.delete(`http://localhost:3001/api/patients/delete-patient/${patientId}`);
     window.location.reload();
   } catch (error) {
     console.error('Ошибка при удалении пациента:', error);
