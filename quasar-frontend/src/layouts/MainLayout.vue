@@ -8,7 +8,7 @@ import HeaderSection from "components/HeaderSection.vue";
   <q-layout view="hHh lpR fFf">
     <HeaderSection />
     <NavBar />
-    <q-page-container>
+    <q-page-container class="container">
       <router-view v-slot="{ Component }">
         <transition name="fade" mode="out-in">
           <component :is="Component" />
@@ -20,6 +20,13 @@ import HeaderSection from "components/HeaderSection.vue";
 </template>
 
 <style>
+.container {
+  min-height: 90vh;
+  //background: url("../assets/images/Gradient.png") no-repeat center center;
+  //width: 100vw;
+  //background-size: cover;
+}
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.2s ease;

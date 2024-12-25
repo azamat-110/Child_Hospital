@@ -79,7 +79,7 @@ const authStore = useAuthStore();
     align-items: center;
     justify-content: space-between;
     background: rgba(1, 148, 230, 1);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
     transition: 0.3s;
   }
 }

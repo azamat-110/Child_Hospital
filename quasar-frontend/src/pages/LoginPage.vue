@@ -127,14 +127,14 @@ const toggleMode = () => {
 }
 
 .auth-box {
-  background: linear-gradient(to bottom, #1F2B6C, #3A4A9D);
+  background: rgba(1, 148, 230, 1);
   padding: 2rem;
   border-radius: 16px;
-  border: 1px solid #000;
   text-align: center;
   width: 100%;
   max-width: 400px;
   color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
 }
 
 h2 {
@@ -163,7 +163,7 @@ h2 {
 }
 
 .toggle-link {
-  color: rgb(0, 149, 246);
+  color: rgb(0, 49, 246);
   text-decoration: none;
   font-weight: bold;
   cursor: pointer;

@@ -81,9 +81,11 @@ const subscribeNewsletter = () => {
 
 <style scoped>
 .footer {
+  position: relative;
   background: rgba(1, 148, 230, 1);
   color: white;
-
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.7);
+  z-index: 100;
   .footer-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));

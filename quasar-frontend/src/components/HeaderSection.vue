@@ -1,7 +1,13 @@
 <script setup>
 import { useAuthStore } from "stores/authStore";
+import { ref } from "vue";
 
 const authStore = useAuthStore();
+const currentLanguage = ref("EN"); // Текущий язык
+
+const changeLanguage = (lang) => {
+  currentLanguage.value = lang; // Обновляем язык
+};
 </script>
 
 <template>
@@ -24,6 +30,36 @@ const authStore = useAuthStore();
         <q-icon name="mail" size="sm" />
         info@hospital.com
       </p>
+      <q-btn
+        color="black"
+        :label="currentLanguage"
+        rounded
+        icon="language"
+        push
+        flat
+      >
+        <q-menu
+          transition-show="jump-down"
+          transition-hide="jump-up"
+          anchor="bottom middle"
+          self="top middle"
+          auto-close
+        >
+          <q-list style="min-width: 100px">
+            <q-item clickable @click="changeLanguage('UZ')">
+              <q-item-section class="text-center">Uzbek</q-item-section>
+            </q-item>
+            <q-separator />
+            <q-item clickable @click="changeLanguage('RU')">
+              <q-item-section class="text-center">Russian</q-item-section>
+            </q-item>
+            <q-separator />
+            <q-item clickable @click="changeLanguage('EN')">
+              <q-item-section class="text-center">English</q-item-section>
+            </q-item>
+          </q-list>
+        </q-menu>
+      </q-btn>
     </div>
   </header>
 </template>
@@ -35,15 +71,16 @@ const authStore = useAuthStore();
     align-items: center;
     justify-content: space-between;
     min-height: 4rem;
-    background: #fff;
+    background: rgba(255, 255, 255, 0.15);
     transition: 0.5s;
 
     &-contacts {
       display: flex;
+      align-items: center;
       gap: 1rem;
       font-size: 1rem;
 
-      & p{
+      & p {
         margin: 0;
       }
     }
