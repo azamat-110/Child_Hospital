@@ -4,3 +4,24 @@
   font-family: 'Mulish', serif;
 }
 
+@import 'quasar.variables';
+
+.dark {
+  background: #1d1d1d !important;
+}
+
+.darkSecondary{
+  background: $secondary !important;
+}
+
+.dark__title {
+  color: #ffffff !important;
+}
+
+.darkShadow{
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7) !important;
+
+  &:hover{
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 1) !important;
+  }
+}

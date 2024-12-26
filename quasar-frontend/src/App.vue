@@ -1,6 +1,5 @@
 <script setup>
 import {useDataStore} from "stores/dataStore";
-import {useAuthStore} from "stores/authStore";
 import {onMounted} from "vue";
 
 defineOptions({

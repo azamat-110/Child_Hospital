@@ -20,6 +20,7 @@ const updateDisplayedDoctors = () => {
   const start = currentPage.value * itemsPerPage;
   const end = start + itemsPerPage;
   displayedDoctors.value = doctors.value.slice(0, end);
+  console.log(displayedDoctors.value);
 };
 
 updateDisplayedDoctors();

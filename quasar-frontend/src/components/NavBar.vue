@@ -1,16 +1,28 @@
 <script setup>
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { useAuthStore } from "stores/authStore";
 import LogInBtn from "components/LogInBtn.vue";
 import LogOutBtn from "components/LogOutBtn.vue";
+import { useRouter } from "vue-router";
+import { useQuasar } from "quasar";
+const router = useRouter();
+const $q = useQuasar();
 
+const isDarkMode = computed(() => $q.dark.isActive);
+
+const goToDoctors = () => {
+  router.push("/doctors"); // Переключение маршрута
+};
 const screenWidth = ref(window.innerWidth);
 const authStore = useAuthStore();
 </script>
 
 <template>
   <div class="navbar">
-    <q-toolbar class="q-px-xl q-py-md navbar__section">
+    <q-toolbar
+      class="q-px-xl q-py-md navbar__section"
+      :class="{ darkSecondary: isDarkMode }"
+    >
       <div v-if="screenWidth > 450">
         <q-btn flat rounded to="/" label="Home" />
         <q-btn
@@ -21,13 +33,19 @@ const authStore = useAuthStore();
           rounded
         />
         <q-btn
-          v-if="authStore.role === 1 || authStore.role === 2"
+          v-if="authStore.role"
           flat
           to="/appointments"
           label="Appointments"
           rounded
         />
-        <q-btn flat rounded to="/doctors" label="Doctors" />
+        <q-btn
+          flat
+          rounded
+          to="/doctors"
+          label="Doctors"
+          @click.prevent="goToDoctors"
+        />
         <q-btn
           v-if="authStore.role === 1"
           flat
@@ -50,8 +68,8 @@ const authStore = useAuthStore();
           label="About us"
         />
       </div>
-        <LogInBtn v-if="!authStore.role" class="q-ml-sm" />
-        <LogOutBtn v-else class="q-ml-sm" />
+      <LogInBtn v-if="!authStore.role" class="q-ml-sm" />
+      <LogOutBtn v-else class="q-ml-sm" />
     </q-toolbar>
   </div>
 </template>

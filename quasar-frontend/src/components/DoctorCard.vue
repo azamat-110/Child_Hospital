@@ -1,38 +1,53 @@
 <script setup>
+import { useQuasar } from "quasar";
+import { computed } from "vue";
+
+const $q = useQuasar();
+const isDarkMode = computed(() => $q.dark.isActive);
+
 defineProps({
   doctor: {
     type: Object,
-    required: true
-  }
+    required: true,
+  },
 });
 </script>
 
 <template>
-  <q-card class="doctor-card">
-    <q-card-section class="info-section">
-    <img :src="doctor.GENDER === 'Мужской' ?
-       '/src/assets/images/Doctor_Male.png' :
-       '/src/assets/images/Doctor_Female.png'"
-         alt="Doctor Image"
-         class="doctor-image"
-    />
+  <q-card class="doctor-card" :class="{darkShadow: isDarkMode}">
+    <q-card-section class="info-section" :class="{dark: isDarkMode}">
+      <img
+        :src="
+          doctor.GENDER === 'Мужской'
+            ? '/src/assets/images/Doctor_Male.png'
+            : '/src/assets/images/Doctor_Female.png'
+        "
+        alt="Doctor Image"
+        class="doctor-image"
+      />
       <q-item>
         <q-item-section side>
-          <q-icon name="person"/>
+          <q-icon name="person" />
         </q-item-section>
-        <q-item-section class="text-weight-bold item__section name">{{ doctor.FULL_NAME }}</q-item-section>
+        <q-item-section class="text-weight-bold item__section name">{{
+          doctor.FULL_NAME
+        }}</q-item-section>
       </q-item>
       <q-item>
         <q-item-section side>
-          <q-icon name="health_and_safety"/>
+          <q-icon name="health_and_safety" />
         </q-item-section>
-        <q-item-section class="text-weight-medium item__section">{{ doctor.SPECIALISATION }}</q-item-section>
+        <q-item-section class="text-weight-medium item__section">{{
+          doctor.SPECIALISATION
+        }}</q-item-section>
       </q-item>
       <q-item>
         <q-item-section side>
-          <q-icon name="call"/>
+          <q-icon name="call" />
         </q-item-section>
-        <q-item-section class="text-weight-medium item__section">{{ doctor.CONTACT_INFO }}</q-item-section>
+        <q-item-section class="text-weight-medium item__section">{{
+          doctor.CONTACT_INFO
+        }}</q-item-section>
       </q-item>
       <div class="social-links row justify-center q-mt-md">
         <q-btn
@@ -47,8 +62,8 @@ defineProps({
       </div>
       <q-btn
         label="View Profile"
-        color="primary"
-        flat
+        color="black"
+        outline
         class="q-mt-md full-width bg-grey-1"
         @click="viewProfile"
         style="border-radius: 10px"
@@ -67,7 +82,7 @@ defineProps({
 }
 
 .info-section {
-  background: linear-gradient(to bottom right, #e3f2fd, #bbdefb) !important;
+  background: rgb(248, 248, 248);
 }
 
 .doctor-card {
@@ -89,13 +104,12 @@ defineProps({
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transform: scale(.6);
+  transform: scale(0.6);
 }
 
 .info-section {
   text-align: center;
   color: #1f2b6c;
-
 }
 
 .social-links {
@@ -106,4 +120,3 @@ defineProps({
   width: 100%;
 }
 </style>
-

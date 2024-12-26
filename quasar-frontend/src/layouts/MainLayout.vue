@@ -22,9 +22,7 @@ import HeaderSection from "components/HeaderSection.vue";
 <style>
 .container {
   min-height: 90vh;
-  //background: url("../assets/images/Gradient.png") no-repeat center center;
-  //width: 100vw;
-  //background-size: cover;
+  position: relative;
 }
 
 .fade-enter-active,
@@ -36,4 +34,5 @@ import HeaderSection from "components/HeaderSection.vue";
 .fade-leave-to {
   opacity: 0;
 }
+
 </style>

@@ -1,14 +1,38 @@
 <script setup>
-import { QBtn } from "quasar";
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed, watch } from "vue";
 import { useAuthStore } from "stores/authStore";
+import { useDataStore } from "stores/dataStore";
+import DoctorCard from "components/DoctorCard.vue";
 
-const userRole = ref("patient"); // Роль по умолчанию
+const dataStore = useDataStore();
 const authStore = useAuthStore();
-authStore.initialize();
 
-onMounted(() => {
+const userRole = ref("patient");
+const doctors = computed(() => dataStore.doctors);
+const limitedDrs = ref([]);
+
+const limitDoctors = () => {
+  limitedDrs.value = doctors.value.slice(0, 4);
+  console.log("Limited Doctors:", limitedDrs.value);
+};
+
+onMounted(async () => {
+  await authStore.initialize();
   userRole.value = localStorage.getItem("role") || "patient";
+
+  if (doctors.value.length > 0) {
+    limitDoctors();
+  }
+
+  watch(
+    doctors,
+    (newDoctors) => {
+      if (newDoctors.length > 0) {
+        limitDoctors();
+      }
+    },
+    { immediate: true }
+  );
 });
 </script>
 
@@ -36,22 +60,66 @@ onMounted(() => {
             class="learn-more-btn text-bold"
             outline
           />
-        <q-btn
-          to="/about"
-          label="Learn More..."
-          color="primary"
-          class="learn-more-btn q-ml-lg text-bold"
-          outline
-        />
+          <q-btn
+            to="/about"
+            label="Learn More..."
+            color="primary"
+            class="learn-more-btn q-ml-lg text-bold"
+            outline
+          />
         </div>
       </section>
 
-      <section class="something"></section>
+      <section class="doctors">
+        <div class="doctors__title">
+          <h2>Doctors</h2>
+          <q-btn to="/doctors" label="View all" color="black" rounded outline />
+        </div>
+
+        <div class="doctors__flex">
+          <div
+            class="doctor__card"
+            v-for="doctor in limitedDrs"
+            :key="doctor.DOCTOR_ID"
+          >
+            <DoctorCard doctor="doctor" />
+          </div>
+        </div>
+      </section>
     </div>
   </q-page>
 </template>
 
 <style scoped lang="scss">
+.doctors {
+  width: 100%;
+  min-width: 1330px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 20px;
+  padding-bottom: 50px;
+
+  &__title {
+    width: 100%;
+    min-width: 1330px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    & h2 {
+      font-weight: bold;
+      font-size: 2rem;
+    }
+  }
+
+  &__flex {
+    display: flex;
+    gap: 2rem;
+  }
+}
+
 .something {
   height: 100vh;
   width: 100%;
@@ -149,5 +217,17 @@ onMounted(() => {
 .learn-more-btn {
   margin-top: 20px;
 }
-</style>
 
+.hero__title {
+  opacity: 0;
+  transform: translateY(-50px);
+  animation: slideDown 1.5s ease-out forwards;
+}
+
+@keyframes slideDown {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>

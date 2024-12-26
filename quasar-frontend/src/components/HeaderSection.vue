@@ -1,23 +1,39 @@
 <script setup>
 import { useAuthStore } from "stores/authStore";
-import { ref } from "vue";
+import { useThemeStore } from "stores/useThemeStore";
+import { useQuasar } from "quasar";
+import { computed, ref } from "vue";
+import clinicLogoLight from "../assets/images/clinicLogoLight.svg";
+import clinicLogoDark from "../assets/images/clinicLogoDark.svg";
 
+const $q = useQuasar();
 const authStore = useAuthStore();
-const currentLanguage = ref("EN"); // Текущий язык
+const themeStore = useThemeStore();
+
+const currentLanguage = ref("EN");
+const darkTheme = themeStore.darkTheme;
+const toggleTheme = themeStore.toggleTheme;
+const isDarkTheme = computed(() => $q.dark.isActive);
 
 const changeLanguage = (lang) => {
-  currentLanguage.value = lang; // Обновляем язык
+  currentLanguage.value = lang;
 };
 </script>
 
 <template>
-  <header class="info__section q-px-xl q-py-md">
+  <header class="info__section q-px-xl q-py-md" :class="{ dark: isDarkTheme }">
     <header class="info__toolbar">
-      <img src="../assets/images/clinicLogo.svg" alt="clinic" />
-      <div class="info__toolbar-title">Children's<br />Hospital</div>
+      <img :src="isDarkTheme ? clinicLogoLight : clinicLogoDark" alt="clinic" />
+      <div class="info__toolbar-title" :class="{ dark__title: isDarkTheme }">
+        Children's
+        <br />
+        Hospital
+      </div>
       <div class="info__toolbar-line"></div>
       <div class="info__toolbar-description">
-        The Medical Center equipped<br />with Advanced equipment
+        The Medical Center equipped
+        <br />
+        with Advanced equipment
       </div>
       <!--    <div v-if="authStore.role === 1" class="admin-title">Admin Panel</div>-->
     </header>
@@ -30,14 +46,7 @@ const changeLanguage = (lang) => {
         <q-icon name="mail" size="sm" />
         info@hospital.com
       </p>
-      <q-btn
-        color="black"
-        :label="currentLanguage"
-        rounded
-        icon="language"
-        push
-        flat
-      >
+      <q-btn :label="currentLanguage" rounded icon="language" push flat>
         <q-menu
           transition-show="jump-down"
           transition-hide="jump-up"
@@ -60,6 +69,14 @@ const changeLanguage = (lang) => {
           </q-list>
         </q-menu>
       </q-btn>
+      <q-toggle
+        v-model="darkTheme"
+        :color="darkTheme ? 'grey' : 'grey-10'"
+        :icon="darkTheme ? 'dark_mode' : 'light_mode'"
+        :label="darkTheme ? 'Dark' : 'Light'"
+        size="lg"
+        @click="toggleTheme($q)"
+      />
     </div>
   </header>
 </template>
@@ -71,7 +88,7 @@ const changeLanguage = (lang) => {
     align-items: center;
     justify-content: space-between;
     min-height: 4rem;
-    background: rgba(255, 255, 255, 0.15);
+    background: rgb(255, 255, 255);
     transition: 0.5s;
 
     &-contacts {
