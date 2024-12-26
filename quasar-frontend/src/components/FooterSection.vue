@@ -1,7 +1,10 @@
 <script setup>
-import { ref } from 'vue'
+import {computed, ref} from 'vue';
+import {useQuasar} from "quasar";
 
-const email = ref('')
+const $q= useQuasar();
+const email = ref('');
+const isDarkMode= computed(() => $q.dark.isActive);
 
 const subscribeNewsletter = () => {
   console.log('Newsletter subscription for:', email.value)
@@ -10,7 +13,7 @@ const subscribeNewsletter = () => {
 </script>
 
 <template>
-  <footer class="footer q-px-xl q-pb-lg">
+  <footer class="footer q-px-xl q-pb-lg" :class="{darkSecondary: isDarkMode}">
     <div class="footer-content">
       <div class="footer-section">
         <h2 class="logo">Children's hospital</h2>

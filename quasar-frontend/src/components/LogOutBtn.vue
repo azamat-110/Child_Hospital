@@ -7,6 +7,7 @@
     text-color="white"
     unelevated
     to="/login"
+    rounded
   >
     Log out
     <q-icon name="logout" size="1.5em" class="q-ml-sm" />

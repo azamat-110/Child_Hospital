@@ -5,6 +5,7 @@
     text-color="white"
     unelevated
     to="/login"
+    rounded
   >
     Log in
     <q-icon name="login" size="1.5em" class="q-ml-sm"/>

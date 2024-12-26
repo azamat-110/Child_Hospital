@@ -6,19 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="dc1108a0-fcbc-41bd-b012-b5d7d2701440" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-frontend/quasar.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/quasar.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/assets/images/clinicLogo.svg" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/assets/images/clinicLogoDark.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/components/DoctorCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/components/DoctorCard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/components/HeaderSection.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/components/HeaderSection.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/components/NavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/components/NavBar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/css/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/css/app.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/components/FooterSection.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/components/FooterSection.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/quasar-frontend/src/css/quasar.variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/css/quasar.variables.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/layouts/MainLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/layouts/MainLayout.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/pages/DoctorsPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/pages/DoctorsPage.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/quasar-frontend/src/pages/HomePage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/pages/HomePage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/router/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/router/routes.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +140,7 @@
       <workItem from="1734981508746" duration="25092000" />
       <workItem from="1735068944472" duration="824000" />
       <workItem from="1735115316005" duration="30605000" />
-      <workItem from="1735206790347" duration="9509000" />
+      <workItem from="1735206790347" duration="11733000" />
     </task>
     <servers />
   </component>

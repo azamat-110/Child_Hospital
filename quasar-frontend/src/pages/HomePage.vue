@@ -2,11 +2,14 @@
 import { ref, onMounted, computed, watch } from "vue";
 import { useAuthStore } from "stores/authStore";
 import { useDataStore } from "stores/dataStore";
+import {useQuasar} from "quasar";
 import DoctorCard from "components/DoctorCard.vue";
 
 const dataStore = useDataStore();
 const authStore = useAuthStore();
+const $q = useQuasar();
 
+const isDarkMode = computed(() => $q.dark.isActive)
 const userRole = ref("patient");
 const doctors = computed(() => dataStore.doctors);
 const limitedDrs = ref([]);
@@ -41,7 +44,7 @@ onMounted(async () => {
     <div class="content">
       <section class="hero">
         <div class="hero__img"></div>
-        <div class="hero__title">
+        <div class="hero__title" :class="{dark__title: isDarkMode}">
           <h1 v-if="authStore.role === 1">Welcome, Administrator!</h1>
           <h1 v-else-if="authStore.role === 2">Welcome, Doctor!</h1>
           <h1 v-else-if="authStore.role === 3">Welcome, Patient!</h1>
@@ -56,24 +59,26 @@ onMounted(async () => {
             v-if="!authStore.role"
             to="/login"
             label="Log In"
-            color="primary"
+            :color="isDarkMode ? 'light' : 'primary'"
             class="learn-more-btn text-bold"
             outline
+            rounded
           />
           <q-btn
             to="/about"
             label="Learn More..."
-            color="primary"
+            :color="isDarkMode ? 'light' : 'primary'"
             class="learn-more-btn q-ml-lg text-bold"
             outline
+            rounded
           />
         </div>
       </section>
 
       <section class="doctors">
-        <div class="doctors__title">
+        <div class="doctors__title" :class="{dark__title: isDarkMode}">
           <h2>Doctors</h2>
-          <q-btn to="/doctors" label="View all" color="black" rounded outline />
+          <q-btn to="/doctors" label="View all" :color="isDarkMode ? 'light' : 'primary'" rounded outline />
         </div>
 
         <div class="doctors__flex">
@@ -82,7 +87,7 @@ onMounted(async () => {
             v-for="doctor in limitedDrs"
             :key="doctor.DOCTOR_ID"
           >
-            <DoctorCard doctor="doctor" />
+            <DoctorCard :doctor="doctor" />
           </div>
         </div>
       </section>
@@ -93,7 +98,7 @@ onMounted(async () => {
 <style scoped lang="scss">
 .doctors {
   width: 100%;
-  min-width: 1330px;
+  min-width: 1300px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -103,7 +108,7 @@ onMounted(async () => {
 
   &__title {
     width: 100%;
-    min-width: 1330px;
+    min-width: 1300px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -183,7 +188,7 @@ onMounted(async () => {
   &__img {
     position: absolute;
     bottom: 50px;
-    left: -100px;
+    left: -80px;
     background: url("../assets/images/headerDoctor.png") no-repeat;
     height: 100vh;
     width: 100%;
