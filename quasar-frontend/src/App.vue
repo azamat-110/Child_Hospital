@@ -1,22 +1,37 @@
 <script setup>
 import {useDataStore} from "stores/dataStore";
-import {onMounted} from "vue";
+import {useThemeStore} from "stores/useThemeStore";
+import {useQuasar} from "quasar";
+import {onMounted,} from "vue";
 
 defineOptions({
-  name: 'App'
+  name: 'App',
 });
 
 const dataStore = useDataStore();
-// const authStore = useAuthStore();
+const themeStore = useThemeStore();
+const $q = useQuasar();
 
 onMounted(() => {
-  // if (authStore.role) {
-    dataStore.loadAllData();
-  // }
+  dataStore.loadAllData();
+
+  //Dark system mode config
+
+  // themeStore.initializeTheme($q);
+  //
+  // const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+  // const onChange = (event) => {
+  //   themeStore.setTheme(event.matches, $q);
+  // };
+  //
+  // mediaQuery.addEventListener('change', onChange);
+  //
+  // onUnmounted(() => {
+  //   mediaQuery.removeEventListener('change', onChange);
+  // });
 });
 </script>
 
 <template>
   <router-view/>
 </template>
-

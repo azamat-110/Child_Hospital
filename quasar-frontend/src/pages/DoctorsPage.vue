@@ -1,9 +1,9 @@
 <script setup>
-import {ref, computed, watch} from "vue";
+import { ref, computed, watch } from "vue";
 import DoctorCard from "components/DoctorCard.vue";
-import {QSpinner, QBtn} from "quasar";
-import {useDataStore} from 'stores/dataStore';
-import {useAuthStore} from "stores/authStore";
+import { QSpinner, QBtn, useQuasar } from "quasar";
+import { useDataStore } from "stores/dataStore";
+import { useAuthStore } from "stores/authStore";
 
 const authStore = useAuthStore();
 authStore.initialize();
@@ -12,9 +12,11 @@ const dataStore = useDataStore();
 const doctors = computed(() => dataStore.doctors);
 const loading = computed(() => dataStore.loading);
 const error = computed(() => dataStore.error);
-const displayedDoctors = ref([]); // Карточки для отображения
-const itemsPerPage = 8; // Количество карточек за раз
-const currentPage = ref(0); // Текущая страница
+const displayedDoctors = ref([]);
+const itemsPerPage = 8;
+const currentPage = ref(0);
+const $q = useQuasar();
+const isDarkMode = computed(() => $q.dark.isActive);
 
 const updateDisplayedDoctors = () => {
   const start = currentPage.value * itemsPerPage;
@@ -33,37 +35,48 @@ const loadMore = () => {
   currentPage.value++;
   updateDisplayedDoctors();
 };
-
 </script>
 
 <template>
   <div class="doctors-page">
     <div class="page-header">
-      <h1>Our Doctors</h1>
-      <p class="subtitle ">Meet the professionals who care about your health</p>
+      <h1 :class="{ dark__title: isDarkMode }">Our Doctors</h1>
+      <p class="subtitle" :class="{ dark__title: isDarkMode }">
+        Meet the professionals who care about your health
+      </p>
     </div>
 
     <div class="content-container">
-      <q-spinner v-if="loading" size="40px" color="primary" class="loading-spinner"/>
+      <q-spinner
+        v-if="loading"
+        size="40px"
+        color="primary"
+        class="loading-spinner"
+      />
 
       <div v-else-if="error" class="error-message">
         {{ error }}
       </div>
 
       <div v-else>
-        <div class="doctors-grid">
-          <div v-for="doctor in displayedDoctors" :key="doctor.DOCTOR_ID" class="doctor-card">
-            <DoctorCard :doctor="doctor"/>
+        <div class="doctors__grid">
+          <div
+            v-for="doctor in displayedDoctors"
+            :key="doctor.DOCTOR_ID"
+            class="doctor-card"
+          >
+            <DoctorCard :doctor="doctor" />
           </div>
         </div>
 
         <q-btn
           v-if="displayedDoctors.length < doctors.length"
           label="Load More..."
-          color="primary"
+          :color="isDarkMode ? 'white' : 'primary'"
           outline
           class="load-more-btn"
           @click="loadMore"
+          rounded
         />
       </div>
     </div>
@@ -85,7 +98,7 @@ const loadMore = () => {
 .page-header h1 {
   font-size: 2rem;
   font-weight: bold;
-  color: #1f2b6c;
+  color: #000000;
   margin: 0;
 }
 
@@ -111,11 +124,14 @@ const loadMore = () => {
   margin-top: 2rem;
 }
 
-.doctors-grid {
+.doctors__grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* 4 карточки в ряду */
   gap: 1.5rem;
   width: 100%;
+  opacity: 0;
+  transform: translateY(-30px);
+  animation: showCards 1s ease-out forwards;
 }
 
 .doctor-card {
@@ -128,5 +144,12 @@ const loadMore = () => {
 
 .load-more-btn {
   margin-top: 2rem;
+}
+
+@keyframes showCards {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 </style>

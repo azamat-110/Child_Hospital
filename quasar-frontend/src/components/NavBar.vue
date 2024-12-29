@@ -1,17 +1,18 @@
 <script setup>
+"use strict";
 import { computed, ref } from "vue";
 import { useAuthStore } from "stores/authStore";
 import LogInBtn from "components/LogInBtn.vue";
 import LogOutBtn from "components/LogOutBtn.vue";
 import { useRouter } from "vue-router";
 import { useQuasar } from "quasar";
+
 const router = useRouter();
 const $q = useQuasar();
-
 const isDarkMode = computed(() => $q.dark.isActive);
 
 const goToDoctors = () => {
-  router.push("/doctors"); // Переключение маршрута
+  router.push("/doctors");
 };
 const screenWidth = ref(window.innerWidth);
 const authStore = useAuthStore();
@@ -21,43 +22,43 @@ const authStore = useAuthStore();
   <div class="navbar">
     <q-toolbar
       class="q-px-xl q-py-md navbar__section"
-      :class="{ darkSecondary: isDarkMode }"
+      :class="{ dark__secondary: isDarkMode }"
     >
       <div v-if="screenWidth > 450">
-        <q-btn flat rounded to="/" label="Home" />
+        <q-btn flat rounded to="/" :label="$t('navBar.home')" />
         <q-btn
           v-if="authStore.role === 1"
           flat
           to="/patients"
-          label="Patients"
+          :label="$t('navBar.patients')"
           rounded
         />
         <q-btn
           v-if="authStore.role"
           flat
           to="/appointments"
-          label="Appointments"
+          :label="$t('navBar.appointments')"
           rounded
         />
         <q-btn
           flat
           rounded
           to="/doctors"
-          label="Doctors"
+          :label="$t('navBar.doctors')"
           @click.prevent="goToDoctors"
         />
         <q-btn
           v-if="authStore.role === 1"
           flat
           to="/prescriptions"
-          label="Prescriptions"
+          :label="$t('navBar.prescriptions')"
           rounded
         />
         <q-btn
           v-if="authStore.role === 1"
           flat
           to="/medications"
-          label="Medications"
+          :label="$t('navBar.medications')"
           rounded
         />
         <q-btn
@@ -65,7 +66,7 @@ const authStore = useAuthStore();
           flat
           rounded
           to="/about"
-          label="About us"
+          :label="$t('navBar.about')"
         />
       </div>
       <LogInBtn v-if="!authStore.role" class="q-ml-sm" />
@@ -75,14 +76,6 @@ const authStore = useAuthStore();
 </template>
 
 <style scoped lang="scss">
-.admin-title {
-  margin-left: 10px;
-  font-size: 16px;
-  font-weight: bold;
-  color: #000;
-  text-transform: uppercase;
-}
-
 .navbar {
   position: sticky;
   top: 0;

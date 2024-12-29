@@ -1,22 +1,26 @@
 <script setup>
-import { useAuthStore } from "stores/authStore";
 import { useThemeStore } from "stores/useThemeStore";
 import { useQuasar } from "quasar";
 import { computed, ref } from "vue";
+import { useI18n } from "vue-i18n";
 import clinicLogoLight from "../assets/images/clinicLogoLight.svg";
 import clinicLogoDark from "../assets/images/clinicLogoDark.svg";
 
 const $q = useQuasar();
-const authStore = useAuthStore();
+const { locale } = useI18n();
 const themeStore = useThemeStore();
-
 const currentLanguage = ref("EN");
-const darkTheme = themeStore.darkTheme;
-const toggleTheme = themeStore.toggleTheme;
-const isDarkTheme = computed(() => $q.dark.isActive);
+
+const isDarkTheme = computed({
+  get: () => themeStore.darkTheme,
+  set: (value) => {
+    themeStore.setTheme(value, $q);
+  },
+});
 
 const changeLanguage = (lang) => {
   currentLanguage.value = lang;
+  locale.value = lang.toLowerCase(); // Например, 'uz', 'ru', 'en'
 };
 </script>
 
@@ -30,12 +34,10 @@ const changeLanguage = (lang) => {
         Hospital
       </div>
       <div class="info__toolbar-line"></div>
-      <div class="info__toolbar-description">
-        The Medical Center equipped
-        <br />
-        with Advanced equipment
-      </div>
-      <!--    <div v-if="authStore.role === 1" class="admin-title">Admin Panel</div>-->
+      <div
+        class="info__toolbar-description"
+        v-html="$t('headerSection.description').replace('\n', '<br/>')"
+      ></div>
     </header>
     <div class="info__section-contacts">
       <p>
@@ -46,7 +48,13 @@ const changeLanguage = (lang) => {
         <q-icon name="mail" size="sm" />
         info@hospital.com
       </p>
-      <q-btn :label="currentLanguage" rounded icon="language" push flat>
+      <q-btn
+        :label="currentLanguage"
+        icon="language"
+        rounded
+        flat
+        style="min-width: 90px"
+      >
         <q-menu
           transition-show="jump-down"
           transition-hide="jump-up"
@@ -56,26 +64,36 @@ const changeLanguage = (lang) => {
         >
           <q-list style="min-width: 100px">
             <q-item clickable @click="changeLanguage('UZ')">
-              <q-item-section class="text-center">Uzbek</q-item-section>
+              <q-item-section class="text-center">
+                {{$t('headerSection.language.uz')}}
+              </q-item-section>
             </q-item>
             <q-separator />
             <q-item clickable @click="changeLanguage('RU')">
-              <q-item-section class="text-center">Russian</q-item-section>
+              <q-item-section class="text-center">
+                {{$t('headerSection.language.ru')}}
+              </q-item-section>
             </q-item>
             <q-separator />
             <q-item clickable @click="changeLanguage('EN')">
-              <q-item-section class="text-center">English</q-item-section>
+              <q-item-section class="text-center">
+                {{$t('headerSection.language.en')}}
+              </q-item-section>
             </q-item>
           </q-list>
         </q-menu>
       </q-btn>
       <q-toggle
-        v-model="darkTheme"
-        :color="darkTheme ? 'grey' : 'grey-10'"
-        :icon="darkTheme ? 'dark_mode' : 'light_mode'"
-        :label="darkTheme ? 'Dark' : 'Light'"
+        v-model="isDarkTheme"
+        :color="isDarkTheme ? 'grey' : 'grey-10'"
+        :icon="isDarkTheme ? 'dark_mode' : 'light_mode'"
+        :label="
+          isDarkTheme
+            ? `${$t('headerSection.dark')}`
+            : `${$t('headerSection.light')}`
+        "
         size="lg"
-        @click="toggleTheme($q)"
+        style="min-width: 110px"
       />
     </div>
   </header>

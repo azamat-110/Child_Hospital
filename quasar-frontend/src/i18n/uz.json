@@ -1,0 +1,50 @@
+{
+  "homePage": {
+    "welcome": "Bolalar shifoxonasiga xush kelibsiz!",
+    "welcome_admin": "Xush kelibsiz, Administrator!",
+    "welcome_doctor": "Xush kelibsiz, Shifokor!",
+    "welcome_patient": "Xush kelibsiz, Bemor!",
+    "medical_services": "Biz sizning farovonligingizni ta'minlash uchun tibbiy xizmatlarning keng doirasini taklif etamiz.\nAgar sizga favqulodda yordam, muntazam tekshiruvlar yoki maxsus davolash kerak bo'lsa, biz har doim yordam berishga tayyormiz. Bizning tajribali jamoamiz yuqori sifatli tibbiy yordamni mehr va g'amxo'rlik bilan taqdim etishga intiladi.",
+    "doctor_title": "Shifokorlar",
+    "login": "Kirish",
+    "learn_more": "Batafsil...",
+    "view_all": "Hammasini ko'rish"
+  },
+  "navBar": {
+    "home": "Asosiy",
+    "patients": "Bemorlar",
+    "appointments": "Qabullar",
+    "doctors": "Shifokorlar",
+    "prescriptions": "Retseplar",
+    "medications": "Dorilar",
+    "about": "Biz haqimizda"
+  },
+  "headerSection": {
+    "description": "Zamonaviy uskunalar bilan\n jihozlangan tibbiyot markazi",
+    "dark": "Tun",
+    "light": "Kun",
+    "language": {
+      "ru": "Rus tili",
+      "en": "Ingliz tili",
+      "uz": "O'zbek tili"
+    }
+  },
+  "loginBtn": {
+    "login": "Kirish"
+  },
+  "logOutBtn": {
+    "logout": "Chiqish"
+  },
+  "footer": {
+    "important_links": "Havolalar",
+    "description": "Tibbiy mukammallikda etakchi, ishonchli parvarish.",
+    "contact_us": {
+      "title": "Aloqa",
+      "call": "Telefon",
+      "address": "Manzil",
+      "country": "Shahar"
+    },
+    "newsletter": "Habarnoma",
+    "emailPlaceholder": "Elektron pochta manzilingizni kiriting"
+  }
+}

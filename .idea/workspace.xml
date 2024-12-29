@@ -6,9 +6,22 @@
   <component name="ChangeListManager">
     <list default="true" id="dc1108a0-fcbc-41bd-b012-b5d7d2701440" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/quasar.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/quasar.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/components/DoctorCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/components/DoctorCard.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/quasar-frontend/src/components/FooterSection.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/components/FooterSection.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/css/quasar.variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/css/quasar.variables.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/components/HeaderSection.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/components/HeaderSection.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/components/LogInBtn.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/components/LogInBtn.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/components/LogOutBtn.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/components/LogOutBtn.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/components/NavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/components/NavBar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/css/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/css/app.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/pages/AboutUs.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/pages/AboutUs.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/pages/DoctorsPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/pages/DoctorsPage.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/quasar-frontend/src/pages/HomePage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/pages/HomePage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/pages/LoginPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/pages/LoginPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/stores/useThemeStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/stores/useThemeStore.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,7 +32,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Vue Composition API Component" />
+        <option value="package.json" />
         <option value="JavaScript File" />
+        <option value="tsconfig.json" />
       </list>
     </option>
   </component>
@@ -76,9 +91,11 @@
       <recent name="$PROJECT_DIR$/quasar-frontend/src/assets/images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/quasar-frontend/src/i18n/uz" />
+      <recent name="$PROJECT_DIR$/quasar-frontend/src/i18n/ru" />
+      <recent name="$PROJECT_DIR$/quasar-frontend/src/i18n" />
+      <recent name="$PROJECT_DIR$/quasar-frontend/src/i18n/en" />
       <recent name="$PROJECT_DIR$/quasar-frontend/src/assets/images" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -140,7 +157,9 @@
       <workItem from="1734981508746" duration="25092000" />
       <workItem from="1735068944472" duration="824000" />
       <workItem from="1735115316005" duration="30605000" />
-      <workItem from="1735206790347" duration="11733000" />
+      <workItem from="1735206790347" duration="23188000" />
+      <workItem from="1735320761125" duration="11546000" />
+      <workItem from="1735463912515" duration="12990000" />
     </task>
     <servers />
   </component>

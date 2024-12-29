@@ -1,7 +1,8 @@
 <script setup>
-import {ref} from "vue";
-import {useRouter} from "vue-router";
+import { computed, ref } from "vue";
+import { useRouter } from "vue-router";
 import axios from "axios";
+import { useQuasar } from "quasar";
 
 const email = ref("");
 const password = ref("");
@@ -9,7 +10,9 @@ const fullName = ref("");
 const isRegister = ref(false);
 const errorMessage = ref("");
 const successMessage = ref("");
+const $q = useQuasar();
 
+const isDarkMode = computed(() => $q.dark.isActive);
 const router = useRouter();
 
 const submitForm = async () => {
@@ -21,8 +24,8 @@ const submitForm = async () => {
     : "http://localhost:3001/auth/login";
 
   const data = isRegister.value
-    ? {email: email.value, password: password.value, fullName: fullName.value}
-    : {email: email.value, password: password.value};
+    ? { email: email.value, password: password.value, fullName: fullName.value }
+    : { email: email.value, password: password.value };
 
   try {
     const response = await axios.post(url, data);
@@ -35,7 +38,7 @@ const submitForm = async () => {
     } else {
       if (response.status === 200) {
         successMessage.value = "Вход выполнен успешно!";
-        const {token, roleId} = response.data;
+        const { token, roleId } = response.data;
         localStorage.setItem("token", token);
         localStorage.setItem("roleId", roleId);
 
@@ -56,8 +59,8 @@ const toggleMode = () => {
 </script>
 
 <template>
-  <div class="auth-container">
-    <div class="auth-box">
+  <q-page class="auth-container">
+    <div class="auth-box" :class="{ dark__secondary: isDarkMode }">
       <h4 class="text-grey1">{{ isRegister ? "Registration" : "Login" }}</h4>
       <q-form @submit.prevent="submitForm" class="auth-form">
         <q-input
@@ -77,20 +80,18 @@ const toggleMode = () => {
           label="Email"
           type="email"
           :rules="['required', 'email']"
-          bg-color="white"
-          outlined
-          dense
+          :bg-color="isDarkMode ? '' : 'white'"
           clearable
           class="form-field"
+          outlined
         />
         <q-input
           v-model="password"
           label="Password"
           type="password"
           :rules="['required']"
-          bg-color="white"
+          :bg-color="isDarkMode ? '' : 'white'"
           outlined
-          dense
           clearable
           class="form-field"
         />
@@ -113,7 +114,7 @@ const toggleMode = () => {
       <p v-if="errorMessage" class="error-text">{{ errorMessage }}</p>
       <p v-if="successMessage" class="success-text">{{ successMessage }}</p>
     </div>
-  </div>
+  </q-page>
 </template>
 
 <style scoped>
@@ -122,8 +123,6 @@ const toggleMode = () => {
   justify-content: center;
   align-items: center;
   min-height: 90vh;
-  background: #ffffff;
-  font-family: "Roboto", sans-serif;
 }
 
 .auth-box {
@@ -174,7 +173,7 @@ h2 {
 }
 
 .error-text {
-  color: #d32f2f;
+  color: #ff0505;
   font-size: 0.9rem;
   margin-top: 1rem;
 }

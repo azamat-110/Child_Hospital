@@ -6,11 +6,16 @@
 
 @import 'quasar.variables';
 
+html, body {
+  scroll-behavior: smooth;
+}
+
+
 .dark {
   background: #1d1d1d !important;
 }
 
-.darkSecondary{
+.dark__secondary{
   background: $secondary !important;
 }
 
@@ -18,7 +23,7 @@
   color: #ffffff !important;
 }
 
-.darkShadow{
+.dark__shadow{
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7) !important;
 
   &:hover{

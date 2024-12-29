@@ -9,7 +9,7 @@
     to="/login"
     rounded
   >
-    Log out
+    {{$t('logOutBtn.logout')}}
     <q-icon name="logout" size="1.5em" class="q-ml-sm" />
   </q-btn>
 </template>

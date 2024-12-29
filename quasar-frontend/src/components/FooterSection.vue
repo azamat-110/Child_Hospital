@@ -1,61 +1,74 @@
 <script setup>
-import {computed, ref} from 'vue';
-import {useQuasar} from "quasar";
+import { computed, ref } from "vue";
+import { useQuasar } from "quasar";
+import { useAuthStore } from "stores/authStore";
 
-const $q= useQuasar();
-const email = ref('');
-const isDarkMode= computed(() => $q.dark.isActive);
+const $q = useQuasar();
+const email = ref("");
+const isDarkMode = computed(() => $q.dark.isActive);
+const authStore = useAuthStore();
 
 const subscribeNewsletter = () => {
-  console.log('Newsletter subscription for:', email.value)
-  email.value = ''
-}
+  console.log("Newsletter subscription for:", email.value);
+  email.value = "";
+};
 </script>
 
 <template>
-  <footer class="footer q-px-xl q-pb-lg" :class="{darkSecondary: isDarkMode}">
+  <footer
+    class="footer q-px-xl q-pb-lg"
+    :class="{ dark__secondary: isDarkMode }"
+  >
     <div class="footer-content">
       <div class="footer-section">
         <h2 class="logo">Children's hospital</h2>
         <p class="tagline">
-          Leading the Way in Medical Excellence, Trusted Care.
+          {{$t('footer.description')}}
         </p>
       </div>
       <div class="footer-section">
-        <h3>Important Links</h3>
+        <h3>{{$t('footer.important_links')}}</h3>
         <ul>
-          <li>
-            <router-link to="/appointments" clickable>Appointment</router-link>
+          <li v-if="authStore.role === 1">
+            <router-link to="/appointments" clickable>
+              {{$t('navBar.appointments')}}
+            </router-link>
           </li>
           <li>
-            <router-link to="/doctors">Doctors</router-link>
+            <router-link to="/doctors">
+              {{$t('navBar.doctors')}}
+            </router-link>
           </li>
-          <li>
-            <router-link to="/prescriptions">Prescriptions</router-link>
+          <li v-if="authStore.role === 1">
+            <router-link to="/prescriptions">
+              {{$t('navBar.prescriptions')}}
+            </router-link>
           </li>
-          <li>
-            <router-link to="/medications">Medications</router-link>
+          <li v-if="authStore.role === 1">
+            <router-link to="/medications">
+              {{$t('navBar.medications')}}
+            </router-link>
           </li>
         </ul>
       </div>
 
       <div class="footer-section">
-        <h3>Contact Us</h3>
+        <h3> {{$t('footer.contact_us.title')}}</h3>
         <ul>
-          <li>Call: (237) 681-812-255</li>
-          <li>Email: fildineesoe@gmail.com</li>
-          <li>Address: 0123 Some place</li>
-          <li>Some country</li>
+          <li>{{$t('footer.contact_us.call')}}: +998 (97) 770-07-07</li>
+          <li>Email: info@hospital.com</li>
+          <li>{{$t('footer.contact_us.address')}}: 123 Some place</li>
+          <li>{{$t('footer.contact_us.country')}}: Tashkent</li>
         </ul>
       </div>
 
       <div class="footer-section">
-        <h3>Newsletter</h3>
+        <h3>{{$t('footer.newsletter')}}</h3>
         <form @submit.prevent="subscribeNewsletter" class="newsletter-form">
           <input
             type="email"
             v-model="email"
-            placeholder="Enter your email address"
+            :placeholder="$t('footer.emailPlaceholder')"
             required
           />
           <button type="submit">
@@ -66,7 +79,7 @@ const subscribeNewsletter = () => {
     </div>
 
     <div class="footer-bottom">
-      <p>© 2021 Hospital's name All Rights Reserved by PNTEC-LTD</p>
+      <p>© 2024 Children's hospital All Rights Reserved by PNTEC-LTD</p>
       <div class="social-links">
         <a href="#linkedin" aria-label="LinkedIn">
           <i class="social-icon">in</i>
@@ -89,12 +102,12 @@ const subscribeNewsletter = () => {
   color: white;
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.7);
   z-index: 100;
+
   .footer-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
     padding: 12px;
-
   }
 
   .logo {
@@ -119,10 +132,9 @@ const subscribeNewsletter = () => {
 
     li {
       margin-bottom: 0.8rem;
-
-
     }
   }
+
   a {
     color: #e0e0e0;
     text-decoration: none;
@@ -144,7 +156,7 @@ const subscribeNewsletter = () => {
       padding: 0.8rem;
       border: none;
       background: transparent;
-      color: #1F2B6C;
+      color: #1f2b6c;
 
       &::placeholder {
         color: #9fa8da;
@@ -155,7 +167,7 @@ const subscribeNewsletter = () => {
       background: none;
       border: none;
       padding: 0.8rem;
-      color: #1F2B6C;
+      color: #1f2b6c;
       cursor: pointer;
       transition: opacity 0.3s ease;
 
@@ -213,5 +225,4 @@ const subscribeNewsletter = () => {
     }
   }
 }
-
 </style>

@@ -2,14 +2,16 @@
 import { ref, onMounted, computed, watch } from "vue";
 import { useAuthStore } from "stores/authStore";
 import { useDataStore } from "stores/dataStore";
-import {useQuasar} from "quasar";
+import { useQuasar } from "quasar";
 import DoctorCard from "components/DoctorCard.vue";
+import headerDoctorLight from "assets/images/headerDoctorLight.png";
+import headerDoctorDark from "assets/images/headerDoctorDark.png";
 
 const dataStore = useDataStore();
 const authStore = useAuthStore();
 const $q = useQuasar();
 
-const isDarkMode = computed(() => $q.dark.isActive)
+const isDarkMode = computed(() => $q.dark.isActive);
 const userRole = ref("patient");
 const doctors = computed(() => dataStore.doctors);
 const limitedDrs = ref([]);
@@ -43,22 +45,26 @@ onMounted(async () => {
   <q-page class="home-page">
     <div class="content">
       <section class="hero">
-        <div class="hero__img"></div>
-        <div class="hero__title" :class="{dark__title: isDarkMode}">
-          <h1 v-if="authStore.role === 1">Welcome, Administrator!</h1>
+        <div
+          class="hero__img"
+          :style="
+            isDarkMode
+              ? `background: url(${headerDoctorDark}) no-repeat;`
+              : `background: url(${headerDoctorLight}) no-repeat;`
+          "
+        ></div>
+        <div class="hero__title" :class="{ dark__title: isDarkMode }">
+          <h1 v-if="authStore.role === 1">{{$t('homePage.welcome_admin')}}</h1>
           <h1 v-else-if="authStore.role === 2">Welcome, Doctor!</h1>
           <h1 v-else-if="authStore.role === 3">Welcome, Patient!</h1>
-          <h1 v-else>Welcome to Children's Hospital!</h1>
+          <h1 v-else>{{$t('homePage.welcome')}}</h1>
           <p>
-            We offer a range of medical services to ensure your well-being.
-            Whether you need emergency care, routine check-ups, or specialized
-            treatment, we're here for you. Our experienced team is committed to
-            providing top-notch healthcare with compassion and care.
+            {{$t('homePage.medical_services')}}
           </p>
           <q-btn
             v-if="!authStore.role"
             to="/login"
-            label="Log In"
+            :label="$t('homePage.login')"
             :color="isDarkMode ? 'light' : 'primary'"
             class="learn-more-btn text-bold"
             outline
@@ -66,7 +72,7 @@ onMounted(async () => {
           />
           <q-btn
             to="/about"
-            label="Learn More..."
+            :label="$t('homePage.learn_more')"
             :color="isDarkMode ? 'light' : 'primary'"
             class="learn-more-btn q-ml-lg text-bold"
             outline
@@ -76,9 +82,15 @@ onMounted(async () => {
       </section>
 
       <section class="doctors">
-        <div class="doctors__title" :class="{dark__title: isDarkMode}">
-          <h2>Doctors</h2>
-          <q-btn to="/doctors" label="View all" :color="isDarkMode ? 'light' : 'primary'" rounded outline />
+        <div class="doctors__title" :class="{ dark__title: isDarkMode }">
+          <h2>{{$t('homePage.doctor_title')}}</h2>
+          <q-btn
+            to="/doctors"
+            :label="$t('homePage.view_all')"
+            :color="isDarkMode ? 'light' : 'primary'"
+            rounded
+            outline
+          />
         </div>
 
         <div class="doctors__flex">
@@ -103,7 +115,6 @@ onMounted(async () => {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding-top: 20px;
   padding-bottom: 50px;
 
   &__title {
@@ -122,6 +133,9 @@ onMounted(async () => {
   &__flex {
     display: flex;
     gap: 2rem;
+    opacity: 0;
+    transform: translateX(-50px);
+    animation: showCards 1s ease-out forwards;
   }
 }
 
@@ -189,7 +203,7 @@ onMounted(async () => {
     position: absolute;
     bottom: 50px;
     left: -80px;
-    background: url("../assets/images/headerDoctor.png") no-repeat;
+    //background: url("../assets/images/headerDoctorDark.png") no-repeat;
     height: 100vh;
     width: 100%;
     background-size: auto;
@@ -233,6 +247,13 @@ onMounted(async () => {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes showCards {
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 </style>

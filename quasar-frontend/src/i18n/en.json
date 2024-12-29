@@ -1,0 +1,50 @@
+{
+  "homePage": {
+    "welcome": "Welcome to Children's Hospital!",
+    "welcome_admin": "Welcome, Administrator!",
+    "welcome_doctor": "Welcome, Doctor!",
+    "welcome_patient": "Welcome, Patient!",
+    "medical_services": "We offer a range of medical services to ensure your well-being.\nWhether you need emergency care, routine check-ups, or specialized treatment, we're here for you. Our experienced team is committed to providing top-notch healthcare with compassion and care.",
+    "doctor_title": "Doctors",
+    "login": "Log In",
+    "learn_more": "Learn more...",
+    "view_all": "View all"
+  },
+  "navBar": {
+    "home": "Home",
+    "patients": "Patients",
+    "appointments": "Appointments",
+    "doctors": "Doctors",
+    "prescriptions": "Prescriptions",
+    "medications": "Medications",
+    "about": "About"
+  },
+  "headerSection": {
+    "description": " The Medical Center equipped\n with Advanced equipment",
+    "dark": "Dark",
+    "light": "Light",
+    "language": {
+      "ru": "Russian",
+      "en": "English",
+      "uz": "Uzbek"
+    }
+  },
+  "loginBtn": {
+    "login": "Log in"
+  },
+  "logOutBtn": {
+    "logout": "Log out"
+  },
+  "footer": {
+    "important_links": "Important Links",
+    "description": "Leading the Way in Medical Excellence, Trusted Care.",
+    "contact_us": {
+      "title": "Contact Us",
+      "call": "Call",
+      "address": "Address",
+      "country": "Country"
+    },
+    "newsletter": "Newsletter",
+    "emailPlaceholder": "Enter your email address"
+  }
+}
