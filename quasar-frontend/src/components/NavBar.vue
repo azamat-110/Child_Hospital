@@ -2,10 +2,10 @@
 "use strict";
 import { computed, ref } from "vue";
 import { useAuthStore } from "stores/authStore";
-import LogInBtn from "components/LogInBtn.vue";
-import LogOutBtn from "components/LogOutBtn.vue";
 import { useRouter } from "vue-router";
 import { useQuasar } from "quasar";
+import LogInBtn from "components/LogInBtn.vue";
+import LogOutBtn from "components/LogOutBtn.vue";
 
 const router = useRouter();
 const $q = useQuasar();
@@ -34,18 +34,18 @@ const authStore = useAuthStore();
           rounded
         />
         <q-btn
-          v-if="authStore.role"
-          flat
-          to="/appointments"
-          :label="$t('navBar.appointments')"
-          rounded
-        />
-        <q-btn
           flat
           rounded
           to="/doctors"
           :label="$t('navBar.doctors')"
           @click.prevent="goToDoctors"
+        />
+        <q-btn
+          v-if="authStore.role"
+          flat
+          to="/appointments"
+          :label="$t('navBar.appointments')"
+          rounded
         />
         <q-btn
           v-if="authStore.role === 1"

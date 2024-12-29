@@ -1,6 +1,8 @@
 // app global css in SCSS form
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Lexend:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Sofia+Sans:ital,wght@0,1..1000;1,1..1000&display=swap');body {
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Lexend:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Sofia+Sans:ital,wght@0,1..1000;1,1..1000&display=swap');
+
+body {
   font-family: 'Mulish', serif;
 }
 
@@ -15,7 +17,7 @@ html, body {
   background: #1d1d1d !important;
 }
 
-.dark__secondary{
+.dark__secondary {
   background: $secondary !important;
 }
 
@@ -23,10 +25,12 @@ html, body {
   color: #ffffff !important;
 }
 
-.dark__shadow{
+.dark__shadow {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7) !important;
 
-  &:hover{
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 1) !important;
+  &-hover {
+    &:hover {
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 1) !important;
+    }
   }
 }

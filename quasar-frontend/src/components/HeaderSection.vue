@@ -9,18 +9,29 @@ import clinicLogoDark from "../assets/images/clinicLogoDark.svg";
 const $q = useQuasar();
 const { locale } = useI18n();
 const themeStore = useThemeStore();
-const currentLanguage = ref("EN");
+const savedLanguage = localStorage.getItem("app-locale") || "en";
+const savedTheme = localStorage.getItem("app-theme") || "light";
+const currentLanguage = ref(savedLanguage.toUpperCase());
 
 const isDarkTheme = computed({
   get: () => themeStore.darkTheme,
   set: (value) => {
     themeStore.setTheme(value, $q);
+    localStorage.setItem("app-theme", value ? "dark" : "light");
   },
 });
 
+if (savedTheme === "dark") {
+  themeStore.setTheme(true, $q);
+} else {
+  themeStore.setTheme(false, $q);
+}
+
 const changeLanguage = (lang) => {
   currentLanguage.value = lang;
-  locale.value = lang.toLowerCase(); // Например, 'uz', 'ru', 'en'
+  const newLocale = lang.toLowerCase();
+  locale.value = newLocale;
+  localStorage.setItem("app-locale", newLocale);
 };
 </script>
 
@@ -61,23 +72,24 @@ const changeLanguage = (lang) => {
           anchor="bottom middle"
           self="top middle"
           auto-close
+          :class="{ dark__shadow: isDarkTheme }"
         >
           <q-list style="min-width: 100px">
             <q-item clickable @click="changeLanguage('UZ')">
               <q-item-section class="text-center">
-                {{$t('headerSection.language.uz')}}
+                {{ $t("headerSection.language.uz") }}
               </q-item-section>
             </q-item>
             <q-separator />
             <q-item clickable @click="changeLanguage('RU')">
               <q-item-section class="text-center">
-                {{$t('headerSection.language.ru')}}
+                {{ $t("headerSection.language.ru") }}
               </q-item-section>
             </q-item>
             <q-separator />
             <q-item clickable @click="changeLanguage('EN')">
               <q-item-section class="text-center">
-                {{$t('headerSection.language.en')}}
+                {{ $t("headerSection.language.en") }}
               </q-item-section>
             </q-item>
           </q-list>

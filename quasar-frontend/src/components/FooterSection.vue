@@ -71,9 +71,12 @@ const subscribeNewsletter = () => {
             :placeholder="$t('footer.emailPlaceholder')"
             required
           />
-          <button type="submit">
-            <span class="send-icon">➤</span>
-          </button>
+            <q-btn
+              type="submit"
+              flat
+              icon="send"
+              size="sm"
+            />
         </form>
       </div>
     </div>
@@ -150,6 +153,7 @@ const subscribeNewsletter = () => {
     background: #f5f7ff;
     border-radius: 4px;
     overflow: hidden;
+    min-width: 300px;
 
     input {
       flex: 1;

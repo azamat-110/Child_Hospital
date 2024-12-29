@@ -18,7 +18,7 @@ const viewProfile = () => {
 </script>
 
 <template>
-  <q-card class="doctor__card" :class="{ darkShadow: isDarkMode }">
+  <q-card class="doctor__card" :class="{ 'dark__shadow-hover': isDarkMode }">
     <q-card-section class="info__section" :class="{ dark: isDarkMode }">
       <img
         :src="
