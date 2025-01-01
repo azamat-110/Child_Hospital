@@ -1,7 +1,7 @@
 <script setup>
 import { useThemeStore } from "stores/useThemeStore";
-import { useQuasar } from "quasar";
 import { computed, ref } from "vue";
+import { useQuasar } from "quasar";
 import { useI18n } from "vue-i18n";
 import clinicLogoLight from "../assets/images/clinicLogoLight.svg";
 import clinicLogoDark from "../assets/images/clinicLogoDark.svg";

@@ -8,7 +8,9 @@
     "doctor_title": "Doctors",
     "login": "Log In",
     "learn_more": "Learn more...",
-    "view_all": "View all"
+    "view_all": "View all",
+    "about": "About us",
+    "about_content": "Our mission is to support children with disabilities by providing professional medical care and assistance. We strive to ensure that every child feels loved and protected."
   },
   "navBar": {
     "home": "Home",

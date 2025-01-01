@@ -8,7 +8,9 @@
     "doctor_title": "Shifokorlar",
     "login": "Kirish",
     "learn_more": "Batafsil...",
-    "view_all": "Hammasini ko'rish"
+    "view_all": "Hammasini ko'rish",
+    "about": "Biz haqimizda",
+    "about_content": "Bizning missiyamiz – nogironligi bo‘lgan bolalarga malakali tibbiy yordam va qo‘llab-quvvatlash xizmatlarini taqdim etish. Har bir bola o‘zini sevilgan va himoyalangan deb his qilishi uchun harakat qilamiz."
   },
   "navBar": {
     "home": "Asosiy",

@@ -54,12 +54,14 @@ onMounted(async () => {
           "
         ></div>
         <div class="hero__title" :class="{ dark__title: isDarkMode }">
-          <h1 v-if="authStore.role === 1">{{$t('homePage.welcome_admin')}}</h1>
+          <h1 v-if="authStore.role === 1">
+            {{ $t("homePage.welcome_admin") }}
+          </h1>
           <h1 v-else-if="authStore.role === 2">Welcome, Doctor!</h1>
           <h1 v-else-if="authStore.role === 3">Welcome, Patient!</h1>
-          <h1 v-else>{{$t('homePage.welcome')}}</h1>
+          <h1 v-else>{{ $t("homePage.welcome") }}</h1>
           <p>
-            {{$t('homePage.medical_services')}}
+            {{ $t("homePage.medical_services") }}
           </p>
           <q-btn
             v-if="!authStore.role"
@@ -83,7 +85,7 @@ onMounted(async () => {
 
       <section class="doctors">
         <div class="doctors__title" :class="{ dark__title: isDarkMode }">
-          <h2>{{$t('homePage.doctor_title')}}</h2>
+          <h2>{{ $t("homePage.doctor_title") }}</h2>
           <q-btn
             to="/doctors"
             :label="$t('homePage.view_all')"
@@ -103,11 +105,61 @@ onMounted(async () => {
           </div>
         </div>
       </section>
+      <section class="about">
+        <div class="about__title">
+          <h2 :class="{ dark__title: isDarkMode }">
+            {{ $t("homePage.about") }}
+          </h2>
+          <q-btn
+            to="/about"
+            :label="$t('homePage.learn_more')"
+            :color="isDarkMode ? 'grey-1' : 'primary'"
+            rounded
+            outline
+          />
+        </div>
+        <div class="about__content q-mt-lg q-px-md" :class="{ dark__title: isDarkMode }">
+          {{$t('homePage.about_content')}}
+        </div>
+      </section>
     </div>
   </q-page>
 </template>
 
 <style scoped lang="scss">
+.about {
+  width: 100%;
+  min-width: 1300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 50px;
+
+  &__title {
+    width: 100%;
+    min-width: 1300px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    & h2 {
+      font-weight: bold;
+      font-size: 2rem;
+    }
+  }
+
+  &__content{
+    font-size: 1.5rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #000000;
+    text-align: center;
+    max-width: 800px;
+  }
+}
+
 .doctors {
   width: 100%;
   min-width: 1300px;
