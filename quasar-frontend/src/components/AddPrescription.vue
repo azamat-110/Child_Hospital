@@ -1,6 +1,7 @@
 <script setup>
-import { ref, watch } from "vue";
-import axios from "axios";
+import {computed, ref, watch} from "vue";
+import {useQuasar} from "quasar";
+
 
 const props = defineProps({
   modelValue: Boolean,
@@ -16,6 +17,7 @@ const form = ref({
   dateOfBirth: "",
   gender: "",
 });
+
 
 const resetForm = () => {
   form.value = {

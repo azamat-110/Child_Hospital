@@ -3,9 +3,12 @@ import { onMounted, computed, ref } from "vue";
 import { useDataStore } from "stores/dataStore";
 import { useAuthStore } from "stores/authStore";
 import AddPrescription from "components/AddPrescription.vue";
+import { useQuasar } from "quasar";
 
 const authStore = useAuthStore();
 authStore.initialize();
+const $q = useQuasar();
+const isDarkMode = computed(() => $q.dark.isActive);
 
 const dataStore = useDataStore();
 const groupedPrescriptions = computed(() => dataStore.groupedPrescriptions);
@@ -18,8 +21,13 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="prescriptions-page q-pa-md">
-    <h2 class="text-h5 text-center prescipt__title">Prescriptions by Doctor</h2>
+  <div class="prescriptions-page q-pa-md" :class="{ dark: isDarkMode }">
+    <h2
+      class="text-h5 text-center prescipt__title"
+      :class="{ dark__title: isDarkMode }"
+    >
+      Prescriptions by Doctor
+    </h2>
     <AddPrescription
       :openModal="openModal"
       :model-value="openModal"
@@ -28,7 +36,7 @@ onMounted(() => {
     <q-btn
       icon="add_circle"
       label="Add prescription"
-      color="primary"
+      :color="isDarkMode ? 'white' : 'primary'"
       @click="openModal = true"
       class="add__prescription-btn"
       outline
@@ -40,9 +48,24 @@ onMounted(() => {
         class="doctor-group"
       >
         <div class="doctor-divider">
-          <div class="divider-line"></div>
-          <div class="doctor-name">{{ doctorName }}</div>
-          <div class="divider-line"></div>
+          <div
+            class="divider-line"
+            :style="isDarkMode ? 'background: #fff' : ''"
+          ></div>
+          <div
+            class="doctor-name"
+            :class="{
+              dark: isDarkMode,
+              dark__shadow: isDarkMode,
+              dark__title: isDarkMode,
+            }"
+          >
+            {{ doctorName }}
+          </div>
+          <div
+            class="divider-line"
+            :style="isDarkMode ? 'background: #fff' : ''"
+          ></div>
         </div>
 
         <div class="prescriptions-list">
@@ -50,6 +73,7 @@ onMounted(() => {
             v-for="prescription in prescriptions"
             :key="prescription.PRESCRIPTION_ID"
             class="prescription-item"
+            :class="{ dark: isDarkMode, dark__shadow: isDarkMode }"
           >
             <div class="prescription-details">
               <div>
@@ -63,6 +87,7 @@ onMounted(() => {
                 color="primary"
                 outline
                 class="q-my-sm full-height text-subtitle2"
+                :class="{ dark__title: isDarkMode }"
               >
                 {{ prescription.INSTRUCTIONS }}
               </q-chip>

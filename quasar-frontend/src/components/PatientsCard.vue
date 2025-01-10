@@ -1,23 +1,30 @@
 <script setup>
 import DeletePatient from "components/DeletePatient.vue";
+import { useQuasar } from "quasar";
+import { computed } from "vue";
+
+const $q = useQuasar();
+const isDarkMode = computed(() => $q.dark.isActive);
 
 defineProps({
   patient: {
     type: Object,
-    required: true
-  }
+    required: true,
+  },
 });
 </script>
 
 <template>
-  <q-card class="patient-card q-pa-md ">
-    <q-card-section class=" q-pa-none">
+  <q-card class="patient-card q-pa-md" :class="{ dark: isDarkMode, 'dark__shadow-hover': isDarkMode }">
+    <q-card-section class="q-pa-none">
       <div class="patient-info">
-        <div class="patient-name">
+        <div class="patient-name" :class="{ dark__title: isDarkMode }">
           <span class="q-pr-sm">{{ patient.PATIENT_ID }}.</span>
           {{ patient.FULL_NAME }}
         </div>
-        <div class="patient-dob">Date of birth: {{ patient.DATE_OF_BIRTH }}</div>
+        <div class="patient-dob" :class="{ dark__title: isDarkMode }">
+          Date of birth: {{ patient.DATE_OF_BIRTH }}
+        </div>
       </div>
     </q-card-section>
 
@@ -25,19 +32,19 @@ defineProps({
       <q-list dense>
         <q-item>
           <q-item-section side>
-            <q-icon name="person"/>
+            <q-icon name="person" />
           </q-item-section>
           <q-item-section>{{ patient.GENDER }}</q-item-section>
         </q-item>
         <q-item>
           <q-item-section side>
-            <q-icon name="phone"/>
+            <q-icon name="phone" />
           </q-item-section>
           <q-item-section>{{ patient.CONTACT_INFO }}</q-item-section>
         </q-item>
         <q-item>
           <q-item-section side>
-            <q-icon name="accessible"/>
+            <q-icon name="accessible" />
           </q-item-section>
           <q-item-section>{{ patient.DISABILITY_TYPE }}</q-item-section>
         </q-item>
@@ -45,8 +52,8 @@ defineProps({
     </q-card-section>
 
     <q-card-actions class="q-pt-lg">
-      <q-btn flat label="More" color="primary" icon="info"/>
-      <DeletePatient :patientId="patient.PATIENT_ID"/>
+      <q-btn flat label="More" color="primary" icon="info" />
+      <DeletePatient :patientId="patient.PATIENT_ID" />
     </q-card-actions>
   </q-card>
 </template>
@@ -54,7 +61,6 @@ defineProps({
 <style scoped>
 .patient-card {
   background: linear-gradient(to bottom right, #e3f2fd, #a5d8ff);
-  border: 1px solid #90caf9;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 16px;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -78,7 +84,7 @@ defineProps({
 .patient-name {
   font-size: 1.25rem;
   font-weight: bold;
-  color: #1f2b6c;
+  color: #000000;
   //min-height: 60px;
   display: flex;
   align-items: center;

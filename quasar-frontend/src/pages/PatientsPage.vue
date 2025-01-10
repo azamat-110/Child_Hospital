@@ -5,9 +5,13 @@ import { useDataStore } from "stores/dataStore";
 import { useAuthStore } from "stores/authStore";
 import AddPatient from "components/AddPatient.vue";
 import DeletePatient from "components/DeletePatient.vue";
+import { useQuasar } from "quasar";
 
 const authStore = useAuthStore();
 authStore.initialize();
+
+const $q = useQuasar();
+const isDarkMode = computed(() => $q.dark.isActive);
 
 const isListView = ref(true);
 const currentPage = ref(1);
@@ -76,14 +80,14 @@ const prevPage = () => {
           <q-icon name="search" />
         </template>
       </q-input>
-      <h1>Patients List</h1>
+      <h1 :class="{ dark__title: isDarkMode }">Patients List</h1>
       <p class="subtitle">Data of patients</p>
       <q-btn
         v-if="authStore.role === 1"
         class="add-patient-btn"
         icon="add"
         label="Add Patient"
-        color="primary"
+        :color="isDarkMode ? 'white' : 'primary'"
         outline
         @click="openModal = true"
       />
@@ -91,7 +95,7 @@ const prevPage = () => {
         class="toggle-view-btn"
         icon="swap_horiz"
         label="Toggle View"
-        color="primary"
+        :color="isDarkMode ? 'white' : 'primary'"
         flat
         @click="toggleView"
       />
@@ -125,14 +129,24 @@ const prevPage = () => {
             class="patient-wrapper"
           >
             <PatientsCard v-if="!isListView" :patient="patient" />
-            <div v-else class="patient-list-item">
+            <div
+              v-else
+              class="patient-list-item"
+              :class="{ dark: isDarkMode, 'dark__shadow-hover': isDarkMode }"
+            >
               <div class="patient-list-content">
                 <div style="display: flex; align-items: flex-start">
                   <div class="patient-details q-pl-md">
-                    <span class="patient-number">{{ patient.PATIENT_ID }}</span>
+                    <span
+                      class="patient-number"
+                      :class="{ dark__title: isDarkMode }"
+                      >{{ patient.PATIENT_ID }}</span
+                    >
                     <div class="patient-info">
-                      <p><strong>Full Name:</strong> {{ patient.FULL_NAME }}</p>
-                      <p>
+                      <p :class="{ dark__title: isDarkMode }">
+                        <strong>Full Name:</strong> {{ patient.FULL_NAME }}
+                      </p>
+                      <p :class="{ dark__title: isDarkMode }">
                         <strong>Date of Birth:</strong>
                         {{ patient.DATE_OF_BIRTH }}
                       </p>
@@ -152,23 +166,23 @@ const prevPage = () => {
                         <q-item-section side>
                           <q-icon name="phone" />
                         </q-item-section>
-                        <q-item-section>{{
-                          patient.CONTACT_INFO
-                        }}</q-item-section>
+                        <q-item-section
+                          >{{ patient.CONTACT_INFO }}
+                        </q-item-section>
                       </q-item>
                       <q-item>
                         <q-item-section side>
                           <q-icon name="accessible" />
                         </q-item-section>
-                        <q-item-section>{{
-                          patient.DISABILITY_TYPE || "None"
-                        }}</q-item-section>
+                        <q-item-section
+                          >{{ patient.DISABILITY_TYPE || "None" }}
+                        </q-item-section>
                       </q-item>
                     </q-list>
                   </div>
                 </div>
                 <q-card-actions align="right" class="q-pr-md">
-                  <q-btn flat label="More" color="primary" icon="info" />
+                  <q-btn flat label="More" :color="isDarkMode ? 'grey-7' : 'primary'" icon="info" />
                   <DeletePatient
                     :patientId="patient.PATIENT_ID"
                     v-if="authStore.role === 1"
@@ -225,6 +239,9 @@ const prevPage = () => {
 
 .patients-container .patient-wrapper {
   transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+  transform: translateY(-30px);
+  animation: showCards 1s ease-out forwards;
 }
 
 .patient-wrapper.hidden {
@@ -266,7 +283,7 @@ const prevPage = () => {
 .page-header h1 {
   font-size: 2rem;
   font-weight: bold;
-  color: #1f2b6c;
+  color: #000000;
   margin: 0;
   line-height: 4rem;
 }
@@ -308,11 +325,10 @@ const prevPage = () => {
 
 .patient-list-item {
   background: linear-gradient(to bottom right, #e3f2fd, #a5d8ff);
-  border: 1px solid #e0e0e0;
   border-radius: 8px;
   margin-bottom: 1rem;
   //padding: 1rem;
-  transition: box-shadow 0.2s;
+  transition: box-shadow 0.5s;
   width: 100%;
 }
 
@@ -329,7 +345,7 @@ const prevPage = () => {
 .patient-number {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #1f2b6c;
+  color: #000000;
   margin-right: 1rem;
   padding-left: 1rem;
 }
@@ -343,7 +359,7 @@ const prevPage = () => {
   & p {
     font-size: 1rem;
     margin: 0.5rem 0;
-    color: #1f2b6c;
+    color: #000000;
   }
 }
 
@@ -356,7 +372,7 @@ const prevPage = () => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: #1f2b6c;
+  color: #000000;
 }
 
 .loading-spinner p {
