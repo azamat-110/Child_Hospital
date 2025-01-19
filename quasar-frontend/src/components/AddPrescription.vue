@@ -1,7 +1,5 @@
 <script setup>
-import {computed, ref, watch} from "vue";
-import {useQuasar} from "quasar";
-
+import { ref, watch } from "vue";
 
 const props = defineProps({
   modelValue: Boolean,
@@ -17,7 +15,6 @@ const form = ref({
   dateOfBirth: "",
   gender: "",
 });
-
 
 const resetForm = () => {
   form.value = {
@@ -90,8 +87,6 @@ const addPrescription = () => {};
                   class="q-mb-md"
                   :rules="[(val) => !!val || 'Поле обязательно для заполнения']"
                 />
-
-
               </div>
 
               <!-- Правая колонка -->

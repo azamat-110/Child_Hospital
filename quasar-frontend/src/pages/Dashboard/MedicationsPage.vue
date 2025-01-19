@@ -89,7 +89,7 @@ h2 {
   height: 100%;
   width: 100%;
   object-fit: contain;
-  background: url('../assets/images/medicationImg.jpg');
+  background: url('../../assets/images/medicationImg.jpg');
   background-size: cover;
 }
 

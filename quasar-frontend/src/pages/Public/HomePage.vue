@@ -197,7 +197,7 @@ onMounted(async () => {
 }
 
 .home-page {
-  background: url("../assets/images/Gradient.png") no-repeat center center;
+  background: url("../../assets/images/Gradient.png") no-repeat center center;
   min-height: 100vh;
   min-width: 1440px;
   width: 100%;
