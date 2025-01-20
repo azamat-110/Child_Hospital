@@ -1,15 +1,16 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-
-const app = express();
-const PORT = process.env.port || 3001;
 import patientRouter from'./src/routes/patients.js';
 import doctorRouter from './src/routes/doctors.js';
 import medicationRouter from "./src/routes/medications.js";
 import prescriptionRouter from "./src/routes/prescriptions.js";
 import appointRouter from "./src/routes/appoints.js";
 import authRoutes from './src/routes/authRoutes.js';
+
+const app = express();
+const PORT = process.env.port || 3001;
+
 
 app.use(cors({
     origin: 'http://localhost:9000',

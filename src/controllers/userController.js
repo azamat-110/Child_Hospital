@@ -1,10 +1,9 @@
-// controllers/userController.js
 import bcrypt from 'bcrypt';
-import { executeQuery } from '../models/database.js';
+import {executeQuery} from '../models/database.js';
 
 // Регистрация пользователя
 const registerUser = async (req, res) => {
-    const { email, password, role } = req.body;
+    const {email, password, role} = req.body;
 
     // Проверка, что роль допустимая
     if (!['patient', 'doctor', 'admin'].includes(role)) {
@@ -17,7 +16,7 @@ const registerUser = async (req, res) => {
     try {
         await executeQuery(
             'INSERT INTO users (email, password, role) VALUES (:email, :password, :role)',
-            { email, password: hashedPassword, role }
+            {email, password: hashedPassword, role}
         );
         res.status(201).send('User registered');
     } catch (error) {
@@ -28,10 +27,10 @@ const registerUser = async (req, res) => {
 
 // Удаление пользователя
 const deleteUser = async (req, res) => {
-    const { userId } = req.params;
+    const {userId} = req.params;
 
     try {
-        await executeQuery('DELETE FROM users WHERE user_id = :userId', { userId });
+        await executeQuery('DELETE FROM users WHERE user_id = :userId', {userId});
         res.status(200).send('User deleted');
     } catch (error) {
         console.error(error);
@@ -39,4 +38,17 @@ const deleteUser = async (req, res) => {
     }
 };
 
-export default { registerUser, deleteUser };
+//Получение данных пользователя
+const getUserInfo = async (req, res) => {
+    const {userId} = req.params;
+
+    try {
+        const result = await executeQuery(
+            'SELECT * FROM PATIENTS WHERE PATIENT_ID = :userId', {userId});
+        res.status(200).json(result.rows);
+    } catch {
+        res.status(500).send('Error getting data');
+    }
+}
+
+export default {registerUser, deleteUser, getUserInfo};

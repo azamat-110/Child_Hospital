@@ -6,7 +6,6 @@ const SALT_ROUNDS = 10;
 const getAllPatients = async (req, res) => {
     try {
         const result = await executeQuery('SELECT * FROM PATIENTS ORDER BY PATIENT_ID');
-        console.log(result);
         res.json(result.rows);
     } catch (err) {
         console.log(err);

@@ -19,7 +19,6 @@ const toggleLeftDrawer = (val) => {
   <q-layout view="hhh lpR fFf">
     <CustomHeader @leftDrawerOpen="toggleLeftDrawer" />
     <DrawerComponent v-model:leftDrawer="leftDrawer" />
-
     <q-page-container class="container">
       <router-view v-slot="{ Component }">
         <transition name="fade" mode="out-in">
@@ -31,6 +30,12 @@ const toggleLeftDrawer = (val) => {
 </template>
 
 <style scoped lang="scss">
+
+.container {
+  min-height: 90vh;
+  position: relative;
+  padding: 50px;
+}
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.2s ease;

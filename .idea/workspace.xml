@@ -6,6 +6,24 @@
   <component name="ChangeListManager">
     <list default="true" id="dc1108a0-fcbc-41bd-b012-b5d7d2701440" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/quasar.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/quasar.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/assets/images/clinicLogoDark.svg" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/assets/images/clinicLogoDark.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/assets/images/clinicLogoLight.svg" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/assets/images/clinicLogoLight.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/components/Dashboard/CustomHeader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/components/Dashboard/CustomHeader.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/components/Dashboard/DrawerComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/components/Dashboard/DrawerComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/layouts/DashboardLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/layouts/DashboardLayout.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/pages/Dashboard/AppointsPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/pages/Dashboard/AppointsPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/pages/Dashboard/DoctorsPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/pages/Dashboard/DoctorsPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/pages/Dashboard/MainDashboard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/pages/Dashboard/MainDashboard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/pages/Public/LoginPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/pages/Public/LoginPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/router/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/router/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/stores/authStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/stores/authStore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/patientController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/patientController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/userController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/userController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/authRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/authRoutes.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,10 +33,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Vue Composition API Component" />
         <option value="package.json" />
         <option value="JavaScript File" />
         <option value="tsconfig.json" />
+        <option value="Vue Composition API Component" />
       </list>
     </option>
   </component>
@@ -75,11 +93,11 @@
       <recent name="$PROJECT_DIR$/quasar-frontend/src/assets/images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/quasar-frontend/src/pages/Dashboard" />
+      <recent name="$PROJECT_DIR$/quasar-frontend/src/pages/Public" />
       <recent name="$PROJECT_DIR$/quasar-frontend/src/i18n/uz" />
       <recent name="$PROJECT_DIR$/quasar-frontend/src/i18n/ru" />
       <recent name="$PROJECT_DIR$/quasar-frontend/src/i18n" />
-      <recent name="$PROJECT_DIR$/quasar-frontend/src/i18n/en" />
-      <recent name="$PROJECT_DIR$/quasar-frontend/src/assets/images" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -149,6 +167,8 @@
       <workItem from="1736544774199" duration="2577000" />
       <workItem from="1736852499521" duration="615000" />
       <workItem from="1736874796448" duration="302000" />
+      <workItem from="1737201990101" duration="26124000" />
+      <workItem from="1737362613630" duration="16983000" />
     </task>
     <servers />
   </component>
@@ -163,5 +183,16 @@
     <option featureType="dependencySupport" implementationName="executable:kubectl" />
     <option featureType="dependencySupport" implementationName="javascript:npm:vue" />
     <option featureType="dependencySupport" implementationName="javascript:npm:postcss" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

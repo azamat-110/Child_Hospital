@@ -5,7 +5,6 @@ import { useThemeStore } from "stores/useThemeStore";
 import { useQuasar } from "quasar";
 import { useI18n } from "vue-i18n";
 import LogOutBtn from "components/LogOutBtn.vue";
-import LogInBtn from "components/LogInBtn.vue";
 import { useAuthStore } from "stores/authStore";
 
 const $q = useQuasar();
@@ -50,6 +49,7 @@ const changeLanguage = (lang) => {
   <q-header
     :elevated="!isDarkTheme"
     :class="{ 'bg-secondary': isDarkTheme, dark__shadow: isDarkTheme }"
+    class="header"
   >
     <q-toolbar>
       <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
@@ -103,21 +103,19 @@ const changeLanguage = (lang) => {
         v-model="isDarkTheme"
         :color="isDarkTheme ? 'grey' : 'grey-10'"
         :icon="isDarkTheme ? 'dark_mode' : 'light_mode'"
-        :label="
-          isDarkTheme
-            ? `${$t('headerSection.dark')}`
-            : `${$t('headerSection.light')}`
-        "
         size="lg"
-        style="min-width: 110px"
       />
-      <LogInBtn v-if="authStore.role" class="q-ml-sm" />
-      <LogOutBtn v-else class="q-ml-sm" />
+      <LogOutBtn class="q-ml-sm" />
     </q-toolbar>
   </q-header>
 </template>
 
 <style scoped lang="scss">
+.header {
+  position: fixed;
+  top: 0;
+}
+
 .info {
   &__toolbar {
     display: flex;
@@ -128,7 +126,7 @@ const changeLanguage = (lang) => {
     &-title {
       font-weight: bold;
       color: #fff;
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       line-height: 1.1;
       text-align: left;
     }

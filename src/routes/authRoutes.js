@@ -2,6 +2,7 @@ import express from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import {executeQuery} from '../models/database.js';
+import userController from "../controllers/userController.js";
 
 const authRout = express.Router();
 const JWT_SECRET = 'your-secret-key';
@@ -95,6 +96,8 @@ authRout.post('/register', async (req, res) => {
         res.status(500).json({message: 'Ошибка сервера'});
     }
 });
+
+authRout.get('/getUserInfo/:userId', userController.getUserInfo);
 
 // authRout.post("/update-role", checkRole(["admin"]), async (req, res) => {
 //     const {email, newRoleId} = req.body;

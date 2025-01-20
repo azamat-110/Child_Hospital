@@ -42,7 +42,7 @@ const submitForm = async () => {
         localStorage.setItem("token", token);
         localStorage.setItem("roleId", roleId);
 
-        await router.push("/dashboard");
+        await router.push("/dashboard/main");
       }
     }
   } catch (error) {

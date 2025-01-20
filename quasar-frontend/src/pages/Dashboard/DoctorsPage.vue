@@ -1,12 +1,15 @@
 <script setup>
-import { ref, computed, watch } from "vue";
+import { ref, computed, watch, onMounted } from "vue";
 import DoctorCard from "components/DoctorCard.vue";
 import { QSpinner, QBtn, useQuasar } from "quasar";
 import { useDataStore } from "stores/dataStore";
 import { useAuthStore } from "stores/authStore";
 
 const authStore = useAuthStore();
-authStore.initialize();
+
+onMounted(() => {
+  authStore.initialize();
+});
 
 const dataStore = useDataStore();
 const doctors = computed(() => dataStore.doctors);
@@ -22,7 +25,6 @@ const updateDisplayedDoctors = () => {
   const start = currentPage.value * itemsPerPage;
   const end = start + itemsPerPage;
   displayedDoctors.value = doctors.value.slice(0, end);
-  console.log(displayedDoctors.value);
 };
 
 updateDisplayedDoctors();
@@ -145,6 +147,4 @@ const loadMore = () => {
 .load-more-btn {
   margin-top: 2rem;
 }
-
-
 </style>
