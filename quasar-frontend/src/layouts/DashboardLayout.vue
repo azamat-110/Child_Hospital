@@ -34,7 +34,6 @@ const toggleLeftDrawer = (val) => {
 .container {
   min-height: 90vh;
   position: relative;
-  padding: 50px;
 }
 .fade-enter-active,
 .fade-leave-active {

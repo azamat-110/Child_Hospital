@@ -75,7 +75,7 @@ const viewProfile = () => {
 }
 
 .info__section {
-  background: rgb(248, 248, 248);
+  background: rgb(255, 255, 255);
   text-align: center;
   color: #000000;
 }
@@ -85,13 +85,14 @@ const viewProfile = () => {
     max-width: 280px;
     border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s, box-shadow 0.3s;
     margin: 0 auto;
 
+
     &:hover {
       transform: scale(1.05);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
       border-radius: 16px;
     }
   }

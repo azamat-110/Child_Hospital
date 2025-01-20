@@ -42,10 +42,7 @@ const loadMore = () => {
 <template>
   <div class="doctors-page">
     <div class="page-header">
-      <h1 :class="{ dark__title: isDarkMode }">Our Doctors</h1>
-      <p class="subtitle" :class="{ dark__title: isDarkMode }">
-        Meet the professionals who care about your health
-      </p>
+      <h2 :class="{ dark__title: isDarkMode }" class="q-pl-xl">Doctors</h2>
     </div>
 
     <div class="content-container">
@@ -60,7 +57,7 @@ const loadMore = () => {
         {{ error }}
       </div>
 
-      <div v-else>
+      <div v-else style="transform: scale(0.9)">
         <div class="doctors__grid">
           <div
             v-for="doctor in displayedDoctors"
@@ -94,25 +91,23 @@ const loadMore = () => {
 
 .page-header {
   text-align: center;
-  margin-bottom: 2rem;
 }
 
-.page-header h1 {
+.page-header h2 {
   font-size: 2rem;
   font-weight: bold;
   color: #000000;
+  text-align: left;
   margin: 0;
-}
-
-.page-header .subtitle {
-  font-size: 1rem;
-  color: #555;
+  padding-top: 1rem;
 }
 
 .content-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  margin-top: -1rem;
 }
 
 .loading-spinner {

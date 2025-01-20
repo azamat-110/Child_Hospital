@@ -21,7 +21,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="prescriptions-page q-pa-md" :class="{ dark: isDarkMode }">
+  <div class="prescriptions-page q-pa-md" >
     <h2
       class="text-h5 text-center prescipt__title"
       :class="{ dark__title: isDarkMode }"
@@ -135,12 +135,9 @@ onMounted(() => {
 }
 
 .prescriptions-page {
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
-  background-color: #f5f7fa;
   padding: 16px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   position: relative;
 }
 

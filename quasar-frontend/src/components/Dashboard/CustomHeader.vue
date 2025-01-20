@@ -49,11 +49,11 @@ const changeLanguage = (lang) => {
   <q-header
     :elevated="!isDarkTheme"
     :class="{ 'bg-secondary': isDarkTheme, dark__shadow: isDarkTheme }"
-    class="header"
+    class="header q-py-sm"
   >
     <q-toolbar>
       <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
-      <q-toolbar-title class="q-pa-sm">
+      <q-toolbar-title >
         <header class="info__toolbar">
           <img :src="clinicLogoLight" alt="clinic" />
           <div class="info__toolbar-title">
