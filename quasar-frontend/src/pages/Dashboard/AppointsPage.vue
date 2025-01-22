@@ -1,6 +1,5 @@
 <script setup>
 import { ref, computed, onMounted } from "vue";
-import apiClient from "src/api";
 import { useDataStore } from "stores/dataStore";
 import { useAuthStore } from "stores/authStore";
 import { useQuasar } from "quasar";
@@ -13,6 +12,8 @@ onMounted(() => {
 const $q = useQuasar();
 const isDarkMode = computed(() => $q.dark.isActive);
 
+
+console.log(authStore.currentUserData);
 const dataStore = useDataStore();
 const patients = ref([]);
 const doctors = ref([]);

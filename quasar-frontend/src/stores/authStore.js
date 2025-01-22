@@ -5,20 +5,24 @@ export const useAuthStore = defineStore('auth', {
   state: () => ({
     token: null,
     role: null,
-    user: null,
+    userId: null,
+    currentUserData: null,
   }),
   actions: {
-    setUser(userData){
-      this.user = userData;
+    setUserId(userData){
+      this.userId = userData;
+    },
+    setUserData(currentUserData){
+      this.currentUserData = currentUserData;
     },
     cleanUser(){
-      this.user = null;
+      this.userId = null;
     },
     login(token) {
       this.token = token;
       this.role = jwtDecode(token).roleId;
       localStorage.setItem('token', token);
-      this.setUser(jwtDecode(token));
+      this.setUserId(jwtDecode(token));
     },
     logout() {
       this.token = null;
@@ -29,7 +33,15 @@ export const useAuthStore = defineStore('auth', {
     initialize() {
       const storedToken = localStorage.getItem('token');
       if (storedToken) {
-        this.login(storedToken);
+        try {
+          const decoded = jwtDecode(storedToken);
+          this.token = storedToken;
+          this.role = decoded.roleId;
+          this.setUserId(decoded);
+        } catch (error) {
+          console.error('Ошибка при инициализации токена:', error);
+          this.logout();
+        }
       }
     }
   },

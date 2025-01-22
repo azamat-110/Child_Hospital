@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted, ref, watch } from "vue";
+import { computed, onMounted, onUnmounted, ref, watch } from "vue";
 import { useQuasar } from "quasar";
 import { useAuthStore } from "stores/authStore";
 import axios from "axios";
@@ -14,23 +14,21 @@ const props = defineProps({
 const $q = useQuasar();
 const isDarkMode = computed(() => $q.dark.isActive);
 const localLeftDrawer = ref(props.leftDrawer);
-const currentUserData = ref(null);
 
 const getUserData = async (userId) => {
   try {
     const result = await axios.get(
       `http://localhost:3001/auth/getUserInfo/${userId}`
     );
-    currentUserData.value = result.data;
+    authStore.setUserData(result.data);
+    console.log(authStore.currentUserData)
   } catch {
     console.error("Ошибка при получении данных пользователя");
   }
 };
 
-onMounted(() => {
-  if (authStore.user?.userId) {
-    getUserData(authStore.user.userId);
-  }
+onMounted(  async () => {
+     await getUserData(authStore.userId.userId);
 });
 
 watch(
@@ -123,9 +121,9 @@ watch(
           />
         </q-avatar>
         <div class="text-weight-bold text-black">
-          {{ currentUserData[0].FULL_NAME || 'Ghost'}}
+          {{ (authStore.currentUserData && authStore.currentUserData[0]?.FULL_NAME) || 'Ghost'}}
         </div>
-        <div class="text-black">{{currentUserData[0].EMAIL || ''}}</div>
+<!--        <div class="text-black">{{ authStore.currentUserData[0].EMAIL || "" }}</div>-->
       </div>
     </q-img>
     <div class="absolute-bottom q-pa-lg q-pb-xl">
