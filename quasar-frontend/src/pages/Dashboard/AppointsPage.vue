@@ -1,17 +1,19 @@
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import apiClient from "src/api";
 import { useDataStore } from "stores/dataStore";
 import { useAuthStore } from "stores/authStore";
 import { useQuasar } from "quasar";
 
 const authStore = useAuthStore();
-authStore.initialize();
+onMounted(() => {
+  authStore.initialize();
+});
+
 const $q = useQuasar();
 const isDarkMode = computed(() => $q.dark.isActive);
 
 const dataStore = useDataStore();
-const appointments = ref([]);
 const patients = ref([]);
 const doctors = ref([]);
 
@@ -61,35 +63,6 @@ const columns = [
     style: "font-size: 16px;",
   },
 ];
-
-// const loadAppointments = async () => {
-//   try {
-//     const [appointmentsRes, patientsRes, doctorsRes] = await Promise.all([
-//       apiClient.get("/appoints"),
-//       apiClient.get("/patients"),
-//       apiClient.get("/doctors"),
-//     ]);
-//
-//     appointments.value = appointmentsRes.data;
-//     patients.value = patientsRes.data;
-//     doctors.value = doctorsRes.data;
-//
-//     formattedAppointments.value = appointments.value.map((app) => {
-//       const patient = patients.value.find(
-//         (p) => p.PATIENT_ID === app.PATIENT_ID
-//       );
-//       const doctor = doctors.value.find((d) => d.DOCTOR_ID === app.DOCTOR_ID);
-//
-//       return {
-//         ...app,
-//         PATIENT_NAME: patient ? patient.FULL_NAME : "Unknown",
-//         DOCTOR_NAME: doctor ? doctor.FULL_NAME : "Unknown",
-//       };
-//     });
-//   } catch (error) {
-//     console.error("Ошибка загрузки данных:", error);
-//   }
-// };
 </script>
 
 <template>
@@ -109,16 +82,15 @@ const columns = [
       :pagination="{ rowsPerPage: 10 }"
       flat
       bordered
+      separator="cell"
     >
-      <template v-slot:body-cell-notes="props">
-        <q-chip
-          :color="isDarkMode ? 'white' : 'primary'"
-          outline
-          class="full-height flex items-center justify-center"
-        >
-          {{ props.row.NOTES }}
-        </q-chip>
-      </template>
+      <q-chip
+        :color="isDarkMode ? 'white' : 'primary'"
+        outline
+        class="full-height flex items-center justify-center"
+      >
+        {{ props.row.NOTES }}
+      </q-chip>
     </q-table>
   </div>
 </template>

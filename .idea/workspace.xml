@@ -6,12 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="dc1108a0-fcbc-41bd-b012-b5d7d2701440" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/components/Dashboard/CustomHeader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/components/Dashboard/CustomHeader.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/components/DoctorCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/components/DoctorCard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/layouts/DashboardLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/layouts/DashboardLayout.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/pages/Dashboard/DoctorsPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/pages/Dashboard/DoctorsPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/pages/Dashboard/MedicationsPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/pages/Dashboard/MedicationsPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/pages/Dashboard/PrescriptionsPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/pages/Dashboard/PrescriptionsPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/pages/Dashboard/AppointsPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/pages/Dashboard/AppointsPage.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,7 +151,9 @@
       <workItem from="1736852499521" duration="615000" />
       <workItem from="1736874796448" duration="302000" />
       <workItem from="1737201990101" duration="26124000" />
-      <workItem from="1737362613630" duration="23200000" />
+      <workItem from="1737362613630" duration="23911000" />
+      <workItem from="1737448971849" duration="4094000" />
+      <workItem from="1737569278974" duration="665000" />
     </task>
     <servers />
   </component>
