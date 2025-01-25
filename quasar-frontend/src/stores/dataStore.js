@@ -1,7 +1,8 @@
-import {defineStore} from 'pinia';
-import apiClient from 'src/api';
+import { defineStore } from "pinia";
+import apiClient from "src/api";
+import { useAuthStore } from "stores/authStore";
 
-export const useDataStore = defineStore('data', {
+export const useDataStore = defineStore("data", {
   state: () => ({
     appointments: [],
     patients: [],
@@ -26,12 +27,18 @@ export const useDataStore = defineStore('data', {
       }
       this.loading = true;
       try {
-        const [appointmentsRes, patientsRes, doctorsRes, prescriptionsRes, medicationsRes] = await Promise.all([
-          apiClient.get('/appoints'),
-          apiClient.get('/patients'),
-          apiClient.get('/doctors'),
-          apiClient.get('/prescriptions'),
-          apiClient.get('/medications'),
+        const [
+          appointmentsRes,
+          patientsRes,
+          doctorsRes,
+          prescriptionsRes,
+          medicationsRes,
+        ] = await Promise.all([
+          apiClient.get("/appoints"),
+          apiClient.get("/patients"),
+          apiClient.get("/doctors"),
+          apiClient.get("/prescriptions"),
+          apiClient.get("/medications"),
         ]);
 
         this.appointments = appointmentsRes.data;
@@ -51,24 +58,33 @@ export const useDataStore = defineStore('data', {
 
     formatAppointments() {
       this.formattedAppointments = this.appointments.map((app) => {
-        const patient = this.patients.find((p) => p.PATIENT_ID === app.PATIENT_ID);
+        const patient = this.patients.find(
+          (p) => p.PATIENT_ID === app.PATIENT_ID
+        );
         const doctor = this.doctors.find((d) => d.DOCTOR_ID === app.DOCTOR_ID);
 
         return {
           ...app,
-          PATIENT_NAME: patient ? patient.FULL_NAME : 'Unknown',
-          DOCTOR_NAME: doctor ? doctor.FULL_NAME : 'Unknown',
+          PATIENT_NAME: patient ? patient.FULL_NAME : "Unknown",
+          DOCTOR_NAME: doctor ? doctor.FULL_NAME : "Unknown",
         };
       });
     },
 
     groupPrescriptions() {
       const grouped = {};
+      const authStore = useAuthStore();
       this.prescriptions.forEach((prescription) => {
-        const patient = this.patients.find((p) => p.PATIENT_ID === prescription.PATIENT_ID);
-        const doctor = this.doctors.find((d) => d.DOCTOR_ID === prescription.DOCTOR_ID);
+        const patient = this.patients.find(
+          (p) => p.PATIENT_ID === prescription.PATIENT_ID
+        );
+        const doctor = this.doctors.find(
+          (d) => d.DOCTOR_ID === prescription.DOCTOR_ID
+        );
 
-        const groupKey = doctor ? doctor.FULL_NAME : 'Unknown Doctor';
+
+        const groupKey = doctor ? doctor.FULL_NAME : patient.PATIENT_ID;
+
 
         if (!grouped[groupKey]) {
           grouped[groupKey] = [];
@@ -76,7 +92,7 @@ export const useDataStore = defineStore('data', {
 
         grouped[groupKey].push({
           ...prescription,
-          PATIENT_NAME: patient ? patient.FULL_NAME : 'Unknown Patient',
+          PATIENT_NAME: patient ? patient.FULL_NAME : "Unknown Patient",
           DOCTOR_NAME: groupKey,
         });
       });

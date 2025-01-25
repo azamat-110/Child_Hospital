@@ -1,8 +1,9 @@
 <script setup>
-import { computed, onMounted, onUnmounted, ref, watch } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 import { useQuasar } from "quasar";
 import { useAuthStore } from "stores/authStore";
 import axios from "axios";
+import clinicLogoDark from "assets/images/clinicLogoDark.svg";
 
 const authStore = useAuthStore();
 authStore.initialize();
@@ -21,14 +22,13 @@ const getUserData = async (userId) => {
       `http://localhost:3001/auth/getUserInfo/${userId}`
     );
     authStore.setUserData(result.data);
-    console.log(authStore.currentUserData)
   } catch {
     console.error("Ошибка при получении данных пользователя");
   }
 };
 
-onMounted(  async () => {
-     await getUserData(authStore.userId.userId);
+onMounted(async () => {
+  await getUserData(authStore.userId.userId);
 });
 
 watch(
@@ -47,61 +47,102 @@ watch(
     v-model="localLeftDrawer"
     side="left"
     :class="{ dark__shadow: isDarkMode }"
-    style="box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4)"
+    class="drawer"
+    bordered
   >
     <!-- drawer content -->
-    <q-scroll-area style="height: calc(100% - 150px); margin-top: 150px">
-      <q-list padding>
-        <q-item clickable v-ripple to="/dashboard/main">
+    <q-scroll-area style="height: calc(100% - 150px); margin-top: 140px">
+      <q-list>
+        <q-item
+          clickable
+          v-ripple
+          to="/dashboard/main"
+          active-class="drawer__item-active"
+        >
           <q-item-section avatar>
             <q-icon name="dashboard" />
           </q-item-section>
           <q-item-section> Dashboard</q-item-section>
         </q-item>
         <q-separator />
-        <q-item clickable v-ripple to="/dashboard/doctors">
+        <q-item
+          active-class="drawer__item-active"
+          clickable
+          v-ripple
+          to="/dashboard/doctors"
+        >
           <q-item-section avatar>
             <q-icon name="health_and_safety" />
           </q-item-section>
           <q-item-section>{{ $t("navBar.doctors") }}</q-item-section>
         </q-item>
 
-        <q-item clickable v-ripple to="/dashboard/appointments">
+        <q-item
+          active-class="drawer__item-active"
+          clickable
+          v-ripple
+          to="/dashboard/appointments"
+        >
           <q-item-section avatar>
             <q-icon name="calendar_month" />
           </q-item-section>
           <q-item-section> {{ $t("navBar.appointments") }}</q-item-section>
         </q-item>
 
-        <q-item clickable v-ripple to="/dashboard/prescriptions">
+        <q-item
+          active-class="drawer__item-active"
+          clickable
+          v-ripple
+          to="/dashboard/prescriptions"
+        >
           <q-item-section avatar>
             <q-icon name="app_registration" />
           </q-item-section>
           <q-item-section> {{ $t("navBar.prescriptions") }}</q-item-section>
         </q-item>
 
-        <q-item clickable v-ripple to="/dashboard/medications">
+        <q-item
+          active-class="drawer__item-active"
+          clickable
+          v-ripple
+          to="/dashboard/medications"
+        >
           <q-item-section avatar>
             <q-icon name="medication" />
           </q-item-section>
           <q-item-section> {{ $t("navBar.medications") }}</q-item-section>
         </q-item>
         <q-separator />
-        <q-item clickable v-ripple to="/dashboard/settings">
+        <q-item
+          active-class="drawer__item-active"
+          clickable
+          v-ripple
+          to="/dashboard/settings"
+        >
           <q-item-section avatar>
             <q-icon name="settings" />
           </q-item-section>
           <q-item-section> Settings</q-item-section>
         </q-item>
 
-        <q-item clickable v-ripple to="/dashboard/feedback">
+        <q-item
+          active-class="drawer__item-active"
+          clickable
+          v-ripple
+          to="/dashboard/feedback"
+        >
           <q-item-section avatar>
             <q-icon name="feedback" />
           </q-item-section>
           <q-item-section> Send feedback</q-item-section>
         </q-item>
 
-        <q-item clickable v-ripple to="/dashboard/help">
+        <q-item
+          active-class="drawer__item-active"
+          clickable
+          v-ripple
+          to="/dashboard/help"
+        >
           <q-item-section avatar>
             <q-icon name="help" />
           </q-item-section>
@@ -109,27 +150,88 @@ watch(
         </q-item>
       </q-list>
     </q-scroll-area>
-    <q-img
-      class="absolute-top"
-      src="https://img.freepik.com/free-vector/gradient-hexagonal-background_23-2148932756.jpg?t=st=1737363477~exp=1737367077~hmac=f47765e6c930e384259cfc069db1c5c653ef54c6e5c3fb4be9496e3ffd42c942&w=1800"
-      style="height: 150px"
-    >
-      <div class="absolute-bottom bg-transparent">
-        <q-avatar size="56px" class="q-mb-sm">
-          <q-img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYzrKwzB9qf6z1LUGt9CMjPzC5zBy87WL6Fw&s"
-          />
-        </q-avatar>
-        <div class="text-weight-bold text-black">
-          {{ (authStore.currentUserData && authStore.currentUserData[0]?.FULL_NAME) || 'Ghost'}}
+    <q-toolbar-title class="absolute-top q-py-md">
+      <header class="info__toolbar">
+        <div class="flex" style="gap: 5px">
+          <img :src="clinicLogoDark" alt="clinic" />
+          <div class="info__toolbar-title">
+            Children's
+            <br />
+            Hospital
+          </div>
         </div>
-<!--        <div class="text-black">{{ authStore.currentUserData[0].EMAIL || "" }}</div>-->
-      </div>
-    </q-img>
+        <div class="info__toolbar-card">
+          <q-icon name="place" />
+          <p>
+            <span> Avicena Clinic </span>
+            <br />
+            845 Euclid Avenue, CA
+          </p>
+        </div>
+      </header>
+    </q-toolbar-title>
+
     <div class="absolute-bottom q-pa-lg q-pb-xl">
       © 2025 Child Hospital, Inc.
     </div>
   </q-drawer>
 </template>
 
-<style scoped></style>
+<style scoped lang="scss">
+.drawer {
+  background: rgba(249, 251, 252, 255);
+
+  &__item-active {
+    background: rgba(232, 240, 251, 255);
+    color: #0194e6ff;
+  }
+}
+
+.q-item {
+  border-radius: 15px;
+  margin: 10px;
+  padding: 0 15px;
+  font-weight: bold;
+  font-size: 15px;
+  transition: .5s;
+}
+
+.info {
+  &__toolbar {
+    display: flex;
+    align-items: start;
+    gap: 0.5rem;
+    flex-direction: column;
+
+    &-title {
+      font-weight: bold;
+      color: #000;
+      font-size: 1.3rem;
+      line-height: 1.1;
+      text-align: left;
+    }
+
+    &-card {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      justify-content: start;
+      margin-top: 20px;
+      border: 1px solid rgba(232, 234, 234, 255);
+      padding: 6px;
+      border-radius: 10px;
+
+      & p {
+        font-size: 10px;
+        margin: 0;
+
+        & span {
+          font-size: 14px;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
+</style>

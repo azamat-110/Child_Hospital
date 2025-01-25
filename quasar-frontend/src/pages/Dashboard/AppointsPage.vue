@@ -8,17 +8,18 @@ const authStore = useAuthStore();
 onMounted(() => {
   authStore.initialize();
 });
-
 const $q = useQuasar();
 const isDarkMode = computed(() => $q.dark.isActive);
 
-
-console.log(authStore.currentUserData);
 const dataStore = useDataStore();
 const patients = ref([]);
 const doctors = ref([]);
 
-const formattedAppointments = computed(() => dataStore.formattedAppointments);
+const formattedAppointments = computed(() =>
+  dataStore.formattedAppointments.filter(
+    (app) => app.PATIENT_ID === authStore.currentUserData[0].PATIENT_ID
+  )
+);
 
 const columns = [
   {
@@ -69,7 +70,7 @@ const columns = [
 <template>
   <div class="q-px-xl q-py-md">
     <h2
-      class="appoints__title text-h4 text-center q-ma-none"
+      class="appoints__title text-h6 text-left q-ma-none q-px-lg"
       :class="{ dark__title: isDarkMode }"
     >
       Appointments
@@ -83,7 +84,6 @@ const columns = [
       :pagination="{ rowsPerPage: 10 }"
       flat
       bordered
-      separator="cell"
     >
       <q-chip
         :color="isDarkMode ? 'white' : 'primary'"

@@ -10,8 +10,13 @@ authStore.initialize();
 const $q = useQuasar();
 const isDarkMode = computed(() => $q.dark.isActive);
 
+
+
 const dataStore = useDataStore();
 const groupedPrescriptions = computed(() => dataStore.groupedPrescriptions);
+// console.log(authStore.currentUserData && authStore.currentUserData[0].PATIENT_ID);
+// console.log(groupedPrescriptions.value[authStore.currentUserData && authStore.currentUserData[0].PATIENT_ID]);
+// console.log(groupedPrescriptions);
 
 const openModal = ref(false);
 
@@ -34,6 +39,7 @@ onMounted(() => {
       @update:model-value="openModal = $event"
     />
     <q-btn
+      v-if="authStore.role  === 1 || 2"
       icon="add_circle"
       label="Add prescription"
       :color="isDarkMode ? 'white' : 'primary'"
@@ -43,8 +49,8 @@ onMounted(() => {
     />
     <div class="timeline">
       <div
-        v-for="(prescriptions, doctorName) in groupedPrescriptions"
-        :key="doctorName"
+        v-for="prescriptions in groupedPrescriptions"
+        :key="prescriptions"
         class="doctor-group"
       >
         <div class="doctor-divider">
@@ -60,7 +66,7 @@ onMounted(() => {
               dark__title: isDarkMode,
             }"
           >
-            {{ doctorName }}
+         ASDF
           </div>
           <div
             class="divider-line"

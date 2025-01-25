@@ -16,7 +16,7 @@ const toggleLeftDrawer = (val) => {
 </script>
 
 <template>
-  <q-layout view="hhh lpR fFf">
+  <q-layout view="lhh lpR fFf">
     <CustomHeader @leftDrawerOpen="toggleLeftDrawer" />
     <DrawerComponent v-model:leftDrawer="leftDrawer" />
     <q-page-container class="container">

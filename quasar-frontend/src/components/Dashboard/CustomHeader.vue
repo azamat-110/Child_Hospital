@@ -47,73 +47,107 @@ const changeLanguage = (lang) => {
 
 <template>
   <q-header
-    :elevated="!isDarkTheme"
+    bordered
     :class="{ 'bg-secondary': isDarkTheme, dark__shadow: isDarkTheme }"
     class="header q-py-sm"
   >
-    <q-toolbar>
-      <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
-      <q-toolbar-title >
-        <header class="info__toolbar">
-          <img :src="clinicLogoLight" alt="clinic" />
-          <div class="info__toolbar-title">
-            Children's
-            <br />
-            Hospital
-          </div>
-        </header>
-      </q-toolbar-title>
-      <q-btn
-        :label="currentLanguage"
-        icon="language"
+    <q-toolbar class="header__content">
+     <div class="flex">
+       <q-btn dense flat icon="menu" @click="toggleLeftDrawer" color="black" />
+       <q-item class="header__title text-black"> Dashboard</q-item>
+     </div>
+      <q-input
+        dense
         rounded
-        flat
-        style="min-width: 90px"
+        color="teal"
+        outlined
+        v-model="text"
+        label="Search for anything here..."
+        class="header__input"
       >
-        <q-menu
-          transition-show="jump-down"
-          transition-hide="jump-up"
-          anchor="bottom middle"
-          self="top middle"
-          auto-close
-          :class="{ dark__shadow: isDarkTheme }"
+        <template v-slot:prepend>
+          <q-icon name="search" />
+        </template>
+      </q-input>
+
+      <div class="q-px-lg header__utility">
+
+        <q-btn
+          :label="currentLanguage"
+          icon="language"
+          rounded
+          flat
+          style="min-width: 90px"
+          class="text-black"
         >
-          <q-list style="min-width: 100px">
-            <q-item clickable @click="changeLanguage('UZ')">
-              <q-item-section class="text-center">
-                {{ $t("headerSection.language.uz") }}
-              </q-item-section>
-            </q-item>
-            <q-separator />
-            <q-item clickable @click="changeLanguage('RU')">
-              <q-item-section class="text-center">
-                {{ $t("headerSection.language.ru") }}
-              </q-item-section>
-            </q-item>
-            <q-separator />
-            <q-item clickable @click="changeLanguage('EN')">
-              <q-item-section class="text-center">
-                {{ $t("headerSection.language.en") }}
-              </q-item-section>
-            </q-item>
-          </q-list>
-        </q-menu>
-      </q-btn>
-      <q-toggle
-        v-model="isDarkTheme"
-        :color="isDarkTheme ? 'grey' : 'grey-10'"
-        :icon="isDarkTheme ? 'dark_mode' : 'light_mode'"
-        size="lg"
-      />
-      <LogOutBtn class="q-ml-sm" />
+          <q-menu
+            transition-show="jump-down"
+            transition-hide="jump-up"
+            anchor="bottom middle"
+            self="top middle"
+            auto-close
+            :class="{ dark__shadow: isDarkTheme }"
+          >
+            >
+            <q-list style="min-width: 100px">
+              <q-item clickable @click="changeLanguage('UZ')">
+                <q-item-section class="text-center">
+                  {{ $t("headerSection.language.uz") }}
+                </q-item-section>
+              </q-item>
+              <q-separator />
+              <q-item clickable @click="changeLanguage('RU')">
+                <q-item-section class="text-center">
+                  {{ $t("headerSection.language.ru") }}
+                </q-item-section>
+              </q-item>
+              <q-separator />
+              <q-item clickable @click="changeLanguage('EN')">
+                <q-item-section class="text-center">
+                  {{ $t("headerSection.language.en") }}
+                </q-item-section>
+              </q-item>
+            </q-list>
+          </q-menu>
+        </q-btn>
+
+        <q-toggle
+          v-model="isDarkTheme"
+          :color="isDarkTheme ? 'grey-7' : 'grey-10'"
+          :icon="isDarkTheme ? 'dark_mode' : 'light_mode'"
+          size="lg"
+        />
+        <LogOutBtn class="q-ml-sm" />
+      </div>
     </q-toolbar>
   </q-header>
 </template>
 
 <style scoped lang="scss">
 .header {
-  position: fixed;
-  top: 0;
+  background: #fff;
+
+  &__content{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+  }
+
+  &__title {
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  &__input {
+    min-width: 400px;
+  }
+
+  &__utility{
+    display: flex;
+    align-items: center;
+
+  }
 }
 
 .info {
@@ -125,7 +159,7 @@ const changeLanguage = (lang) => {
 
     &-title {
       font-weight: bold;
-      color: #fff;
+      color: #000;
       font-size: 1.3rem;
       line-height: 1.1;
       text-align: left;

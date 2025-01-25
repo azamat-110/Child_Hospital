@@ -42,7 +42,7 @@ const loadMore = () => {
 <template>
   <div class="doctors-page">
     <div class="page-header">
-      <h2 :class="{ dark__title: isDarkMode }" class="q-pl-xl">Doctors</h2>
+      <h2 :class="{ dark__title: isDarkMode }" class="q-px-xl">Doctors</h2>
     </div>
 
     <div class="content-container">

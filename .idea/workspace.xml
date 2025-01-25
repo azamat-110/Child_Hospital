@@ -4,11 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc1108a0-fcbc-41bd-b012-b5d7d2701440" name="Changes" comment="">
+    <list default="true" id="dc1108a0-fcbc-41bd-b012-b5d7d2701440" name="Changes" comment="appoints fix2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/components/Dashboard/CustomHeader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/components/Dashboard/CustomHeader.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/quasar-frontend/src/components/Dashboard/DrawerComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/components/Dashboard/DrawerComponent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/components/LogOutBtn.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/components/LogOutBtn.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/layouts/DashboardLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/layouts/DashboardLayout.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/quasar-frontend/src/pages/Dashboard/AppointsPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/pages/Dashboard/AppointsPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/stores/authStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/stores/authStore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/pages/Dashboard/DoctorsPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/pages/Dashboard/DoctorsPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/pages/Dashboard/PrescriptionsPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/pages/Dashboard/PrescriptionsPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/stores/dataStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/stores/dataStore.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,29 +56,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Node.js.database.js.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;full.screen.before.presentation.mode&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/mac/dis_child_hospital/quasar-frontend/src/assets/images&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/mac/dis_child_hospital/quasar-frontend/node_modules/prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.completion&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Applications/WebStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Node.js.database.js.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "full.screen.before.presentation.mode": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/Users/mac/dis_child_hospital/quasar-frontend/src/assets/images",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "/Users/mac/dis_child_hospital/quasar-frontend/node_modules/prettier",
+    "settings.editor.selected.configurable": "copyright.filetypes.JavaScript",
+    "ts.external.directory.path": "/Applications/WebStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;vue.recent.templates&quot;: [
-      &quot;Vue Composition API Component&quot;
+  "keyToStringList": {
+    "vue.recent.templates": [
+      "Vue Composition API Component"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/quasar-frontend/src/assets/images" />
@@ -155,8 +161,19 @@
       <workItem from="1737201990101" duration="26124000" />
       <workItem from="1737362613630" duration="23911000" />
       <workItem from="1737448971849" duration="4094000" />
-      <workItem from="1737569278974" duration="6786000" />
+      <workItem from="1737569278974" duration="7699000" />
+      <workItem from="1737736374045" duration="2644000" />
+      <workItem from="1737800650099" duration="22637000" />
     </task>
+    <task id="LOCAL-00001" summary="appoints fix2">
+      <option name="closed" value="true" />
+      <created>1737578480180</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1737578480180</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -181,5 +198,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="appoints fix" />
+    <MESSAGE value="appoints fix2" />
+    <option name="LAST_COMMIT_MESSAGE" value="appoints fix2" />
   </component>
 </project>

@@ -4,7 +4,7 @@
     type="submit"
     color="primary"
     outline
-    text-color="white"
+    text-color="black"
     unelevated
     to="/login"
     rounded
