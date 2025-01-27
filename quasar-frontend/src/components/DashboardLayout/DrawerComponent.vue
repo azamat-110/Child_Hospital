@@ -16,20 +16,20 @@ const $q = useQuasar();
 const isDarkMode = computed(() => $q.dark.isActive);
 const localLeftDrawer = ref(props.leftDrawer);
 
-const getUserData = async (userId) => {
-  try {
-    const result = await axios.get(
-      `http://localhost:3001/auth/getUserInfo/${userId}`
-    );
-    authStore.setUserData(result.data);
-  } catch {
-    console.error("Ошибка при получении данных пользователя");
-  }
-};
-
-onMounted(async () => {
-  await getUserData(authStore.userId.userId);
-});
+// const getUserData = async (userId) => {
+//   try {
+//     const result = await axios.get(
+//       `http://localhost:3001/auth/getUserInfo/${userId}`
+//     );
+//     authStore.setUserData(result.data);
+//   } catch {
+//     console.error("Ошибка при получении данных пользователя");
+//   }
+// };
+//
+// onMounted(async () => {
+//   await getUserData(authStore.userId.userId);
+// });
 
 watch(
   () => props.leftDrawer,
@@ -51,7 +51,7 @@ watch(
     bordered
   >
     <!-- drawer content -->
-    <q-scroll-area style="height: calc(100% - 150px); margin-top: 140px">
+    <q-scroll-area style="height: calc(100% - 150px); margin-top: 150px; background: rgba(249,251,252,255)">
       <q-list>
         <q-item
           clickable
@@ -150,7 +150,7 @@ watch(
         </q-item>
       </q-list>
     </q-scroll-area>
-    <q-toolbar-title class="absolute-top q-py-md">
+    <q-toolbar-title class="absolute-top q-py-md" style="background: rgba(249,251,252,255)">
       <header class="info__toolbar">
         <div class="flex" style="gap: 5px">
           <img :src="clinicLogoDark" alt="clinic" />
@@ -171,7 +171,7 @@ watch(
       </header>
     </q-toolbar-title>
 
-    <div class="absolute-bottom q-pa-lg q-pb-xl">
+    <div class="absolute-bottom q-pa-lg q-pb-lg">
       © 2025 Child Hospital, Inc.
     </div>
   </q-drawer>
@@ -179,7 +179,7 @@ watch(
 
 <style scoped lang="scss">
 .drawer {
-  background: rgba(249, 251, 252, 255);
+  background-color: rgb(0, 1, 2) !important;
 
   &__item-active {
     background: rgba(232, 240, 251, 255);

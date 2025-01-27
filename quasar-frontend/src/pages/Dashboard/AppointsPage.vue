@@ -5,9 +5,7 @@ import { useAuthStore } from "stores/authStore";
 import { useQuasar } from "quasar";
 
 const authStore = useAuthStore();
-onMounted(() => {
-  authStore.initialize();
-});
+authStore.initialize();
 const $q = useQuasar();
 const isDarkMode = computed(() => $q.dark.isActive);
 
@@ -15,11 +13,11 @@ const dataStore = useDataStore();
 const patients = ref([]);
 const doctors = ref([]);
 
-const formattedAppointments = computed(() =>
-  dataStore.formattedAppointments.filter(
-    (app) => app.PATIENT_ID === authStore.currentUserData[0].PATIENT_ID
-  )
-);
+const formattedAppointments = computed(() => dataStore.formattedAppointments);
+
+// dataStore.formattedAppointments.filter(
+//   (app) => app.PATIENT_ID === authStore.currentUserData[0].PATIENT_ID
+// )
 
 const columns = [
   {

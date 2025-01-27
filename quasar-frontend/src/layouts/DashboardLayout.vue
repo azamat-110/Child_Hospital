@@ -1,9 +1,9 @@
 <script setup>
 import { useQuasar } from "quasar";
 import { useAuthStore } from "stores/authStore";
-import CustomHeader from "components/Dashboard/CustomHeader.vue";
+import CustomHeader from "components/DashboardLayout/CustomHeader.vue";
 import {computed, ref} from "vue";
-import DrawerComponent from "components/Dashboard/DrawerComponent.vue";
+import DrawerComponent from "components/DashboardLayout/DrawerComponent.vue";
 
 const $q = useQuasar();
 const isDarkMode = computed(() => $q.dark.isActive);
@@ -34,6 +34,8 @@ const toggleLeftDrawer = (val) => {
 .container {
   min-height: 90vh;
   position: relative;
+  background: rgba(249,251,252,255);
+  min-height: 100vh;
 }
 .fade-enter-active,
 .fade-leave-active {

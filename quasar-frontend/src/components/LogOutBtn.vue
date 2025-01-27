@@ -3,24 +3,22 @@
     @click="logout"
     type="submit"
     color="primary"
-    outline
+    flat
     text-color="black"
     unelevated
     to="/login"
-    rounded
+    dense
   >
-    {{$t('logOutBtn.logout')}}
+    {{ $t("logOutBtn.logout") }}
     <q-icon name="logout" size="1.5em" class="q-ml-sm" />
   </q-btn>
 </template>
 
-
 <script setup>
-import {useAuthStore} from 'stores/authStore';
+import { useAuthStore } from "stores/authStore";
 
 const authStore = useAuthStore();
 const logout = () => {
   authStore.logout();
 };
-
 </script>
