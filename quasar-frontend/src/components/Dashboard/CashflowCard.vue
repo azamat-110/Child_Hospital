@@ -41,7 +41,7 @@ const createChart = () => {
             backgroundColor: "rgba(33, 150, 243, 0.1)",
             fill: true,
             tension: 0.4,
-            pointRadius: 4,
+            pointRadius: 5,
             pointBackgroundColor: "#2196F3",
             pointBorderColor: "#fff",
             pointBorderWidth: 2,
@@ -152,6 +152,7 @@ onMounted(() => {
   border-radius: 10px;
   box-shadow: none;
   width: 100%;
+
   &__title {
     font-size: 18px;
     font-weight: bold;

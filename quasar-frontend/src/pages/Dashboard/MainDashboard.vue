@@ -14,7 +14,8 @@ import StockCard from "components/Dashboard/StockCard.vue";
       <p class="dashboard__header-date">Wednesday, December 8, 2025</p>
     </div>
     <div class="dashboard__content">
-      <div class="left__side flex" style="gap: 15px">
+
+      <div class="left__side flex" style="gap: 15px; min-width: 550px;">
         <CashflowCard />
         <div class="left__side-bottom flex no-wrap" style="gap: 15px">
           <IncomeCard />
@@ -24,7 +25,8 @@ import StockCard from "components/Dashboard/StockCard.vue";
           </div>
         </div>
       </div>
-      <div class="right__side flex" style="gap: 15px">
+
+      <div class="right__side flex" style="gap: 15px;min-width: 350px; ">
         <ExpencesCard />
         <StockCard />
       </div>
@@ -34,6 +36,16 @@ import StockCard from "components/Dashboard/StockCard.vue";
 
 <style scoped lang="scss">
 .dashboard {
+
+    max-width: 1250px;
+    margin: 0 auto;
+    //padding: 0 15px; // Боковые отступы
+    display: flex;
+    flex-direction: column;
+    gap: 20px; // Расстояние между карточками
+
+
+
   &__content {
     display: flex;
     justify-content: center;

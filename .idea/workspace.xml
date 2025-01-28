@@ -5,19 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dc1108a0-fcbc-41bd-b012-b5d7d2701440" name="Changes" comment="appoints fix2">
-      <change afterPath="$PROJECT_DIR$/quasar-frontend/src/components/DashboardLayout/CustomHeader.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-frontend/quasar.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/quasar.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/components/Dashboard/CustomHeader.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/components/Dashboard/DrawerComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/components/DashboardLayout/DrawerComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/components/LogOutBtn.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/components/LogOutBtn.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/css/quasar.variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/css/quasar.variables.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/layouts/DashboardLayout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/layouts/DashboardLayout.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/pages/Dashboard/AppointsPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/pages/Dashboard/AppointsPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/components/Dashboard/CashflowCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/components/Dashboard/CashflowCard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/components/Dashboard/DachboardPatientsCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/components/Dashboard/DachboardPatientsCard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/components/Dashboard/IncomeCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/components/Dashboard/IncomeCard.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/quasar-frontend/src/pages/Dashboard/MainDashboard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/pages/Dashboard/MainDashboard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/pages/Dashboard/SettingsPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/pages/Dashboard/SettingsPage.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,7 +161,8 @@
       <workItem from="1737800650099" duration="22980000" />
       <workItem from="1737872131992" duration="4872000" />
       <workItem from="1737877365706" duration="7857000" />
-      <workItem from="1737946585068" duration="10002000" />
+      <workItem from="1737946585068" duration="12019000" />
+      <workItem from="1738068002343" duration="4704000" />
     </task>
     <task id="LOCAL-00001" summary="appoints fix2">
       <option name="closed" value="true" />
