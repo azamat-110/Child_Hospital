@@ -1,10 +1,56 @@
 <script setup>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
+import Chart from "chart.js/auto";
 
 const timeRange = ref("Last 12 month");
 const timeRanges = ["Last 12 month", "Last 6 month", "Last month"];
 const percentageUp = ref("4.51%");
 const percentageDown = ref("2.41%");
+
+const incomeChart = ref(null);
+const incomeChartInstance = ref(null);
+const totalIncome = [4000, 6000, 9000, 7000, 6500, 6300];
+const totalExpenses = [2000, 3000, 4000, 2500, 5500, 7000];
+const months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN"];
+
+const createChart = () => {
+  const ctx = incomeChart.value.getContext("2d");
+
+  incomeChartInstance.value = new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: months,
+      datasets: [
+        {
+          data: totalIncome,
+          label: "Value",
+          backgroundColor: "rgb(143,205,152)",
+          borderRadius: 3,
+          fill: true,
+        },
+        {
+          data: totalExpenses,
+          label: "Value",
+          backgroundColor: "rgb(254,180,10)",
+          borderRadius: 3,
+          fill: true,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: { beginAtZero: true },
+        x: { grid: { display: false } },
+      },
+    },
+  });
+};
+
+onMounted(() => {
+  createChart();
+});
 </script>
 
 <template>
@@ -49,6 +95,9 @@ const percentageDown = ref("2.41%");
             </q-chip>
           </div>
         </div>
+      </div>
+      <div class="income__chart" style="height: 300px; position: relative">
+        <canvas ref="incomeChart"></canvas>
       </div>
     </q-card-section>
   </q-card>

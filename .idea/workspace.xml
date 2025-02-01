@@ -6,10 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="dc1108a0-fcbc-41bd-b012-b5d7d2701440" name="Changes" comment="appoints fix2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/components/Dashboard/CashflowCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/components/Dashboard/CashflowCard.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/quasar-frontend/src/components/Dashboard/DachboardPatientsCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/components/Dashboard/DachboardPatientsCard.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/quasar-frontend/src/components/Dashboard/IncomeCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/components/Dashboard/IncomeCard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/pages/Dashboard/MainDashboard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/pages/Dashboard/MainDashboard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/components/Dashboard/PopularTreatmentCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/components/Dashboard/PopularTreatmentCard.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,7 +161,10 @@
       <workItem from="1737872131992" duration="4872000" />
       <workItem from="1737877365706" duration="7857000" />
       <workItem from="1737946585068" duration="12019000" />
-      <workItem from="1738068002343" duration="4704000" />
+      <workItem from="1738068002343" duration="4996000" />
+      <workItem from="1738341666868" duration="4384000" />
+      <workItem from="1738439954059" duration="234000" />
+      <workItem from="1738440204006" duration="3878000" />
     </task>
     <task id="LOCAL-00001" summary="appoints fix2">
       <option name="closed" value="true" />
