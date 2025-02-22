@@ -23,14 +23,14 @@ const createChart = () => {
       datasets: [
         {
           data: totalIncome,
-          label: "Value",
+          label: "Income",
           backgroundColor: "rgb(143,205,152)",
           borderRadius: 3,
           fill: true,
         },
         {
           data: totalExpenses,
-          label: "Value",
+          label: "Expenses",
           backgroundColor: "rgb(254,180,10)",
           borderRadius: 3,
           fill: true,
@@ -96,7 +96,7 @@ onMounted(() => {
           </div>
         </div>
       </div>
-      <div class="income__chart" style="height: 300px; position: relative">
+      <div class="income__chart">
         <canvas ref="incomeChart"></canvas>
       </div>
     </q-card-section>
@@ -108,7 +108,11 @@ onMounted(() => {
   border: 1px solid #edeeef;
   border-radius: 10px;
   box-shadow: none;
-  min-width: 50%;
+
+  &__chart {
+    height: 200px;
+    position: relative;
+  }
 
   &__title {
     font-size: 18px;

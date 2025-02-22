@@ -22,7 +22,7 @@ const newWidth = ref(36);
       <div class="patients__line">
         <div class="patients__line-new" :style="{ width: newWidth + '%' }">
           <div class="patients__line-new-content">
-            <q-separator vertical style="height: 100%" />
+            <q-separator vertical   />
             <div class="flex column">
               <span class="text-bold">21</span>
               <div class="column">
@@ -34,7 +34,7 @@ const newWidth = ref(36);
         </div>
         <div class="patients__line-return">
           <div class="patients__line-return-content">
-            <q-separator vertical style="height: 100%" />
+            <q-separator vertical  />
             <div class="flex column">
               <span class="text-bold">142</span>
               <div class="column">
@@ -61,7 +61,7 @@ const newWidth = ref(36);
     width: 100%;
     height: 10px;
     display: flex;
-    margin-top: 140px;
+    margin-top: 100px;
 
     &-new {
       height: 100%;

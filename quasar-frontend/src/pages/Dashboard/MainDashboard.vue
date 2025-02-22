@@ -1,10 +1,10 @@
 <script setup>
-import CashflowCard from "components/Dashboard/CashflowCard.vue";
-import IncomeCard from "components/Dashboard/IncomeCard.vue";
-import DachboardPatientsCard from "components/Dashboard/DachboardPatientsCard.vue";
-import PopularTreatmentCard from "components/Dashboard/PopularTreatmentCard.vue";
-import ExpencesCard from "components/Dashboard/ExpencesCard.vue";
-import StockCard from "components/Dashboard/StockCard.vue";
+import CashflowCard from "components/DashboardPage/CashflowCard.vue";
+import IncomeCard from "components/DashboardPage/IncomeCard.vue";
+import DachboardPatientsCard from "components/DashboardPage/DachboardPatientsCard.vue";
+import PopularTreatmentCard from "components/DashboardPage/PopularTreatmentCard.vue";
+import ExpencesCard from "components/DashboardPage/ExpencesCard.vue";
+import StockCard from "components/DashboardPage/StockCard.vue";
 </script>
 
 <template>
@@ -14,21 +14,27 @@ import StockCard from "components/Dashboard/StockCard.vue";
       <p class="dashboard__header-date">Wednesday, December 8, 2025</p>
     </div>
     <div class="dashboard__content">
-
-      <div class="left__side flex" style="gap: 15px; min-width: 550px;">
+      <div class="left__side flex column" style="gap: 24px; width: 70%">
         <CashflowCard />
-        <div class="left__side-bottom flex no-wrap" style="gap: 15px">
+
+        <div
+          class="left__side-bottom flex row no-wrap"
+          style="gap: 24px; max-height: 50%"
+        >
           <IncomeCard />
-          <div class="left__side-bottom-right flex" style="gap: 15px">
-            <DachboardPatientsCard />
-            <PopularTreatmentCard />
+          <div
+            class="left__side-bottom-right column"
+            style="gap: 24px; width: 50%"
+          >
+            <DachboardPatientsCard class="fill-height" />
+            <PopularTreatmentCard class="fill-height" />
           </div>
         </div>
       </div>
 
-      <div class="right__side flex" style="gap: 15px;min-width: 350px; ">
+      <div class="right__side flex column" style="gap: 24px; width: 30%">
         <ExpencesCard />
-        <StockCard />
+<!--        <StockCard />-->
       </div>
     </div>
   </div>
@@ -36,20 +42,16 @@ import StockCard from "components/Dashboard/StockCard.vue";
 
 <style scoped lang="scss">
 .dashboard {
-
-    max-width: 1250px;
-    margin: 0 auto;
-    //padding: 0 15px; // Боковые отступы
-    display: flex;
-    flex-direction: column;
-    gap: 20px; // Расстояние между карточками
-
-
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 
   &__content {
     display: flex;
-    justify-content: center;
-    gap: 15px;
+    width: 100%;
+    gap: 24px;
+    align-items: flex-start;
   }
 
   &__header {
@@ -63,6 +65,40 @@ import StockCard from "components/Dashboard/StockCard.vue";
       margin: 0;
       line-height: 1.3;
     }
+  }
+}
+
+.left__side-bottom {
+  display: flex;
+  gap: 24px;
+  max-height: 500px; /* Можно менять, чтобы контролировать высоту */
+  width: 100%;
+
+  & > * {
+    flex: 1; /* Оба элемента займут одинаковую ширину */
+    min-width: 0; /* Важно для адаптивности */
+  }
+
+  &-right {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    flex: 1;
+
+    & > * {
+      flex: 1; /* Карточки внутри будут одинакового размера */
+    }
+  }
+}
+
+.right__side {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  gap: 24px;
+
+  &__side > * {
+    flex-grow: 1; /* Равномерное распределение высоты */
   }
 }
 </style>
