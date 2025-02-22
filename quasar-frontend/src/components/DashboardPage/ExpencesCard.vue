@@ -35,54 +35,12 @@ const centerText = {
     ctx.textBaseline = "middle";
 
     ctx.fillText("Total Expense", width / 2, height / 2 - 10);
-    ctx.font = "bold 18px sans-serif";
+    ctx.font = "bold 18px Mulish";
     ctx.fillText("$80,832", width / 2, height / 2 + 10);
 
     ctx.restore();
   },
 };
-//
-// const overlappingSegments = {
-//   id: "overlappingSegments",
-//   afterDatasetsDraw(chart, args, plugins) {
-//     const { ctx, data } = chart;
-//     const x = chart.getDatasetMeta(0).data[0].x;
-//     const y = chart.getDatasetMeta(0).data[0].y;
-//     const angle = Math.PI / 180;
-//     const length = data.labels.length - 1;
-//
-//     // chart.getDatasetMeta(0).data.forEach((value, index) => {
-//     //   if (index < length && chart.getDataVisibility(index)) {
-//     //     const innerRadius = chart.getDatasetMeta(0).data[index].innerRadius;
-//     //     const outerRadius = chart.getDatasetMeta(0).data[index].outerRadius;
-//     //     const endAngle = chart.getDatasetMeta(0).data[index].endAngle;
-//     //
-//     //     const radius = (outerRadius - innerRadius) / 2;
-//     //     // const xCoor = (innerRadius + radius) * Math.cos(endAngle + Math.PI);
-//     //     // const yCoor = (innerRadius + radius) * Math.sin(endAngle);
-//     //     const coordinates = [];
-//     //     for (let i = -0.09; i <= 0.09; i += 0.01) {
-//     //       const xCoor =
-//     //         (innerRadius + radius) * Math.cos(endAngle + Math.PI + i);
-//     //       const yCoor = (innerRadius + radius) * Math.sin(endAngle + i);
-//     //       coordinates.push({ x: xCoor, y: yCoor });
-//     //     }
-//     //
-//     //     ctx.save();
-//     //     ctx.fillStyle = data.datasets[0].backgroundColor[index];
-//     //     ctx.translate(x, y);
-//     //     ctx.beginPath();
-//     //     coordinates.forEach(({ x, y }) => {
-//     //       ctx.arc(-x, y, radius, 0, angle * 360, false);
-//     //     });
-//     //
-//     //     ctx.fill();
-//     //
-//     //     ctx.restore();
-//     //   }
-//     // });
-//   },
-// };
 
 const innerDashedCircle = {
   id: "innerDashedCircle",
@@ -127,7 +85,7 @@ const createChart = () => {
           data: totalExpenseValue,
           backgroundColor: totalExpenseColor,
           borderColor: "white",
-          borderWidth: 2,
+          borderWidth: 1,
           cutout: "88%",
           borderRadius: 100,
           spacing: -100,
@@ -175,18 +133,38 @@ onMounted(() => {
             :key="index"
           >
             <div class="expenses__chart-descr-title">
-              {{ expense }}
+              <span>{{ expense }}</span>
               <div
                 class="expenses__chart-descr-color"
                 :style="{ background: totalExpenseColor[index] }"
               ></div>
             </div>
-            <span class="expenses__chart-descr-percentage">{{totalExpenseValue[index]}}%</span>
+            <span class="expenses__chart-descr-percentage"
+              >{{ totalExpenseValue[index] }}%</span
+            >
           </div>
         </div>
       </div>
-      <div class="top__expenses">
-        <div class="top__expenses-card"></div>
+      <div class="expenses__top">
+        <span class="expenses__top-title">Total expenses</span>
+        <div class="expenses__top-content">
+          <div
+            class="expenses__top-card"
+            v-for="(expense, index) in totalExpense.slice(0, 4)"
+            :key="index"
+          >
+            <div class="expenses__chart-descr-title">
+              <span>{{ expense }}</span>
+              <div
+                class="expenses__chart-descr-color"
+                :style="{ background: totalExpenseColor[index] }"
+              ></div>
+            </div>
+            <div class="expenses__top-card-value">
+              ${{ totalExpenseValue[index] * 550 }}
+            </div>
+          </div>
+        </div>
       </div>
     </q-card-section>
   </q-card>
@@ -199,6 +177,37 @@ onMounted(() => {
   box-shadow: none;
   width: 100%;
 
+  &__top {
+    &-title {
+      font-size: 10px;
+      color: rgba(124, 132, 149, 255);
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    &-content {
+      padding-top: 5px;
+      display: grid;
+      gap: 10px;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    &-card {
+      padding: 5px;
+      background: rgba(249, 251, 252, 255);
+      border-radius: 10px;
+
+      &-value {
+        padding-top: 5px;
+        font-size: 12px;
+        text-transform: uppercase;
+        line-height: 1.1;
+        font-weight: bold;
+        margin-left: 20px;
+      }
+    }
+  }
+
   &__chart {
     height: 200px;
     position: relative;
@@ -210,11 +219,13 @@ onMounted(() => {
       flex-direction: column;
       justify-content: center;
       gap: 10px;
+
       &-content {
         display: flex;
         align-items: center;
         justify-content: space-between;
       }
+
       &-color {
         width: 10px;
         height: 5px;

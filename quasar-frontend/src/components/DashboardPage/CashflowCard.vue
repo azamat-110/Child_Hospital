@@ -124,7 +124,7 @@ onMounted(() => {
       <h3 class="text-h6 q-mr-sm cashflow__total-title">Total cash</h3>
       <div class="q-mb-sm flex justify-between items-center">
         <div class="flex items-center">
-          <span class="cashflow__total-cash">$ 134 422</span>
+          <span class="cashflow__total-cash">$134 422</span>
           <q-chip
             color="green-11"
             text-color="black"
@@ -134,8 +134,8 @@ onMounted(() => {
             {{ percentage }}
           </q-chip>
         </div>
-        <div class="text-subtitle1 text-grey-7">
-          January 1522 - December 1522
+        <div class="text-subtitle1 text-grey-7 text-bold">
+          January 15 - December 15
         </div>
       </div>
 
@@ -165,14 +165,16 @@ onMounted(() => {
   &__total {
     &-title {
       margin: 0;
-      font-size: 14px;
+      font-size: 12px;
       color: rgba(124, 132, 149, 255);
+      font-weight: bold;
       text-transform: uppercase;
     }
 
     &-cash {
       font-size: 26px;
       font-weight: bold;
+
     }
   }
 }
