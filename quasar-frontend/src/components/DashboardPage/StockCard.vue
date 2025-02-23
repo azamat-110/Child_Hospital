@@ -1,10 +1,23 @@
 <script setup>
+
+
 const stockCategories = ["Available", "Low Stock", "Out of stock"];
 
 const stockCategoryColor = [
   "rgb(21, 203, 203)",
   "rgb(247, 183, 8)",
-  "rgb(255, 61, 116)",
+  "rgb(243,24,24)",
+];
+
+const stockLowItems = [
+  {
+    title: "Dental Brush",
+    qty: 3,
+  },
+  {
+    title: "Charmflex Regular",
+    qty: 2,
+  },
 ];
 </script>
 
@@ -33,7 +46,7 @@ const stockCategoryColor = [
         ></div>
         <div
           class="stock__line-out"
-          style="width: 15%; background: rgb(255, 61, 116)"
+          style="width: 15%; background: rgb(243,24,24)"
         ></div>
       </div>
 
@@ -50,8 +63,25 @@ const stockCategoryColor = [
           <span>{{ category }}</span>
         </div>
       </div>
-      <q-separator class="q-mt-md"/>
-      
+      <q-separator class="q-mt-lg" />
+      <div class="stock__low">
+        <div class="stock__low-title">
+          <div>Low Stock</div>
+          <a href="" class="stock__low-title-link">View All</a>
+        </div>
+        <div
+          class="stock__low-items"
+          v-for="(item, index) in stockLowItems"
+          :key="index"
+        >
+          <div class="stock__low-items-title">{{ item.title }}</div>
+          <div class="flex items-center" style="gap: 10px">
+            <div class="stock__low-items-qty">Qty: {{ item.qty }}</div>
+            <q-separator vertical />
+            <button class="stock__low-items-order">Order</button>
+          </div>
+        </div>
+      </div>
     </q-card-section>
   </q-card>
 </template>
@@ -62,6 +92,59 @@ const stockCategoryColor = [
   border-radius: 10px;
   box-shadow: none;
   width: 100%;
+  flex: 1;
+
+  &__low {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding-top: 10px;
+
+    &-items {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      background: rgba(249, 251, 252, 255);
+      border-radius: 10px;
+
+      &-qty {
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      &-order {
+        font-size: 12px;
+        font-weight: bold;
+        color: #2563eb;
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+      }
+    }
+
+    &-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      & div {
+        font-size: 12px;
+        color: rgba(124, 132, 149, 255);
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+
+      & a {
+        color: #2563eb;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: bold;
+      }
+
+    }
+  }
 
   &__line {
     width: 100%;
@@ -107,10 +190,10 @@ const stockCategoryColor = [
 
   &__total {
     display: flex;
-    padding-top: 10px;
+    padding-top: 20px;
 
     & span {
-      font-size: 10px;
+      font-size: 12px;
       color: rgba(124, 132, 149, 255);
       font-weight: bold;
       text-transform: uppercase;

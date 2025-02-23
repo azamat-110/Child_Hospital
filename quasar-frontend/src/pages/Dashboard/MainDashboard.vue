@@ -51,7 +51,7 @@ import StockCard from "components/DashboardPage/StockCard.vue";
     display: flex;
     width: 100%;
     gap: 24px;
-    align-items: flex-start;
+    align-items: stretch;
   }
 
   &__header {
