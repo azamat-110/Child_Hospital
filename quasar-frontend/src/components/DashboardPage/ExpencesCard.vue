@@ -193,7 +193,7 @@ onMounted(() => {
     }
 
     &-card {
-      padding: 5px;
+      padding: 10px;
       background: rgba(249, 251, 252, 255);
       border-radius: 10px;
 

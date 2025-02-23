@@ -8,7 +8,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/quasar-frontend/src/components/DashboardPage/CashflowCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/components/DashboardPage/CashflowCard.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/quasar-frontend/src/components/DashboardPage/ExpencesCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/components/DashboardPage/ExpencesCard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/pages/Dashboard/SettingsPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/pages/Dashboard/SettingsPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/components/DashboardPage/StockCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/components/DashboardPage/StockCard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quasar-frontend/src/pages/Dashboard/MainDashboard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/quasar-frontend/src/pages/Dashboard/MainDashboard.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,7 +170,8 @@
       <workItem from="1739033295954" duration="22682000" />
       <workItem from="1739696893399" duration="6816000" />
       <workItem from="1739723115264" duration="3805000" />
-      <workItem from="1740234937822" duration="7377000" />
+      <workItem from="1740234937822" duration="15384000" />
+      <workItem from="1740299710915" duration="6583000" />
     </task>
     <task id="LOCAL-00001" summary="appoints fix2">
       <option name="closed" value="true" />

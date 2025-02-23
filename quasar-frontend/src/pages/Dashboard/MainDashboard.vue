@@ -34,7 +34,7 @@ import StockCard from "components/DashboardPage/StockCard.vue";
 
       <div class="right__side flex column" style="gap: 24px; width: 30%">
         <ExpencesCard />
-<!--        <StockCard />-->
+        <StockCard />
       </div>
     </div>
   </div>

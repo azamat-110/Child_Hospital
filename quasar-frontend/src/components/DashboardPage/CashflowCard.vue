@@ -40,7 +40,7 @@ const createChart = () => {
             borderColor: "#2196F3",
             backgroundColor: "rgba(33, 150, 243, 0.1)",
             fill: true,
-            tension: 0.4,
+            tension: 0.3,
             pointRadius: 5,
             pointBackgroundColor: "#2196F3",
             pointBorderColor: "#fff",
@@ -124,7 +124,7 @@ onMounted(() => {
       <h3 class="text-h6 q-mr-sm cashflow__total-title">Total cash</h3>
       <div class="q-mb-sm flex justify-between items-center">
         <div class="flex items-center">
-          <span class="cashflow__total-cash">$134 422</span>
+          <span class="cashflow__total-cash">$134,422</span>
           <q-chip
             color="green-11"
             text-color="black"
